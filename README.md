@@ -1,5 +1,5 @@
 # Configuration files
-Archlinux
-i3-gapps
-polybar
-rofi
+- Archlinux
+- i3-gapps
+- polybar
+- rofi
