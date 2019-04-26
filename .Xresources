@@ -56,7 +56,7 @@ URxvt.keysym.KP_6:      6
 URxvt.keysym.KP_7:      7
 URxvt.keysym.KP_8:      8
 URxvt.keysym.KP_9:      9
-URxvt.keysym.KP_0: 		0
+URxvt.keysym.KP_0: 		  0
 
 URxvt.color24:  #076678
 URxvt.color66:  #427b58
