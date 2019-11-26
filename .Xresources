@@ -67,7 +67,7 @@ URxvt.font:                 xft:xos4 Terminus:pixelsize=16:antialias=true:hintin
 URxvt.boldFont:             xft:xos4 Terminus:bold:pixelsize=16:antialias=true:hinting=true
 URxvt.scrollBar:            false
 URxvt.saveLines:            65535
-URxvt.perl-ext-common:      keyboard-select,url-select,clipboard
+URxvt.perl-ext-common:      default,keyboard-select,url-select,clipboard
 URxvt.url-select.launcher:  icecat
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
