@@ -62,24 +62,28 @@
 *color14:                   S_base1
 *color15:                   S_base3
 
-! URxvt
+Xft*dpi:                    96
+Xft*antialias:              True
+Xft*hinting:                Full
+
+!URxvt
 URxvt.font:                 xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true
 URxvt.boldFont:             xft:xos4 Terminus:bold:pixelsize=16:antialias=true:hinting=true
 URxvt.scrollBar:            false
 URxvt.saveLines:            65535
-URxvt.perl-ext-common:      default,keyboard-select,url-select,clipboard
-URxvt.url-select.launcher:  icecat
+URxvt.cursorBlink:          yes
+URxvt.perl-ext-common:      default,keyboard-select,url-select,clipboard,matcher
+URxvt.iso14755:             false
+URxvt.url-select.launcher:  /usr/bin/sdg-open
 URxvt.url-select.underline: true
+URxvt.matcher.button:       1
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-Xft*dpi:                    96
-Xft*antialias:              True
-Xft*hinting:                Full
-URxvt.keysym.KP_Add:        +
+Rxvt.keysym.KP_Add:         +
 URxvt.keysym.KP_Subtract:   -
 URxvt.keysym.KP_Multiply:   *
 URxvt.keysym.KP_Divide  :   /
