@@ -2,8 +2,13 @@
 # i3 config #
 #############
 
+# Mod keys
 set $mod Mod4
 set $mod1 Mod1
+
+# Monitors (HDMI1, DVI-I-1, VGA-0, ...)
+set $mon1 HDMI1
+set $mon2 DVI-I-1
 
 font pango:Terminus 16
 
@@ -79,10 +84,10 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 #bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png'"
 
-##### Dual Monitor
-#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 60 --output HDMI1 --mode 1920x1080 --rate 60 --right-of DVI-I-1"
-#exec --no-startup-id "xrandr --output HDMI1 --right-of DVI-I-1 --auto"
-#exec --no-startup-id "xrandr --output VGA-0 --right-of DVI-I-1 --auto"
+# Dual Monitor
+#exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --rate 60 --output mon2 --mode 1920x1080 --rate 60 --right-of mon1"
+#exec --no-startup-id "xrandr --output $mon1 --right-of $mon2 --auto"
+#exec --no-startup-id "xrandr --output $mon2 --right-of $mon1 --auto"
 
 # kill focused window
 bindsym $mod+Shift+q kill
