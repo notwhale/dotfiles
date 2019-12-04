@@ -112,6 +112,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+Control+minus [title="^Sup ::"] scratchpad show
+#bindsym $mod+Control+minus scratchpad toggle
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
