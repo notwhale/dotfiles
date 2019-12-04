@@ -26,6 +26,21 @@ bindsym $mod+n border normal
 
 floating_modifier $mod1
 
+# COLORS
+# set colors from Xresources, fall back to #000000 in case Xresources is missing
+set_from_resource $darkred     color1  			#000000
+set_from_resource $white       foreground 		#000000
+set_from_resource $black       background 		#000000
+set_from_resource $alt_black   background-even	 	#000000
+set_from_resource $br_black    color8 			#000000
+set_from_resource $alt_white   color1			#000000
+
+# set border colors     BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+client.focused          $black      $black      $white      $black  	$alt_black
+client.unfocused        $alt_black  $alt_black  $br_black   $black  	$black
+client.focused_inactive $black      $black      $black      $black 	$black
+client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+client.background       $black
 
 # Autostart applications
 #exec --no-startup-id .screenlayout/layout-1440x900.sh
