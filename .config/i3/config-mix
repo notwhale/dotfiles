@@ -41,19 +41,19 @@ floating_modifier $mod1
 
 # COLORS
 # set colors from Xresources, fall back to #000000 in case Xresources is missing
-set_from_resource $darkred     color1  			#000000
-set_from_resource $white       foreground 		#000000
-set_from_resource $black       background 		#000000
-set_from_resource $alt_black   background-even	 	#000000
-set_from_resource $br_black    color8 			#000000
-set_from_resource $alt_white   color1			#000000
+#set_from_resource $darkred     color1  			#000000
+#set_from_resource $white       foreground 		#000000
+#set_from_resource $black       background 		#000000
+#set_from_resource $alt_black   background-even	#000000
+#set_from_resource $br_black    color8 			#000000
+#set_from_resource $alt_white   color1			#000000
 
 # set border colors     BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
-client.focused          $black      $black      $white      $black  	$alt_black
-client.unfocused        $alt_black  $alt_black  $br_black   $black  	$black
-client.focused_inactive $black      $black      $black      $black 	$black
-client.urgent           $darkred    $darkred    $black      $darkred    $darkred
-client.background       $black
+#client.focused          $black      $black      $white      $black  	$alt_black
+#client.unfocused        $alt_black  $alt_black  $br_black   $black  	$black
+#client.focused_inactive $black      $black      $black      $black 	$black
+#client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+#client.background       $black
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -109,10 +109,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-bindsym $mod+Control+minus [title="^Sup ::"] scratchpad show
-#bindsym $mod+Control+minus scratchpad toggle
+bindsym $mod+Shift+z move scratchpad
+bindsym $mod+z scratchpad show
+bindsym $mod+Control+z [title="^Sup ::"] scratchpad show
+#bindsym $mod+Control+z scratchpad togglebb
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -162,9 +162,9 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+#workspace_auto_back_and_forth yes
+#bindsym $mod+b workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
@@ -200,10 +200,6 @@ bindsym $mod+Control+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
