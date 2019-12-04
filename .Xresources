@@ -1,101 +1,53 @@
-! Solarized color scheme for the X Window System
+#include ".Xresources.d/solarized"
 
-! Common
-#define S_yellow          #b58900
-#define S_orange          #cb4b16
-#define S_red             #dc322f
-#define S_magenta         #d33682
-#define S_violet          #6c71c4
-#define S_blue            #268bd2
-#define S_cyan            #2aa198
-#define S_green           #859900
+! Xft
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.hinting:                true
+Xft.rgba:                   rgb
+Xft.autohint:               false
+Xft.hintstyle:              hintslight
+Xft.lcdfilter:              lcddefault
 
-! Dark
-#define S_base03           #002b36
-#define S_base02           #073642
-#define S_base01           #586e75
-#define S_base00           #657b83
-#define S_base0            #839496
-#define S_base1            #93a1a1
-#define S_base2            #eee8d5
-#define S_base3            #fdf6e3
-
-
-! Light
-! #define S_base03        #fdf6e3
-! #define S_base02        #eee8d5
-! #define S_base01        #93a1a1
-! #define S_base00        #839496
-! #define S_base0         #657b83
-! #define S_base1         #586e75
-! #define S_base2         #073642
-! #define S_base3         #002b36
-
-
-! To only apply colors to your terminal, for example, prefix
-! the color assignment statement with its name. Example:
-!
-! URxvt*background:            S_base03
-
-*background:                S_base03
-*foreground:                S_base0
-*fading:                    40
-*fadeColor:                 S_base03
-*cursorColor:               S_base1
-*pointerColorBackground:    S_base01
-*pointerColorForeground:    S_base1
-
-*color0:                    S_base02
-*color1:                    S_red
-*color2:                    S_green
-*color3:                    S_yellow
-*color4:                    S_blue
-*color5:                    S_magenta
-*color6:                    S_cyan
-*color7:                    S_base2
-*color9:                    S_orange
-*color8:                    S_base03
-*color10:                   S_base01
-*color11:                   S_base00
-*color12:                   S_base0
-*color13:                   S_violet
-*color14:                   S_base1
-*color15:                   S_base3
-
-Xft*dpi:                    96
-Xft*antialias:              True
-Xft*hinting:                Full
-
-!URxvt
+! URxvt
 URxvt.font:                 xft:xos4 Terminus:pixelsize=16:antialias=true:hinting=true
 URxvt.boldFont:             xft:xos4 Terminus:bold:pixelsize=16:antialias=true:hinting=true
 URxvt.scrollBar:            false
 URxvt.saveLines:            65535
-URxvt.cursorBlink:          yes
-URxvt.perl-ext-common:      default,keyboard-select,url-select,clipboard,matcher
-URxvt.iso14755:             false
-URxvt.url-select.launcher:  /usr/bin/sdg-open
+URxvt.perl-ext-common:      keyboard-select,url-select,clipboard
+URxvt.url-select.launcher:  icecat
 URxvt.url-select.underline: true
-URxvt.matcher.button:       1
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.keysym.M-c:           perl:clipboard:copy
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-Rxvt.keysym.KP_Add:         +
-URxvt.keysym.KP_Subtract:   -
-URxvt.keysym.KP_Multiply:   *
-URxvt.keysym.KP_Divide  :   /
-URxvt.keysym.KP_Decimal :   .
-URxvt.keysym.KP_Separator : ,
-URxvt.keysym.KP_1:          1
-URxvt.keysym.KP_2:          2
-URxvt.keysym.KP_3:          3
-URxvt.keysym.KP_4:          4
-URxvt.keysym.KP_5:          5
-URxvt.keysym.KP_6:          6
-URxvt.keysym.KP_7:          7
-URxvt.keysym.KP_8:          8
-URxvt.keysym.KP_9:          9
-URxvt.keysym.KP_0:          0
+
+! Rofi
+rofi.modi:                           window,drun,run
+rofi.sidebar-mode:                   true
+rofi.terminal:                       urxvt
+rofi.run-command:                    {cmd}
+rofi.run-shell-command:              {terminal} -e {cmd}
+rofi.ssh-client:                     ssh
+rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
+rofi.opacity:                        100
+rofi.width:                          25
+rofi.lines:                          7
+rofi.columns:                        1
+rofi.font:                           ClearSansMedium 10
+rofi.drun-icon-theme:                Papirus
+rofi.show-icons:                    true
+rofi.bw:                             2
+rofi.location:                       0
+rofi.padding:                        20
+rofi.levenshtein-sort:               true
+rofi.case-sensitive:                 false
+rofi.fuzzy:                          false
+rofi.line-margin:                    10
+rofi.separator-style:                none
+rofi.hide-scrollbar:                 true
+rofi.markup-rows:                    false
+rofi.scrollbar-width:                0
+rofi.color-enabled:                  true
