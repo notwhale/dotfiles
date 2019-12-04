@@ -7,6 +7,7 @@ set $mod1 Mod1
 
 font pango:Terminus 16
 
+# Borders & Gaps
 gaps inner 0
 gaps outer 0
 smart_gaps on
@@ -15,9 +16,20 @@ new_window pixel 1
 new_float normal
 hide_edge_borders none
 
+# change gaps
+bindsym $mod+plus                gaps inner current plus  5
+bindsym $mod+minus               gaps inner current minus 5
+bindsym $mod+Shift+plus          gaps outer current plus  5
+bindsym $mod+Shift+minus         gaps outer current minus 5
+bindsym $mod+Control+plus        gaps inner all     plus  5
+bindsym $mod+Control+minus       gaps inner all     minus 5
+bindsym $mod+Control+Shift+plus  gaps outer all     plus  5
+bindsym $mod+Control+Shift+minus gaps outer all     minus 5
+
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
+bindsym $mod+shift+b border toggle
 
 floating_modifier $mod1
 # focus_follows_mouse no
@@ -48,6 +60,7 @@ exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 10 -locker i3lock
 exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll'"
 exec_always --no-startup-id sbxkb
+exec_always --no-startup-id numlockx on
 exec_always --no-startup-id .config/polybar/launch.sh
 
 # Start Applications
@@ -90,6 +103,11 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+bindsym $mod+Control+minus [title="^Sup ::"] scratchpad show
+
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -100,7 +118,14 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
 
-################################################################################################
+# Audio controls
+#bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
+#bindsym XF86AudioNext        exec --no-startup-id playerctl next
+#bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
+#bindsym XF86AudioStop        exec --no-startup-id playerctl stop
+#bindsym XF86AudioMute        exec --no-startup-id pamixer -t
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2
+#bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
@@ -148,8 +173,15 @@ bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
-#bindcode $mod1+Tab layout toggle tabbed split
-#bindcode $mod+Tab layout toggle splitv splith
+# Size
+bindsym $mod1+Up    resize shrink height 10 px or 1 ppt
+bindsym $mod1+Down  resize grow   height 10 px or 1 ppt
+bindsym $mod1+Left  resize shrink width  10 px or 1 ppt
+bindsym $mod1+Right resize grow   width  10 px or 1 ppt
+
+# layout toggle, keycode 23 is Tab
+#bindcode Mod1+23 layout toggle tabbed split
+#bindcode $Mod+23 layout toggle splitv splith
 
 # toggle tiling / floating
 bindsym $mod+space floating toggle
