@@ -31,7 +31,7 @@ floating_modifier Mod1
 bindsym $Mod+w          exec --no-startup-id exo-open --launch WebBrowser
 bindsym $Mod+f          exec --no-startup-id exo-open --launch FileManager
 bindsym $Mod+t          exec --no-startup-id exo-open --launch TerminalEmulator
-bindsym $Mod+Return     exec --no-startup-id exo-open --launch TerminalEmulator
+bindsym $Mod+Return     exec --no-startup-id 'urxvt'
 bindsym Control+Shift+t exec --no-startup-id exo-open --launch TerminalEmulator
 
 # kill focused window
@@ -40,7 +40,8 @@ bindsym Mod1+q kill
 bindsym Mod1+F4 kill
 
 # start program launcher
-bindsym Control+space exec --no-startup-id rofi_run -r
+#bindsym Control+space exec --no-startup-id rofi_run -r
+bindsym Control+space exec --no-startup-id rofi -show drun
 
 # launch categorized menu
 #bindsym $mod+z exec --no-startup-id morc_menu
@@ -67,18 +68,18 @@ bindsym $mod+F2 exec icecat
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
+#bindsym $mod+F5 exec terminal -e 'mocp'
+#bindsym $mod+t exec --no-startup-id pkill compton
+#bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+#bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # Screenshot
+bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png'"
+#bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png'"
 
 # focus_follows_mouse no
 
@@ -117,7 +118,7 @@ bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
@@ -135,7 +136,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Control+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -247,7 +248,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
