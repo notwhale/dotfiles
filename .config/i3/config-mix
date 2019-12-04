@@ -2,9 +2,11 @@
 # i3 config #
 #############
 
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $Mod Mod4
-set $Mod1 Mod1
+
+set $mod Mod4
+set $mod1 Mod1
+
+font pango:Terminus 16
 
 #############################
 ### settings for i3-gaps: ###
@@ -12,21 +14,38 @@ set $Mod1 Mod1
 
 gaps inner 0
 gaps outer 0
-
 smart_gaps on
 smart_borders on
-
 new_window pixel 1
 new_float normal
-
 hide_edge_borders none
 
-# change borders
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-floating_modifier $Mod1
+floating_modifier $mod1
+
+
+# Autostart applications
+#exec --no-startup-id .screenlayout/layout-1440x900.sh
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id clipit
+exec_always --no-startup-id sbxkb
+exec --no-startup-id xautolock -time 10 -locker i3lock
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll'"
+
+##### Dual Monitor
+#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 60 --output HDMI1 --mode 1920x1080 --rate 60 --right-of DVI-I-1"
+#exec --no-startup-id "xrandr --output HDMI1 --right-of DVI-I-1 --auto"
+#exec --no-startup-id "xrandr --output VGA-0 --right-of DVI-I-1 --auto"
+
+# Polybar
+exec_always --no-startup-id .config/polybar/launch.sh
 
 # start a terminal
 bindsym $Mod+w          exec --no-startup-id exo-open --launch WebBrowser
@@ -37,13 +56,13 @@ bindsym Control+Shift+t exec --no-startup-id exo-open --launch TerminalEmulator
 
 # kill focused window
 bindsym $Mod+Shift+q kill
-bindsym $Mod1+q kill
-bindsym $Mod1+F4 kill
+bindsym $mod1+q kill
+bindsym $mod1+F4 kill
 
 # start program launcher
 #bindsym Control+space exec --no-startup-id rofi_run -r
 bindsym Control+space exec --no-startup-id rofi -show drun
-bindsym $Mod1+Tab exec --no-startup-id rofi -show windowcd
+bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # launch categorized menu
@@ -51,34 +70,6 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
-
-# Autostart applications
-#exec --no-startup-id .screenlayout/layout-1440x900.sh
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-exec_always --no-startup-id sbxkb
-#exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker i3lock
-#exec_always --no-startup-id ff-theme-util
-#exec_always --no-startup-id fix_xcursor
-
-##### Keyboard layout
-exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll'"
-
-##### Dual Monitor
-#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 60 --output HDMI1 --mode 1920x1080 --rate 60 --right-of DVI-I-1"
-#exec --no-startup-id "xrandr --output HDMI1 --right-of DVI-I-1 --auto"
-#exec --no-startup-id "xrandr --output VGA-0 --right-of DVI-I-1 --auto"
-
-# Polybar
-exec_always --no-startup-id .config/polybar/launch.sh
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -148,7 +139,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
