@@ -2,7 +2,7 @@
 # notwhale i3 config #
 ######################
 
-#font pango:Ubuntu 10
+#font pango:xos4 Terminus 12px
 
 # Mod keys
 set $mod Mod4
@@ -148,6 +148,9 @@ bindsym $mod+Control+s sticky toggle
 
 # floating modifier
 floating_modifier $mod1
+
+# mouse follow focus
+focus_follows_mouse no
 
 # layout toggle, keycode 23 is Tab
 #bindcode Mod1+23 layout toggle tabbed split
