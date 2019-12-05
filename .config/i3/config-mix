@@ -35,6 +35,10 @@ bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+# OpenVPN keybindings
+#bindsym $Mod+Mod1+z exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
+#bindsym $Mod+Mod1+x exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop openvpn-client@vpn.itstr.pro"
+
 # Screenshot
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -57,17 +61,22 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #bindsym $mod+Ctrl+m exec pavucontrol
 
 # Audio controls
-#bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
-#bindsym XF86AudioNext        exec --no-startup-id playerctl next
-#bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
-#bindsym XF86AudioStop        exec --no-startup-id playerctl stop
-#bindsym XF86AudioMute        exec --no-startup-id pamixer -t
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2
-#bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2
+bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext        exec --no-startup-id playerctl next
+bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
+bindsym XF86AudioStop        exec --no-startup-id playerctl stop
+bindsym XF86AudioMute        exec --no-startup-id pamixer -t
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+
+# Audio controls for keyboard with no multimedia buttons
+bindsym $Mod+F10 exec --no-startup-id pamixer -t
+bindsym $Mod+F11 exec --no-startup-id pamixer -d 5
+bindsym $Mod+F12 exec --no-startup-id pamixer -i 5
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -153,8 +162,8 @@ floating_modifier $mod1
 focus_follows_mouse no
 
 # layout toggle, keycode 23 is Tab
-#bindcode Mod1+23 layout toggle tabbed split
-#bindcode $Mod+23 layout toggle splitv splith
+bindcode Mod1+Control+Tab layout toggle tabbed split
+bindcode $Mod+Control+Tab layout toggle splitv splith
 
 # Size
 bindsym $mod1+Up    resize shrink height 10 px or 1 ppt
@@ -188,17 +197,14 @@ bindsym $mod+n border normal
 bindsym $mod+shift+b border toggle
 
 # Workspace names
-# to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws1 1:mail
-#                 set $ws2 2:
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
+set $ws1 "1: I"
+set $ws2 "2: II"
+set $ws3 "3: III"
+set $ws4 "4: IV"
+set $ws5 "5: V"
+set $ws6 "6: VI"
+set $ws7 "7: VII"
+set $ws8 "8: VIII"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -268,14 +274,21 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="(?i)(?:qt5ct|pinentry)"] floating enable
 for_window [class="(?i)(?:sky)"] floating enable
+for_window [class="(?i)(?:remmina)"] floating enable, focus
 
 # focus, floating, & sticky
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [window_role="(?i)(?:pop-up|setup)"] floating enable
+for_window [title="floating"] floating enable, resize set 1000 500, move position center, focus
+for_window [title="prompt"] floating enable, resize set 700 200, move position center, focus
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+focus_on_window_activation focus
+
+# popup
+popup_during_fullscreen smart
