@@ -12,7 +12,7 @@ set $mod1 Mod1
 set $mon1 HDMI1
 set $mon2 DVI-I-1
 
-# Autostart applications
+# Autostart applicationst
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
@@ -142,9 +142,6 @@ bindsym $mod+a focus parent
 
 # focus the child container
 bindsym $mod+d focus child
-
-# toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
 # toggle sticky
 bindsym $mod+Control+s sticky toggle
