@@ -87,7 +87,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 10 -locker i3lock
-exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll'"
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:super'"
 exec_always --no-startup-id sbxkb
 exec_always --no-startup-id numlockx on
 exec_always --no-startup-id .config/polybar/launch.sh
