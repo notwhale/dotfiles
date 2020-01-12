@@ -38,7 +38,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center = mpd filesystem
-modules-right = temperature cpu memory xkeyboard date pulseaudio settings powermenu
+modules-right = ovpn temperature cpu memory xkeyboard date pulseaudio settings powermenu
 
 tray-position = right
 tray-padding = 1 
@@ -57,6 +57,11 @@ scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/ovpn]
+type = custom/script
+exec = .config/polybar/scripts/isrunning-openvpn.sh
+interval = 5
 
 [module/xwindow]
 type = internal/xwindow
@@ -84,7 +89,7 @@ interval = 25
 
 mount-0 = /boot
 mount-1 = /
-mount-2 = /run/media/crypthome
+mount-2 = /run/media/raid1
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted

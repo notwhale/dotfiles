@@ -67,7 +67,7 @@ client.urgent           $red $red $white $red $red
 
 #end of window title bars & borders section
 
-font pango:Hack 11
+font pango: Terminus (TTF) 12
 
 # Mod keys
 set $mod Mod4
@@ -86,9 +86,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id xautolock -time 10 -locker i3lock
+#exec --no-startup-id xautolock -time 10 -locker i3lock
 exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:super'"
-exec_always --no-startup-id sbxkb
+#exec_always --no-startup-id sbxkb
 exec_always --no-startup-id numlockx on
 exec_always --no-startup-id .config/polybar/launch.sh
 #exec_always --no-startup-id al-polybar-session
@@ -157,7 +157,7 @@ bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Lock screen
-bindsym $mod+Shift+Control+l exec --no-startup-id "xautolock -locknow"
+bindsym $mod+Control+l exec --no-startup-id "xautolock -locknow"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -312,11 +312,12 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open applications on specific workspaces
+assign [class="(?i)(?:chrome|chromium)"] → $ws1
 assign [class="(?i)(?:firefox|icecat)"] → $ws2
-assign [class="(?i)(?:chrome|chromium)"] → $ws2
 assign [class="(?i)(?:thunar|pcmanfm)"]  → $ws3
 assign [class="(?i)(?:remmina)"]  → $ws6
 assign [class="(?i)(?:sky)"]  → $ws7
+assign [class="(?i)(?:packettracer7)"]  → $ws7
 assign [class="(?i)(?:virtualbox)"]  → $ws8
 
 # Open specific applications in floating mode
@@ -351,6 +352,7 @@ for_window [class="Places"] floating enable border normal
 for_window [class="(?i)(?:qt5ct|pinentry)"] floating enable
 for_window [class="(?i)(?:sky)"] floating enable
 for_window [class="(?i)(?:remmina)"] floating enable, focus
+for_window [class="(?i)(?:packettracer7)"] floating enable border normal, focus
 
 # focus, floating, & sticky
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
