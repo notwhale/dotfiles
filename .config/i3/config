@@ -78,23 +78,26 @@ set $mon1 HDMI1
 set $mon2 DVI-I-1
 
 # Autostart applicationst
-exec_always --no-startup-id xrdb -load ~/.Xresources
-exec_always --no-startup-id xmodmap ~/.Xmodmap
+#exec_always --no-startup-id xrdb -load ~/.Xresources
+#exec_always --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-#exec --no-startup-id xautolock -time 10 -locker i3lock
-exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:super'"
+exec --no-startup-id xautolock -time 10 -locker i3lock
+#exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:super'"
+exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:toggle,grp_led:scroll,caps:super'"
 #exec_always --no-startup-id sbxkb
+exec_always --no-startup-id dunst
 exec_always --no-startup-id numlockx on
 exec_always --no-startup-id .config/polybar/launch.sh
 #exec_always --no-startup-id al-polybar-session
 
 # Applications bindings
 bindsym $mod+Return exec urxvt
+bindsym $mod+Shift+Return exec "urxvt --title floating"
 bindsym $mod+F2 exec icecat
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -157,7 +160,7 @@ bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Lock screen
-bindsym $mod+Control+l exec --no-startup-id "xautolock -locknow"
+bindsym $mod+Shift+Control+l exec --no-startup-id "xautolock -locknow"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -312,12 +315,11 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open applications on specific workspaces
-assign [class="(?i)(?:chrome|chromium)"] → $ws1
 assign [class="(?i)(?:firefox|icecat)"] → $ws2
+assign [class="(?i)(?:chrome|chromium)"] → $ws2
 assign [class="(?i)(?:thunar|pcmanfm)"]  → $ws3
 assign [class="(?i)(?:remmina)"]  → $ws6
 assign [class="(?i)(?:sky)"]  → $ws7
-assign [class="(?i)(?:packettracer7)"]  → $ws7
 assign [class="(?i)(?:virtualbox)"]  → $ws8
 
 # Open specific applications in floating mode
@@ -346,13 +348,12 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-#for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="(?i)virtualbox"] layout tabbed
+for_window [class="(?i)virtualbox"] floating enable border normal
+#for_window [class="(?i)virtualbox"] layout tabbed
 for_window [class="Places"] floating enable border normal
 for_window [class="(?i)(?:qt5ct|pinentry)"] floating enable
 for_window [class="(?i)(?:sky)"] floating enable
 for_window [class="(?i)(?:remmina)"] floating enable, focus
-for_window [class="(?i)(?:packettracer7)"] floating enable border normal, focus
 
 # focus, floating, & sticky
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
