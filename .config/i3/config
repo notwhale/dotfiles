@@ -3,70 +3,34 @@
 ######################
 
 # Colors
-#set_from_resource $term_background background
-#set_from_resource $term_foreground foreground
-#set_from_resource $term_color0     color0
-#set_from_resource $term_color1     color1
-#set_from_resource $term_color2     color2
-#set_from_resource $term_color3     color3
-#set_from_resource $term_color4     color4
-#set_from_resource $term_color5     color5
-#set_from_resource $term_color6     color6
-#set_from_resource $term_color7     color7
-#set_from_resource $term_color8     color8
-#set_from_resource $term_color9     color9
-#set_from_resource $term_color10    color10
-#set_from_resource $term_color11    color11
-#set_from_resource $term_color12    color12
-#set_from_resource $term_color13    color13
-#set_from_resource $term_color14    color14
-#set_from_resource $term_color15    color15
+set_from_resource $bg       background
+set_from_resource $fg       foreground
+set_from_resource $black    color0
+set_from_resource $dgrey    color8
+set_from_resource $dred     color1
+set_from_resource $red      color9
+set_from_resource $dgreen   color2
+set_from_resource $green    color10
+set_from_resource $dyellow  color3
+set_from_resource $yellow   color11
+set_from_resource $dblue    color4
+set_from_resource $blue     color12
+set_from_resource $dmagenta color5
+set_from_resource $magenta  color13
+set_from_resource $dcyan    color6
+set_from_resource $cyan     color14
+set_from_resource $lgray    color7
+set_from_resource $white    color15
 
-# Theme colors
-# class                   border  backgr. text    indic.   child_border
-#  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-#  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-#  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-#  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-#  client.placeholder      #000000 #0c0c0c #ffffff #000000 
-#  client.background       #2B2C2B
+#class                  border    background text     indicator child_border
+client.focused          $fg	  $bg 	     $dyellow $dyellow  $fg
+client.focused_inactive $bg       $bg        $lgray   $bg       $bg
+client.unfocused        $bg       $bg        $lgray   $bg       $bg
+client.urgent           $red 	  $red 	     $white   $red      $red
+client.placeholder      $red      $green     $cyan    $magenta
+client.background       $bg
 
-# set primary gruvbox colorscheme colors
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
-
-#start of window title bars & borders section
-
-# green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $green $green $darkgray $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
-
-# blue gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $blue $blue $darkgray $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
-
-# yellow gruvbox
-# class                 border|backgr|text|indicator|child_border
-client.focused          $bg $bg $yellow $purple $darkgray
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-client.urgent           $red $red $white $red $red
-
-#end of window title bars & borders section
-
+#Font
 font pango: Terminus (TTF) 12
 
 # Mod keys
@@ -98,17 +62,24 @@ exec_always --no-startup-id .config/polybar/launch.sh
 # Applications bindings
 bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec "urxvt --title floating"
+bindsym $mod+F1 exec chromium
 bindsym $mod+F2 exec icecat
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F4 exec subl3
+bindsym $mod+Shift+F4 exec "subl3 --title floating"
 bindsym $mod+p exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+p exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # OpenVPN keybindings
-bindsym $Mod+Mod1+z exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
-bindsym $Mod+Mod1+x exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop openvpn-client@vpn.itstr.pro"
+bindsym $Mod+o exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
+bindsym $Mod+Shift+o exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop openvpn-client@vpn.itstr.pro"
+
+# TFTP Server
+bindsym $Mod+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl start tftpd.service"
+bindsym $Mod+Shift+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop tftpd.service"
 
 # Screenshot
 bindsym Print exec --no-startup-id i3-scrot
@@ -160,7 +131,7 @@ bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Lock screen
-bindsym $mod+Shift+Control+l exec --no-startup-id "xautolock -locknow"
+bindsym $mod+0 exec --no-startup-id "xautolock -locknow"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -246,10 +217,12 @@ bindsym $mod1+Left  resize shrink width  10 px or 1 ppt
 bindsym $mod1+Right resize grow   width  10 px or 1 ppt
 
 # Borders & Gaps
-gaps inner 0
-gaps outer 0
+gaps inner 5
+gaps outer -2
 smart_gaps on
 smart_borders on
+default_border pixel 1
+default_floating_border normal
 new_window pixel 1
 new_float normal
 hide_edge_borders none
@@ -354,12 +327,13 @@ for_window [class="Places"] floating enable border normal
 for_window [class="(?i)(?:qt5ct|pinentry)"] floating enable
 for_window [class="(?i)(?:sky)"] floating enable
 for_window [class="(?i)(?:remmina)"] floating enable, focus
+for_window [class="NetworkManager"] floating enable, focus
 
 # focus, floating, & sticky
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [window_role="(?i)(?:pop-up|setup)"] floating enable
-for_window [title="floating"] floating enable, resize set 1000 500, move position center, focus
-for_window [title="prompt"] floating enable, resize set 700 200, move position center, focus
+for_window [title="floating"] floating enable, resize set 1000 700, move position center, focus
+for_window [title="prompt"] floating enable, resize set 800 100, move position center, focus
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
