@@ -23,7 +23,7 @@ set_from_resource $lgray    color7
 set_from_resource $white    color15
 
 #class                  border    background text     indicator child_border
-client.focused          $fg	  $bg 	     $dyellow $dyellow  $fg
+client.focused          $dyellow  $bg 	     $dyellow $dred     $dyellow
 client.focused_inactive $bg       $bg        $lgray   $bg       $bg
 client.unfocused        $bg       $bg        $lgray   $bg       $bg
 client.urgent           $red 	  $red 	     $white   $red      $red
@@ -38,8 +38,8 @@ set $mod Mod4
 set $mod1 Mod1
 
 # Monitors (HDMI1, DVI-I-1, VGA-0, ...)
-set $mon1 HDMI1
-set $mon2 DVI-I-1
+set $mon1 DVI-I-1
+set $mon2 HDMI1
 
 # Autostart applicationst
 #exec_always --no-startup-id xrdb -load ~/.Xresources
@@ -50,14 +50,15 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no-startup-id xautolock -time 10 -locker i3lock
-#exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:super'"
 exec --no-startup-id "setxkbmap -layout us,ru -option 'grp:toggle,grp_led:scroll,caps:super'"
 #exec_always --no-startup-id sbxkb
 exec_always --no-startup-id dunst
 exec_always --no-startup-id numlockx on
 exec_always --no-startup-id .config/polybar/launch.sh
-#exec_always --no-startup-id al-polybar-session
+
+# Lock screen
+bindsym $mod+0 exec --no-startup-id "betterlockscreen -l blur"
+exec --no-startup-id xautolock -time 10 -locker betterlockscreen -l blur
 
 # Applications bindings
 bindsym $mod+Return exec urxvt
@@ -74,12 +75,12 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # OpenVPN keybindings
-bindsym $Mod+o exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
-bindsym $Mod+Shift+o exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop openvpn-client@vpn.itstr.pro"
+bindsym $Mod+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
+bindsym $Mod+Shift+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop openvpn-client@vpn.itstr.pro"
 
 # TFTP Server
-bindsym $Mod+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl start tftpd.service"
-bindsym $Mod+Shift+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop tftpd.service"
+bindsym $Mod+F6 exec --no-startup-id "urxvt --title prompt -e sudo systemctl start tftpd.service"
+bindsym $Mod+Shift+F6 exec --no-startup-id "urxvt --title prompt -e sudo systemctl stop tftpd.service"
 
 # Screenshot
 bindsym Print exec --no-startup-id i3-scrot
@@ -88,7 +89,8 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 #bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png'"
 
 # Dual Monitor
-#exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --rate 60 --output mon2 --mode 1920x1080 --rate 60 --right-of mon1"
+exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --pos 0x0 --output $mon2 --mode 1920x1080 --pos 1920x0"
+#exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --rate 60 --output $mon2 --mode 1920x1080 --rate 60 --right-of $mon1"
 #exec --no-startup-id "xrandr --output $mon1 --right-of $mon2 --auto"
 #exec --no-startup-id "xrandr --output $mon2 --right-of $mon1 --auto"
 
@@ -129,9 +131,6 @@ bindsym $mod1+F4 kill
 bindsym Control+space exec --no-startup-id rofi -show drun
 bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-
-# Lock screen
-bindsym $mod+0 exec --no-startup-id "xautolock -locknow"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -252,6 +251,10 @@ set $ws5 "5: "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
+set $ws9 "9: 9"
+
+# Workspace monitor
+workspace 9 output $mon2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -262,6 +265,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -272,6 +276,7 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -282,17 +287,19 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open applications on specific workspaces
+assign [class="(?i)(?:chrome|chromium)"] → $ws1
 assign [class="(?i)(?:firefox|icecat)"] → $ws2
-assign [class="(?i)(?:chrome|chromium)"] → $ws2
-assign [class="(?i)(?:thunar|pcmanfm)"]  → $ws3
+assign [class="(?i)(?:thunar|pcmanfm|ranger)"]  → $ws3
 assign [class="(?i)(?:remmina)"]  → $ws6
 assign [class="(?i)(?:sky)"]  → $ws7
+assign [class="(?i)(?:PacketTracer7)"]  → $ws7
 assign [class="(?i)(?:virtualbox)"]  → $ws8
 
 # Open specific applications in floating mode
@@ -321,13 +328,15 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="(?i)virtualbox"] floating enable border normal
-#for_window [class="(?i)virtualbox"] layout tabbed
+#for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="(?i)virtualbox"] layout tabbed
 for_window [class="Places"] floating enable border normal
+for_window [title="Library"] floating enable border normal
 for_window [class="(?i)(?:qt5ct|pinentry)"] floating enable
-for_window [class="(?i)(?:sky)"] floating enable
-for_window [class="(?i)(?:remmina)"] floating enable, focus
-for_window [class="NetworkManager"] floating enable, focus
+for_window [class="(?i)(?:sky)"] floating enable border normal
+for_window [class="(?i)(?:remmina)"] layout tabbed
+for_window [class="Nm-connection-editor"] floating enable border normal
+for_window [class="PacketTracer7"] floating enable border normal
 
 # focus, floating, & sticky
 for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
@@ -341,3 +350,7 @@ focus_on_window_activation focus
 
 # popup
 popup_during_fullscreen smart
+
+#floating window size
+floating_minimum_size 100 x 70
+floating_maximum_size -1 x -1

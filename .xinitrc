@@ -1,5 +1,5 @@
 #!/bin/sh
 
 xrdb -merge .Xresources
-xmodmap .Xmodmap
+#xmodmap .Xmodmap
 exec i3

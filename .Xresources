@@ -13,10 +13,10 @@ Xft.lcdfilter:              lcddefault
 !URxvt.font:                 xft:xos4 Terminus:pixelsize=18:antialias=true:hinting=true
 !URxvt.boldFont:             xft:xos4 Terminus:bold:pixelsize=18:antialias=true:hinting=true
 
-URxvt.font: xft:Hack:size=12:antialias=true:hinting=true,xft:Symbola,xft:UbuntuMonoDerivativePowerline Nerd Font
-URxvt.boldFont: xft:Hack:style=Bold:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
-URxvt.italicFont:   xft:Hack:style=Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
-URxvt.boldItalicFont:   xft:Hack:style=Bold Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
+URxvt.font: xft:FantasqueSansMono:size=13:antialias=true:hinting=true,xft:Hack:size=12:antialias=true:hinting=true,xft:Symbola,xft:UbuntuMonoDerivativePowerline Nerd Font
+!URxvt.boldFont: xft:Hack:style=Bold:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
+!URxvt.italicFont:   xft:Hack:style=Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
+!URxvt.boldItalicFont:   xft:Hack:style=Bold Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
 
 URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-equal:      resize-font:bigger
