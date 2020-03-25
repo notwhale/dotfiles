@@ -1,7 +1,9 @@
 #!/bin/sh
 
-if [ "$(pgrep openvpn)" ]; then
-    echo "  VPN on"
-else
-    echo "  VPN off"
+connection=$(pgrep -a openvpn$ | head -n 1 | awk '{print $NF }' | sed -e 's/\.[^.]*$//')
+
+if [ -n "$connection" ]; then
+    echo "VPN: $connection"
+else 
+    echo ""
 fi
