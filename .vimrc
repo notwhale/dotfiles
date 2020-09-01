@@ -41,3 +41,6 @@ set fileencodings=utf8,cp1251
 
 map <C-n> :NERDTreeToggle<CR>
 noremap <F3> :set number!<CR>
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
