@@ -5,11 +5,16 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set t_Co=256
+"colorscheme nord
 colorscheme gruvbox
 set background=dark
+let g:airline_theme='base16_gruvbox_dark_hard'
 
 set expandtab
 set smarttab
@@ -20,7 +25,7 @@ set shiftwidth=4
 "set autoindent
 set number
 set foldcolumn=2
-filetype on
+filetype plugin on
 syntax on
 
 set noerrorbells
