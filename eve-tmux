@@ -1,0 +1,36 @@
+#!/bin/sh
+SESSIONN=eve-ng
+HOSTN=eve-ng.kau.nul
+
+tmux new-session -d -s $SESSIONN
+
+tmux rename-window "MikroTik"
+tmux send-keys "telnet $HOSTN 32769" C-m
+
+tmux new-window -n "ISP1"
+tmux send-keys "telnet $HOSTN 32773" C-m
+
+tmux new-window -n "ISP2"
+tmux send-keys "telnet $HOSTN 32774" C-m
+
+tmux new-window -n "ISP0"
+tmux send-keys "telnet $HOSTN 32776" C-m
+
+tmux new-window -n "VPC"
+tmux send-keys "telnet $HOSTN 32775" C-m
+tmux split-window -v -f
+#tmux resize-pane -U 10
+tmux send-keys "telnet $HOSTN 32770" C-m
+tmux split-window -v -f
+#tmux resize-pane -U 10
+tmux send-keys "telnet $HOSTN 32771" C-m
+tmux split-window -v -f
+#tmux resize-pane -U 10
+tmux send-keys "telnet $HOSTN 32772" C-m
+#tmux select-layout tiled
+tmux select-layout main-horizontal
+tmux next-layout
+
+tmux select-window -t 1
+
+tmux attach-session -t $SESSIONN
