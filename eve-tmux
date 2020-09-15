@@ -1,36 +1,31 @@
 #!/bin/sh
-SESSIONN=eve-ng
+SESSION=eve-ng
 HOSTN=eve-ng.kau.nul
 
-tmux new-session -d -s $SESSIONN
+tmux new-session -d -s $SESSION
 
 tmux rename-window "MikroTik"
-tmux send-keys "telnet $HOSTN 32769" C-m
+tmux send-keys -t $SESSION:1.1 "telnet $HOSTN 32769" Enter
 
 tmux new-window -n "ISP1"
-tmux send-keys "telnet $HOSTN 32773" C-m
+tmux send-keys -t $SESSION:2.1 "telnet $HOSTN 32773" Enter
 
 tmux new-window -n "ISP2"
-tmux send-keys "telnet $HOSTN 32774" C-m
+tmux send-keys -t $SESSION:3.1 "telnet $HOSTN 32774" Enter
 
 tmux new-window -n "ISP0"
-tmux send-keys "telnet $HOSTN 32776" C-m
+tmux send-keys -t $SESSION:4.1 "telnet $HOSTN 32776" Enter
 
 tmux new-window -n "VPC"
-tmux send-keys "telnet $HOSTN 32775" C-m
-tmux split-window -v -f
-#tmux resize-pane -U 10
-tmux send-keys "telnet $HOSTN 32770" C-m
-tmux split-window -v -f
-#tmux resize-pane -U 10
-tmux send-keys "telnet $HOSTN 32771" C-m
-tmux split-window -v -f
-#tmux resize-pane -U 10
-tmux send-keys "telnet $HOSTN 32772" C-m
-#tmux select-layout tiled
-tmux select-layout main-horizontal
-tmux next-layout
+tmux send-keys -t $SESSION:5.1 "telnet $HOSTN 32775" Enter
+tmux split-window -v -t $SESSION:5.1 "telnet $HOSTN 32777" Enter
+tmux split-window -v -t $SESSION:5.2 "telnet $HOSTN 32770" Enter
+tmux split-window -v -t $SESSION:5.3 "telnet $HOSTN 32771" Enter
+tmux split-window -v -t $SESSION:5.4 "telnet $HOSTN 32772" Enter
 
-tmux select-window -t 1
+tmux select-layout even-vertical
 
-tmux attach-session -t $SESSIONN
+tmux select-window -t 5
+
+tmux attach-session -t $SESSION
+
