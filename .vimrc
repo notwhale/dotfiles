@@ -21,8 +21,7 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
-"set autoindent
+set autoindent
 set number
 set foldcolumn=2
 filetype plugin on
@@ -58,3 +57,27 @@ noremap <F3> :set number!<CR>
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+
+" Autopaste {
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+"}
