@@ -1,0 +1,30 @@
+session_name: eve-ng
+windows:
+  - window_name: MikrtoTik
+    layout: main-horizontal
+    focus: true
+    panes:
+    - shell_command:
+      - telnet eve-ng.kau.nul 32769
+    - shell_command:
+      - telnet eve-ng.kau.nul 32775
+    - shell_command:
+      - telnet eve-ng.kau.nul 32777
+  - window_name: ISP
+    layout: even-vertical
+    panes:
+    - shell_command:
+      - telnet eve-ng.kau.nul 32776
+    - shell_command:
+      - telnet eve-ng.kau.nul 32773
+    - shell_command:
+      - telnet eve-ng.kau.nul 32774
+  - window_name: Inet
+    layout: even-horizontal
+    panes:
+    - shell_command:
+      - telnet eve-ng.kau.nul 32770
+    - shell_command:
+      - telnet eve-ng.kau.nul 32771
+    - shell_command:
+      - telnet eve-ng.kau.nul 32772
