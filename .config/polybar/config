@@ -32,14 +32,14 @@ padding-right = 0
 module-margin-left = 1 
 module-margin-right = 1
 
-font-0 = Terminus (TTF):size=12;1
-font-1 = FontAwesome:size=10;1
-font-2 = iconmoon:size=10;1
-font-3 = octicons:size=10;1
+font-0 = Terminus (TTF):style=Medium:size=12;1
+font-1 = Hack Nerd Font:style=Regular:size=12;1
+font-2 = FontAwesome:size=12;1
+font-3 = iconmoon:size=12;1
 
 modules-left = i3
-modules-center = filesystem
-modules-right = tftp ovpn temperature cpu memory xkeyboard date pulseaudio 
+modules-center = filesystem tftp ovpn
+modules-right = temperature cpu memory xkeyboard date pulseaudio 
 
 tray-position = right
 tray-padding = 1 
@@ -60,12 +60,14 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 [module/tftp]
+format-prefix = "%{F#b16286}"
 type = custom/script
 exec = ~/.config/polybar/scripts/isrunning-tftpd.sh
 tail = true
 #interval = 5
 
 [module/ovpn]
+format-prefix = "%{F#b16286}"
 type = custom/script
 exec = ~/.config/polybar/scripts/isrunning-openvpn.sh
 tail = true
@@ -79,7 +81,7 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix = "%{F#458588} "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
@@ -97,9 +99,11 @@ interval = 25
 
 mount-0 = /boot
 mount-1 = /
-mount-2 = /run/media/raid1
+mount-2 = /mnt/md0
+mount-3 = /mnt/md1
+mount-4 = /mnt/VM
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#458588}%mountpoint%%{F-}: %percentage_free%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -165,7 +169,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "%{F#d65d0e} "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = CPU %percentage:2%%
@@ -183,7 +187,7 @@ ramp-coreload-7 = █
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "%{F#d65d0e} "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = RAM %percentage_used%%
@@ -230,7 +234,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = %{F#b16286}
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5s
 
@@ -261,9 +265,9 @@ label = TEMP %temperature-c%
 label-warn = TEMP %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = %{F#d65d0e}
+ramp-1 = %{F#d65d0e}
+ramp-2 = %{F#d65d0e}
 ramp-foreground = ${colors.foreground-alt}
 
 [module/pulseaudio]
@@ -300,13 +304,13 @@ format-volume = <ramp-volume> <label-volume>
 ; Available tokens:
 ;   %percentage% (default)
 ;   %decibels% (unreleased)
-label-muted = 🔇 muted
+label-muted = %{F#98971a} muted
 label-muted-foreground = #666
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
+ramp-volume-0 = %{F#98971a}
+ramp-volume-1 = %{F#98971a}
+ramp-volume-2 = %{F#98971a}
 
 ; Right and Middle click (unreleased)
 click-right = pavucontrol &
