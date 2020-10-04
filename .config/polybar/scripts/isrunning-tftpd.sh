@@ -4,8 +4,8 @@ UNIT="tftpd.service"
 
 journalctl --follow -o cat --unit $UNIT | while read -r; do
 	if [ "$(systemctl is-active "$UNIT")" = "active" ]; then
-        echo "TFTP on"
+        echo " tftp"
     else
-        echo ""
+        echo " tftp "
     fi
 done

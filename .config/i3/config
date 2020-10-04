@@ -38,8 +38,8 @@ set $mod Mod4
 set $mod1 Mod1
 
 # Monitors (HDMI1, DVI-I-1, VGA-0, ...)
-set $mon1 DVI-I-1
-set $mon2 HDMI1
+#set $mon1 DVI-I-1
+#set $mon2 HDMI1
 
 # Autostart applicationst
 #exec_always --no-startup-id xrdb -load ~/.Xresources
@@ -63,16 +63,17 @@ exec --no-startup-id xautolock -time 10 -locker betterlockscreen -l blur
 # Applications bindings
 bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec "urxvt --title floating"
-bindsym $mod+F1 exec chromium
-bindsym $mod+F2 exec icecat
-bindsym $mod+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F4 exec subl3
-bindsym $mod+Shift+F4 exec "subl3 --title floating"
+bindsym $mod+F2 exec chromium
+bindsym $mod+F3 exec icecat
+bindsym $mod+F4 exec pcmanfm
+bindsym $mod+Shift+F4 exec gksu pcmanfm
+bindsym $mod+F5 exec subl3
+bindsym $mod+Shift+F5 exec "subl3 --title floating"
 bindsym $mod+p exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+p exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+x --release exec --no-startup-id "~/bin/rofi_run -l"
 
 # OpenVPN keybindings
 bindsym $Mod+F7 exec --no-startup-id "urxvt --title prompt -e sudo systemctl start openvpn-client@vpn.itstr.pro"
@@ -89,7 +90,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 #bindsym Print exec --no-startup-id "scrot '%S.png' -e 'mv $f $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png ; feh $$(xdg-user-dir PICTURES)/scrot-%S-$wx$h.png'"
 
 # Dual Monitor
-exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --pos 0x0 --output $mon2 --mode 1920x1080 --pos 1920x0"
+#exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --pos 0x0 --output $mon2 --mode 1920x1080 --pos 1920x0"
 #exec --no-startup-id "xrandr --output $mon1 --primary --mode 1920x1080 --rate 60 --output $mon2 --mode 1920x1080 --rate 60 --right-of $mon1"
 #exec --no-startup-id "xrandr --output $mon1 --right-of $mon2 --auto"
 #exec --no-startup-id "xrandr --output $mon2 --right-of $mon1 --auto"
@@ -254,7 +255,7 @@ set $ws8 "8: "
 set $ws9 "9: 9"
 
 # Workspace monitor
-workspace 9 output $mon2
+#workspace 9 output $mon2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -294,9 +295,9 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open applications on specific workspaces
-assign [class="(?i)(?:chrome|chromium)"] → $ws1
-assign [class="(?i)(?:firefox|icecat)"] → $ws2
-assign [class="(?i)(?:thunar|pcmanfm|ranger)"]  → $ws3
+assign [class="(?i)(?:chrome|chromium)"] → $ws2
+assign [class="(?i)(?:firefox|icecat)"] → $ws3
+assign [class="(?i)(?:thunar|pcmanfm|ranger)"] → $ws4
 assign [class="(?i)(?:remmina)"]  → $ws6
 assign [class="(?i)(?:sky)"]  → $ws7
 assign [class="(?i)(?:PacketTracer7)"]  → $ws7
