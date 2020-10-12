@@ -23,8 +23,8 @@ set_from_resource $lgray    color7
 set_from_resource $white    color15
 
 #class                  border    background text     indicator child_border
-client.focused          $dyellow  $bg 	     $dyellow $dred     $dyellow
-client.focused_inactive $bg       $bg        $lgray   $bg       $bg
+client.focused          $bg       $bg 	     $yellow  $red      $bg
+client.focused_inactive $bg       $bg        $fg      $bg       $bg
 client.unfocused        $bg       $bg        $lgray   $bg       $bg
 client.urgent           $red 	  $red 	     $white   $red      $red
 client.placeholder      $red      $green     $cyan    $magenta
@@ -32,6 +32,7 @@ client.background       $bg
 
 #Font
 font pango: Terminus (TTF) 12
+#font pango: FiraCode 12
 
 # Mod keys
 set $mod Mod4
@@ -130,8 +131,8 @@ bindsym $mod1+F4 kill
 
 # start program launcher
 bindsym Control+space exec --no-startup-id rofi -show drun
-bindsym $mod1+Tab exec --no-startup-id rofi -show windowcd
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod1+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab exec --no-startup-id rofi -show windowcd
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
