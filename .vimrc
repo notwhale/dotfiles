@@ -34,6 +34,8 @@ let python_highlight_all = 1
 
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 set mouse=a
 set mousehide
