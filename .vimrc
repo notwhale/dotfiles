@@ -8,6 +8,9 @@ Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-surround'
 call plug#end()
 
 set t_Co=256
@@ -15,6 +18,8 @@ set t_Co=256
 colorscheme gruvbox
 set background=dark
 let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
 
 set expandtab
 set smarttab
