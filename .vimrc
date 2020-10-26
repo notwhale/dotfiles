@@ -5,16 +5,15 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 call plug#end()
 
 set t_Co=256
-"colorscheme nord
 colorscheme gruvbox
 set background=dark
 let g:airline_theme='base16_gruvbox_dark_hard'
@@ -27,7 +26,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
-set number
+"set number
 set foldcolumn=2
 filetype plugin on
 syntax on
@@ -37,10 +36,17 @@ set novisualbell
 
 let python_highlight_all = 1
 
-set hlsearch
+" <search>
 set incsearch
+set hlsearch
+set showmatch
 set ignorecase
 set smartcase
+" clear out a search
+nnoremap <leader><space> :noh<cr>
+" reselect the text that was just pasted
+nnoremap <leader>v V`]
+" </search>
 
 set mouse=a
 set mousehide
@@ -58,6 +64,20 @@ set nobackup
 set noswapfile
 set encoding=utf-8
 set fileencodings=utf8,cp1251
+
+"strip all trailing whitespace in the current file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+"Replace all tabs with 4 whitespaces
+nnoremap <leader>T :%s/\t/    /g<CR>
+
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 nmap <F6> :NERDTreeToggle<CR>
 noremap <F3> :set number!<CR>
