@@ -1,68 +1,61 @@
 #include ".Xresources.d/gruvbox"
 
 ! Xft
-Xft.dpi:                    96
-Xft.antialias:              true
-Xft.hinting:                true
-Xft.rgba:                   rgb
-Xft.autohint:               false
-Xft.hintstyle:              hintslight
-Xft.lcdfilter:              lcddefault
+Xft.dpi:                        96
+Xft.antialias:                  true
+Xft.hinting:                    true
+Xft.rgba:                       rgb
+Xft.autohint:                   false
+Xft.hintstyle:                  hintslight
+Xft.lcdfilter:                  lcddefault
 
-! URxvt
-!URxvt.font:                 xft:xos4 Terminus:pixelsize=18:antialias=true:hinting=true
-!URxvt.boldFont:             xft:xos4 Terminus:bold:pixelsize=18:antialias=true:hinting=true
+URxvt.font:                     xft:Hack Nerd Font:style=Regular:size=11:antialias=true:hinting=true
 
-URxvt.font: xft:FantasqueSansMono:size=13:antialias=true:hinting=true,xft:Hack:size=12:antialias=true:hinting=true,xft:Symbola,xft:UbuntuMonoDerivativePowerline Nerd Font
-!URxvt.boldFont: xft:Hack:style=Bold:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
-!URxvt.italicFont:   xft:Hack:style=Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
-!URxvt.boldItalicFont:   xft:Hack:style=Bold Italic:size=12:antialias=true:hinting=true,xft:DejaVu Sans Mono:size=12,xft:FontAwesome:size=12
+URxvt.keysym.C-minus:           resize-font:smaller
+URxvt.keysym.C-equal:           resize-font:bigger
+URxvt.keysym.C-plus:            resize-font:reset
+URxvt.keysym.C-question:        resize-font:show
 
-URxvt.keysym.C-minus:     resize-font:smaller
-URxvt.keysym.C-equal:      resize-font:bigger
-URxvt.keysym.C-plus:     resize-font:reset
-URxvt.keysym.C-question:  resize-font:show
-
-URxvt.letterspace:          -1
-URxvt.depth:                32
-URxvt.scrollBar:            false
-URxvt.saveLines:            65535
-URxvt.perl-ext-common:      keyboard-select,url-select,clipboard
-URxvt.url-select.launcher:  icecat
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
-URxvt.keysym.M-c:           perl:clipboard:copy
-URxvt.keysym.M-v:           perl:clipboard:paste
-URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.letterspace:              -1
+URxvt.depth:                    32
+URxvt.scrollBar:                false
+URxvt.saveLines:                65535
+URxvt.perl-ext-common:          keyboard-select,url-select,clipboard
+URxvt.url-select.launcher:      icecat
+URxvt.url-select.underline:     true
+URxvt.keysym.M-u:               perl:url-select:select_next
+URxvt.keysym.M-Escape:          perl:keyboard-select:activate
+URxvt.keysym.M-s:               perl:keyboard-select:search
+URxvt.keysym.M-c:               perl:clipboard:copy
+URxvt.keysym.M-v:               perl:clipboard:paste
+URxvt.keysym.M-C-v:             perl:clipboard:paste_escaped
+URxvt.keysym.Shift-Control-V:   eval:paste_clipboard
+URxvt.keysym.Shift-Control-C:   eval:selection_to_clipboard
 
 ! Rofi
-rofi.modi:                           window,drun,run
-rofi.sidebar-mode:                   true
-rofi.terminal:                       urxvt
-rofi.run-command:                    {cmd}
-rofi.run-shell-command:              {terminal} -e {cmd}
-rofi.ssh-client:                     ssh
-rofi.ssh-command:                    {terminal} -e "{ssh-client} {host}"
-rofi.opacity:                        100
-rofi.width:                          25
-rofi.lines:                          7
-rofi.columns:                        1
-rofi.font:                           ClearSansMedium 10
-rofi.drun-icon-theme:                Papirus
-rofi.show-icons:                    true
-rofi.bw:                             2
-rofi.location:                       0
-rofi.padding:                        20
-rofi.levenshtein-sort:               true
-rofi.case-sensitive:                 false
-rofi.fuzzy:                          false
-rofi.line-margin:                    10
-rofi.separator-style:                none
-rofi.hide-scrollbar:                 true
-rofi.markup-rows:                    false
-rofi.scrollbar-width:                0
-rofi.color-enabled:                  true
+rofi.modi:                      window,drun,run
+rofi.sidebar-mode:              true
+rofi.terminal:                  urxvt
+rofi.run-command:               {cmd}
+rofi.run-shell-command:         {terminal} -e {cmd}
+rofi.ssh-client:                ssh
+rofi.ssh-command:               {terminal} -e "{ssh-client} {host}"
+rofi.opacity:                   100
+rofi.width:                     25
+rofi.lines:                     7
+rofi.columns:                   1
+rofi.font:                      ClearSansMedium 10
+rofi.drun-icon-theme:           Papirus
+rofi.show-icons:                true
+rofi.bw:                        2
+rofi.location:                  0
+rofi.padding:                   20
+rofi.levenshtein-sort:          true
+rofi.case-sensitive:            false
+rofi.fuzzy:                     false
+rofi.line-margin:               10
+rofi.separator-style:           none
+rofi.hide-scrollbar:            true
+rofi.markup-rows:               false
+rofi.scrollbar-width:           0
+rofi.color-enabled:             true
