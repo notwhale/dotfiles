@@ -116,7 +116,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias t="tmux a || tmux new"
+source ~/.zsh_aliases
 
 # python venv
 #source ~/venv/pyneng/bin/activate
