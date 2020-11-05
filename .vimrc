@@ -3,14 +3,20 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+Plug 'scrooloose/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'matze/vim-move'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set t_Co=256
@@ -19,6 +25,14 @@ set background=dark
 let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
+let python_highlight_all = 1
+
+set nocompatible
+set lazyredraw
+set ttyfast
+set showcmd
+
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 set expandtab
 set smarttab
@@ -26,17 +40,11 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
-"set number
 set foldcolumn=2
+
 filetype plugin on
 syntax on
 
-set noerrorbells
-set novisualbell
-
-let python_highlight_all = 1
-
-" <search>
 set incsearch
 set hlsearch
 set showmatch
@@ -46,65 +54,58 @@ set smartcase
 nnoremap <leader><space> :noh<cr>
 " reselect the text that was just pasted
 nnoremap <leader>v V`]
-" </search>
 
-set mouse=a
-set mousehide
-set clipboard=unnamed
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
+
+if has('mouse')
+  set mouse=a
+endif
+
+"set mousehide
+"set clipboard=unnamed
 set ruler
 set termencoding=utf-8
+set noerrorbells
 set novisualbell
-set t_vb=
-set visualbell t_vb=
+"set t_vb=
+"set visualbell t_vb=
 
 set wrap
 set linebreak
-
+set number
 set nobackup
 set noswapfile
 set encoding=utf-8
 set fileencodings=utf8,cp1251
 
+"let mapleader = "\<Space>"
 "strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
 "Replace all tabs with 4 whitespaces
 nnoremap <leader>T :%s/\t/    /g<CR>
 
-set number relativenumber
-
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-nmap <F6> :NERDTreeToggle<CR>
+set pastetoggle=<F2>
 noremap <F3> :set number!<CR>
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
 
-" Autopaste {
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
+nmap j gj
+nmap k gk
 
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
 
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
+nmap <C-m> :NERDTreeFind<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-"}
+vmap <leader>y :w! ~/.vim/.vbuf<CR>
+nmap <leader>y :.w! ~/.vim/.vbuf<CR>
+nmap <leader>p :r ~/.vim/.vbuf<CR>
