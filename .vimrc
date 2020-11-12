@@ -15,85 +15,99 @@ Plug 'matze/vim-move'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+      \ 'coc-markdownlint',
+      \ 'coc-spell-checker',
+      \ 'coc-lists',
+      \ 'coc-sh',
+      \ 'coc-vimlsp',
+      \ 'coc-json',
+      \ 'coc-python',
+      \ 'coc-yaml',
+      \ 'coc-yank',
+      \ 'coc-highlight',
+      \ 'coc-snippets',
+      \ 'coc-docker',
+      \ 'coc-diagnostic',
+      \]
 call plug#end()
+
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf8,cp1251
+set fileformats=unix,dos,mac
+set ttyfast
+
+set backspace=indent,eol,start
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set foldcolumn=2
+set expandtab
+set smarttab
+set autoindent
+
+set hidden
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+
+set lazyredraw
+set showcmd
+set wrap
+set linebreak
+set nobackup
+set noswapfile
+set nocompatible
+set noerrorbells
+set novisualbell
+
+set ruler
+set number
+
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+syntax on
+filetype plugin indent on
+
+set mouse=a
+set clipboard=unnamed,unnamedplus
 
 set t_Co=256
 colorscheme gruvbox
 set background=dark
+
 let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline_skip_empty_sections = 1
+
 let python_highlight_all = 1
 
-set nocompatible
-set lazyredraw
-set ttyfast
-set showcmd
-
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-
-set expandtab
-set smarttab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-set foldcolumn=2
-
-filetype plugin on
-syntax on
-
-set incsearch
-set hlsearch
-set showmatch
-set ignorecase
-set smartcase
-" clear out a search
-nnoremap <leader><space> :noh<cr>
-" reselect the text that was just pasted
-nnoremap <leader>v V`]
-
-if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
-  endif
-endif
-
-if has('mouse')
-  set mouse=a
-endif
-
-"set mousehide
-"set clipboard=unnamed
-set ruler
-set termencoding=utf-8
-set noerrorbells
-set novisualbell
-"set t_vb=
-"set visualbell t_vb=
-
-set wrap
-set linebreak
-set number
-set nobackup
-set noswapfile
-set encoding=utf-8
-set fileencodings=utf8,cp1251
-
-"let mapleader = "\<Space>"
-"strip all trailing whitespace in the current file
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-"Replace all tabs with 4 whitespaces
-nnoremap <leader>T :%s/\t/    /g<CR>
+let mapleader=','
 
 set pastetoggle=<F2>
 noremap <F3> :set number!<CR>
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+
+nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>T :%s/\t/    /g<CR>
 
 nmap j gj
 nmap k gk
@@ -103,8 +117,8 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-nmap <C-m> :NERDTreeFind<CR>
-nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+nmap <silent> <leader>m :NERDTreeFind<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
 
 vmap <leader>y :w! ~/.vim/.vbuf<CR>
 nmap <leader>y :.w! ~/.vim/.vbuf<CR>
