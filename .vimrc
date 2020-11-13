@@ -17,7 +17,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-"Plug 'davidhalter/jedi-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
       \ 'coc-markdownlint',
@@ -41,7 +40,6 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf8,cp1251
 set fileformats=unix,dos,mac
-set ttyfast
 
 set backspace=indent,eol,start
 
@@ -61,7 +59,8 @@ set ignorecase
 set smartcase
 set showmatch
 
-set lazyredraw
+set ttyfast
+"set lazyredraw
 set showcmd
 set wrap
 set linebreak
