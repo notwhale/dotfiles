@@ -1,0 +1,22 @@
+session_name: pyneng
+windows:
+  - window_name: VIM
+    focus: true
+    layout: main-horizontal
+    options:
+      automatic-rename: off
+      main-pane-height: 30
+    panes:
+      - shell_command:
+        - vim
+        focus: true
+      - pane
+    start_directory: /home/notwhale/pyneng-examples-exercises
+  - window_name: ipython
+    layout: main-horizontal
+    options:
+      automatic-rename: off
+    panes:
+      - shell_command:
+        - ipython
+    start_directory: /home/notwhale/pyneng-examples-exercises
