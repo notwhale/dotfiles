@@ -1,5 +1,8 @@
 #!/bin/sh
 
-xrdb -merge .Xresources
-#xmodmap .Xmodmap
-exec i3
+[ -f ~/.xprofile ] && . ~/.xprofile
+
+#exec i3
+#exec bspwm
+exec startxfce4
+#exec mate-session

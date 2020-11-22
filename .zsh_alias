@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+alias t="tmux a || tmux new"
+alias tl="tmux ls"
+
+alias yun="yay -Syu --noconfirm"
+
+ydla () {
+	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist --output '~/Music/youtube/%(title)s.%(ext)s' "$1"
+	}
+
+ydlap () {
+	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist --output '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+	}
+
+ydlv () {
+	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --no-playlist --output '~/Videos/youtube/%(title)s.%(ext)s' "$1"
+}
+
+ydlvp () {
+	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --yes-playlist --output '~/Videos/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+}
