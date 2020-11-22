@@ -1,5 +1,0 @@
-#!/usr/bin/bash
-
-alias t="tmux a || tmux new"
-
-alias yun="yay -Syu --noconfirm"
