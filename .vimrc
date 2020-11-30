@@ -8,6 +8,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/nerdcommenter'
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -17,22 +21,20 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [
-      \ 'coc-markdownlint',
-      \ 'coc-spell-checker',
-      \ 'coc-lists',
-      \ 'coc-sh',
-      \ 'coc-vimlsp',
-      \ 'coc-json',
-      \ 'coc-python',
-      \ 'coc-yaml',
-      \ 'coc-yank',
-      \ 'coc-highlight',
-      \ 'coc-snippets',
-      \ 'coc-docker',
-      \ 'coc-diagnostic',
-      \]
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"let g:coc_global_extensions = [
+      "\ 'coc-markdownlint',
+      "\ 'coc-lists',
+      "\ 'coc-sh',
+      "\ 'coc-vimlsp',
+      "\ 'coc-json',
+      "\ 'coc-python',
+      "\ 'coc-yaml',
+      "\ 'coc-yank',
+      "\ 'coc-highlight',
+      "\ 'coc-snippets',
+      "\ 'coc-docker',
+      "\]
 call plug#end()
 
 set encoding=utf-8
@@ -122,3 +124,11 @@ nmap <silent> <leader>n :NERDTreeToggle<CR>
 vmap <leader>y :w! ~/.vim/.vbuf<CR>
 nmap <leader>y :.w! ~/.vim/.vbuf<CR>
 nmap <leader>p :r ~/.vim/.vbuf<CR>
+
+" Markdown preview
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
