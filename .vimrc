@@ -8,33 +8,40 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/nerdcommenter'
-Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+    let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_frontmatter = 1
+"Plug 'gabrielelana/vim-markdown'
+    "let g:markdown_enable_spell_checking = 0
+"Plug 'vimwiki/vimwiki'
+    "let g:vimwiki_list = [{'path': '~/vimwiki/',
+                          "\ 'syntax': 'markdown', 'ext': '.md'}]
 Plug 'ryanoasis/vim-devicons'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'matze/vim-move'
+Plug 'tpope/vim-repeat'
+"Plug 'matze/vim-move'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-sensible'
+"Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"let g:coc_global_extensions = [
-      "\ 'coc-markdownlint',
-      "\ 'coc-lists',
-      "\ 'coc-sh',
-      "\ 'coc-vimlsp',
-      "\ 'coc-json',
-      "\ 'coc-python',
-      "\ 'coc-yaml',
-      "\ 'coc-yank',
-      "\ 'coc-highlight',
-      "\ 'coc-snippets',
-      "\ 'coc-docker',
-      "\]
+    "let g:coc_global_extensions = [
+          "\ 'coc-markdownlint',
+          "\ 'coc-lists',
+          "\ 'coc-sh',
+          "\ 'coc-vimlsp',
+          "\ 'coc-json',
+          "\ 'coc-python',
+          "\ 'coc-yaml',
+          "\ 'coc-yank',
+          "\ 'coc-highlight',
+          "\ 'coc-snippets',
+          "\ 'coc-docker',
+          "\]
 call plug#end()
 
 set encoding=utf-8
@@ -104,6 +111,7 @@ let mapleader=','
 
 set pastetoggle=<F2>
 noremap <F3> :set number!<CR>
+nnoremap <F4> :setlocal conceallevel=<c-r>=&conceallevel == 0 ? '2' : '0'<cr><cr>
 inoremap <C-v> <ESC>"+pa
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
@@ -120,14 +128,13 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-nmap <silent> <leader>m :NERDTreeFind<CR>
 nmap <silent> <leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>m :NERDTreeFind<CR>
 
 vmap <leader>y :w! ~/.vim/.vbuf<CR>
 nmap <leader>y :.w! ~/.vim/.vbuf<CR>
 nmap <leader>p :r ~/.vim/.vbuf<CR>
 
-" Markdown preview
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
