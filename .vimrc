@@ -84,11 +84,11 @@ set number
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
-set mouse=a
-set clipboard=unnamed,unnamedplus
-
 syntax on
 filetype plugin indent on
+
+set mouse=a
+set clipboard=unnamed,unnamedplus
 
 set t_Co=256
 colorscheme gruvbox
@@ -102,8 +102,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline_skip_empty_sections = 1
-
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree"
 
 let python_highlight_all = 1
 
