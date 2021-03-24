@@ -1,0 +1,30 @@
+session_name: lpic_1-101
+windows:
+- layout: main-horizontal
+  window_name: vim-md
+  start_directory: /home/notwhale/Documents/Yandex.Disk/md/Linux/LPIC/1-101
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+- layout: main-horizontal
+  window_name: git-docx
+  start_directory: /home/notwhale/ksemaev/lpic_1-101/docx
+  options:
+    automatic-rename: 'off'
+  panes:
+    - shell_command: ranger
+- layout: main-horizontal
+  window_name: git-homework
+  start_directory: /home/notwhale/ksemaev/lpic_1-101/homework
+  options:
+    automatic-rename: 'off'
+  panes:
+    - shell_command: ranger
+- layout: main-horizontal
+  window_name: git-dir
+  start_directory: /home/notwhale/ksemaev/lpic_1-101
+  options:
+    automatic-rename: 'off'
+  panes:
+  - pane
