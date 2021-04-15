@@ -1,0 +1,58 @@
+! Gruvbox color scheme
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+Xft.dpi:                        96
+Xft.antialias:                  true
+Xft.hinting:                    true
+Xft.rgba:                       rgb
+Xft.autohint:                   false
+Xft.hintstyle:                  hintslight
+Xft.lcdfilter:                  lcddefault
+
+URxvt.font:                     xft:Hack Nerd Font:style=Regular:size=12
+URxvt.keysym.C-minus:           resize-font:smaller
+URxvt.keysym.C-equal:           resize-font:bigger
+URxvt.keysym.C-plus:            resize-font:reset
+URxvt.keysym.C-question:        resize-font:show
+URxvt.letterspace:              -1
+URxvt.depth:                    32
+URxvt.scrollBar:                false
+URxvt.saveLines:                65535
+URxvt.perl-ext-common:          keyboard-select,url-select,clipboard
+URxvt.url-select.launcher:      icecat
+URxvt.url-select.underline:     true
+URxvt.keysym.M-u:               perl:url-select:select_next
+URxvt.keysym.M-Escape:          perl:keyboard-select:activate
+URxvt.keysym.M-s:               perl:keyboard-select:search
+URxvt.keysym.M-c:               perl:clipboard:copy
+URxvt.keysym.M-v:               perl:clipboard:paste
+URxvt.keysym.M-C-v:             perl:clipboard:paste_escaped
+URxvt.keysym.Shift-Control-V:   eval:paste_clipboard
+URxvt.keysym.Shift-Control-C:   eval:selection_to_clipboard

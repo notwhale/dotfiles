@@ -6,26 +6,38 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+    let g:airline_theme='base16_gruvbox_dark_hard'
+    let g:airline_powerline_fonts=1
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#ale#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#virtualenv#enabled = 1
+    let g:airline_skip_empty_sections = 1
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'scrooloose/nerdcommenter'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'godlygeek/tabular'
+Plug 'SidOfc/mkdx'
 Plug 'plasticboy/vim-markdown'
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_frontmatter = 1
-"Plug 'gabrielelana/vim-markdown'
-    "let g:markdown_enable_spell_checking = 0
-"Plug 'vimwiki/vimwiki'
-    "let g:vimwiki_list = [{'path': '~/vimwiki/',
-                          "\ 'syntax': 'markdown', 'ext': '.md'}]
+	let g:vim_markdown_folding_disabled = 1
+	let g:vim_markdown_conceal = 2
+    let g:vim_markdown_conceal_code_blocks = 0
+	let g:vim_markdown_math = 1
+	let g:vim_markdown_toml_frontmatter = 1
+	let g:vim_markdown_frontmatter = 1
+	let g:vim_markdown_strikethrough = 1
+	let g:vim_markdown_autowrite = 1
+	let g:vim_markdown_edit_url_in = 'tab'
+	let g:vim_markdown_follow_anchor = 1
+
 Plug 'ryanoasis/vim-devicons'
+Plug 'jeetsukumaran/vim-buffergator'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-"Plug 'matze/vim-move'
-Plug 'jeetsukumaran/vim-buffergator'
-"Plug 'tpope/vim-sensible'
-"Plug 'tpope/vim-fugitive'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -94,15 +106,6 @@ set t_Co=256
 colorscheme gruvbox
 set background=dark
 
-let g:airline_theme='base16_gruvbox_dark_hard'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#virtualenv#enabled = 1
-let g:airline_skip_empty_sections = 1
-
 let python_highlight_all = 1
 
 let mapleader=','
@@ -117,6 +120,9 @@ vnoremap <C-d> "+d
 nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>T :%s/\t/    /g<CR>
+
+"command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+"cmap w!! w !sudo tee > /dev/null %
 
 nmap j gj
 nmap k gk
@@ -137,9 +143,23 @@ nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
+nnoremap <C-g> :Goyo<CR>
+
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
 
+" markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd FileType markdown Goyo
+"autocmd FileType markdown setlocal textwidth=100
+autocmd FileType markdown set cursorline
+"autocmd FileType markdown set nocursorline
+"autocmd FileType markdown set nocursorcolumn
+"autocmd FileType markdown set linebreak
+autocmd FileType markdown set expandtab
+autocmd FileType markdown set tabstop=2
+autocmd FileType markdown set shiftwidth=2
+autocmd FileType markdown set scrolloff=12
 autocmd FileType markdown let b:surround_{char2nr("~")} = "```\r```"
 autocmd FileType markdown let b:surround_{char2nr("_")} = "*\r*"
 autocmd FileType markdown let b:surround_{char2nr("*")} = "**\r**"

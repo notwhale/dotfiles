@@ -1,122 +1,62 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#!/usr/bin/sh
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/notwhale/.oh-my-zsh"
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="minimal"
+# zmodload zsh/zprof
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+export PATH=$HOME/.bin:$HOME/.config/rofi/scripts:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+export HISTFILE=~/.zhistory
+export HISTSIZE=10000
+export SAVEHIST=10000
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# autoload -Uz compinit
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+# done
+# compinit -C
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    archlinux
-    ubuntu
-    git
-    github
-    colorize
-    fzf
-    python
-    pip
-    virtualenv
-    tmux
-)
-
+# ohmyzsh
+export ZSH="/usr/share/oh-my-zsh"
+ZSH_THEME="af-magic"
+DISABLE_AUTO_UPDATE="true"
+plugins=()
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+[[ ! -d $ZSH_CACHE_DIR ]] && mkdir -p $ZSH_CACHE_DIR
 source $ZSH/oh-my-zsh.sh
-
-# Archlinux
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=white"
 
-# Ubuntu
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# fzf & fd
+[[ -e "/usr/share/fzf/fzf-extras.zsh" ]] && source /usr/share/fzf/fzf-extras.zsh
+export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_DEFAULT_OPTS="--ansi"
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border --preview 'file {}' --preview-window down:1"
+export FZF_COMPLETION_TRIGGER="~~"
 
-# User configuration
+export TERM="xterm-256color"
+export EDITOR="$([[ -n $DISPLAY && $(command -v subl3) ]] && echo 'subl3' || echo 'vim')"
+export BROWSER="firefox"
+export SSH_KEY_PATH="~/.ssh/dsa_id"
+export XDG_CONFIG_HOME="$HOME/.config"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# export PF_INFO="ascii os kernel wm shell pkgs memory palette"
+# export PF_ASCII="arch"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# export MANPAGER="sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
 
-# Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='mvim'
- fi
+[[ -f ~/.alias_zsh ]] && . ~/.alias_zsh
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+# export PATH="$PATH:`yarn global bin`"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.zsh_alias
+# export GOPATH=$HOME/.go
+# export GOBIN=$GOPATH/bin
+# export PATH="$PATH:$GOBIN"
 
-# python venv
-#source ~/venv/pyneng/bin/activate
+# export PATH=$HOME/opt/diode:$PATH
+
+# zprof
