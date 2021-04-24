@@ -8,7 +8,7 @@ if [[ $(xrandr -q | grep 'HDMI-A-0 connected') ]]; then
 fi
 
 xsetroot -cursor_name left_ptr &
-setxkbmap -layout us,ru -option "grp:alt_shift_toggle,grp_led:scroll,caps:ctrl_modifier" &
+setxkbmap -layout us,ru -option "grp:alt_space_toggle,grp_led:scroll,caps:ctrl_modifier" &
 picom -b --config $HOME/.config/picom.conf &
 # hsetroot -fill /usr/share/wall/ctld.png &
 run nitrogen --restore &

@@ -152,7 +152,7 @@ super + {z,shift + z,x,shift + x}
   bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # window floating/tiled toggle
-alt + space
+ctrl + space
   bspc node -t "~"{floating,tiled}
 
 # window sticky
