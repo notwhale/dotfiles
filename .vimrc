@@ -6,7 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-    let g:airline_theme='base16_gruvbox_dark_hard'
+    "let g:airline_theme='base16_gruvbox_dark_dark'
     let g:airline_powerline_fonts=1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#ale#enabled = 1
@@ -145,6 +145,10 @@ nmap <C-p> <Plug>MarkdownPreviewToggle
 
 nnoremap <C-g> :Goyo<CR>
 
+" yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" python
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear; python3' shellescape(@%, 1)<CR>
 
