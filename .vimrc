@@ -43,6 +43,7 @@ Plug 'tpope/vim-repeat'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "let g:coc_global_extensions = [
           "\ 'coc-markdownlint',
@@ -57,6 +58,7 @@ Plug 'junegunn/fzf.vim'
           "\ 'coc-snippets',
           "\ 'coc-docker',
           "\]
+Plug 'ekalinin/dockerfile.vim'
 call plug#end()
 
 set encoding=utf-8
@@ -74,7 +76,7 @@ set foldcolumn=2
 set expandtab
 set smarttab
 set autoindent
-
+set smartindent
 set hidden
 
 set hlsearch
@@ -94,12 +96,18 @@ set nocompatible
 set noerrorbells
 set novisualbell
 
+set undofile
+set undodir=~/.vim/undodir
+
 set ruler
 set number relativenumber
 
 set splitbelow splitright
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+"set colorcolumn=80
+"highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 syntax on
 filetype plugin indent on
@@ -119,10 +127,10 @@ let maplocalleader="\\"
 " netrw settings
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netew_browse_split = 4
-let g:netrw_altv = 1
-"let g:netrw_winsize = 25
-nnoremap <silent> <Leader>n :Explore<CR>
+let g:netew_browse_split = 2
+"let g:netrw_altv = 1
+let g:netrw_winsize = 25
+nnoremap <silent> <Leader>n :Vexplore<CR>
 "augroup ProjectDrawer
   "autocmd!
   "autocmd VimEnter * :Vexplore
@@ -178,9 +186,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-nmap <silent> <leader>nt :NERDTreeToggle<CR>
-nmap <silent> <leader>nf :NERDTreeFind<CR>
 
 "nmap <C-s> <Plug>MarkdownPreview
 "nmap <M-s> <Plug>MarkdownPreviewStop
