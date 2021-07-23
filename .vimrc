@@ -6,15 +6,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-    "let g:airline_theme='base16_gruvbox_dark_dark'
+    let g:airline_theme='gruvbox'
     let g:airline_powerline_fonts=1
-"    let g:airline#extensions#branch#enabled = 1
-"    let g:airline#extensions#ale#enabled = 1
-"    let g:airline#extensions#tabline#enabled = 1
-"    let g:airline#extensions#tagbar#enabled = 1
-"    let g:airline#extensions#virtualenv#enabled = 1
-"    let g:airline_skip_empty_sections = 1
-
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#ale#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#virtualenv#enabled = 1
+    let g:airline_skip_empty_sections = 1
+Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
@@ -25,6 +25,7 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'SidOfc/mkdx'
+Plug 'junegunn/goyo.vim'
 Plug 'plasticboy/vim-markdown'
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_conceal = 2
@@ -40,10 +41,10 @@ Plug 'plasticboy/vim-markdown'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
+Plug 'ekalinin/dockerfile.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "let g:coc_global_extensions = [
           "\ 'coc-markdownlint',
@@ -58,7 +59,6 @@ Plug 'airblade/vim-rooter'
           "\ 'coc-snippets',
           "\ 'coc-docker',
           "\]
-Plug 'ekalinin/dockerfile.vim'
 call plug#end()
 
 set encoding=utf-8
@@ -161,6 +161,11 @@ nnoremap <leader>Y gg"+yG
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+" fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
+
 " some remap
 set pastetoggle=<F2>
 noremap <F3> :set number!<CR>
@@ -191,7 +196,6 @@ map <C-l> <C-w>l
 "nmap <M-s> <Plug>MarkdownPreviewStop
 "nmap <C-p> <Plug>MarkdownPreviewToggle
 
-"nnoremap <C-g> :Goyo<CR>
 
 " yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -209,9 +213,12 @@ autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear; python3' sh
     "autocmd FileType python nnoremap <buffer> <localleader>r :sp<CR>!python3 %<CR> :startinsert<CR>
 "augroup END
 
+" Goyo
+nnoremap <Leader>gy :Goyo<CR>
+
 " markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-"autocmd FileType markdown Goyo
+autocmd FileType markdown Goyo
 
 " autocmd FileType markdown setlocal textwidth=100
 autocmd FileType markdown set cursorline
