@@ -29,7 +29,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -65,11 +65,11 @@ let g:airline_powerline_fonts=1
 
 let NERDTreeIgnore=['\.pyc$', '^__pycache__$', '\~$']
 
-"let g:gitgutter_sign_added = '✚'
-"let g:gitgutter_sign_modified = '✹'
-"let g:gitgutter_sign_removed = '-'
-"let g:gitgutter_sign_removed_first_line = '-'
-"let g:gitgutter_sign_modified_removed = '-'
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
 
 let g:coc_global_extensions = [
     \ 'coc-sh',
@@ -170,7 +170,7 @@ set undodir=~/.vim/undodir
 set ruler
 set number relativenumber
 set splitbelow splitright
-set cursorline
+"set cursorline
 set mouse=a
 set clipboard=unnamed,unnamedplus
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
@@ -294,6 +294,13 @@ nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 
 " autochdir
 "autocmd BufEnter * silent! lcd %:p:h
+
+" cursorline
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " close all buffers except current one
 command! BufCurOnly execute '%bdelete|edit#|bdelete#'
