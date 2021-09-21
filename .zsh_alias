@@ -1,22 +1,27 @@
 #!/usr/bin/bash
 
+alias vim="mvim -v"
+
 alias t="tmux a || tmux new"
 alias tl="tmux ls"
 
-alias yun="yay -Syu --noconfirm"
-
 ydla () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist --output '~/Music/youtube/%(title)s.%(ext)s' "$1"
+	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist --output '~/Music/youtube/%(title)s.%(ext)s' "$@"
 	}
 
 ydlap () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist --output '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist --output '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$@"
 	}
 
 ydlv () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --no-playlist --output '~/Videos/youtube/%(title)s.%(ext)s' "$1"
+	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --no-playlist --output '~/Movies/youtube/%(title)s.%(ext)s' "$@"
 }
 
 ydlvp () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --yes-playlist --output '~/Videos/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --yes-playlist --output '~/Movies/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$@"
+}
+
+# MPV
+mpvdualsub () {
+	mpv "$@" --aid=2 --sid=1 --secondary-sid=2 --sub-file-paths="Eng:Rus"
 }
