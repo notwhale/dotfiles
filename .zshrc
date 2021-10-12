@@ -128,3 +128,12 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+#autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -o nospace -C $(which terraform) terraform
+complete -o nospace -C $(which aws_completer) aws
+#complete -o nospace -C '/opt/homebrew/bin/terraform' terraform
+#complete -o nospace -C '/usr/local/bin/aws_completer' aws
+export PATH="/opt/homebrew/bin:$PATH"

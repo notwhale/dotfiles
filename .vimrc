@@ -88,27 +88,24 @@ let g:ale_completion_enabled = 0
 let g:ale_lsp_suggestions = 1
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 0
+let g:ale_set_highlights = 0
 "let g:ale_lint_on_enter = 0
 "let g:ale_lint_on_insert_leave = 1
-"let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
 "let g:ale_set_loclist = 0
 "let g:ale_set_quickfix = 1
 "let g:ale_open_list = 1
 let g:ale_linters = {
     \ 'yaml': ['yamllint'],
-    \ }
-let g:ale_linters = {
     \ 'python': ['flake8', 'pylint'],
     \ }
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'python': ['isort', 'yapf', 'black'],
     \ }
-
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'
 
 " -----------------------------------------------------------------------------
 " Core settings
@@ -123,24 +120,16 @@ colorscheme gruvbox
 set background=dark
 set t_Co=256
 set backspace=indent,eol,start
-"set formatoptions-=cro
-"set completeopt-=preview
-"set omnifunc=pythoncomplete
-"set completeopt=menuone,menu,longest,preview
-"set completeopt=menu,menuone,preview,noselect,noinsert
-"set wildmenu
-"set wildmode=list:longest
 set encoding=utf-8
 set termencoding=utf-8
-"set fileencoding=utf-8
 set fileencodings=utf8,cp1251
 set fileformats=unix,dos,mac
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set foldcolumn=2
-"set foldmethod=indent
-"set foldlevel=99
+set showtabline=2
+set colorcolumn=79
 set expandtab
 set smarttab
 set autoindent
@@ -154,7 +143,6 @@ set showmatch
 set timeoutlen=1000 ttimeoutlen=0
 set updatetime=300
 set shortmess+=c
-set cmdheight=2
 set ttyfast
 set lazyredraw
 set showcmd
@@ -170,11 +158,9 @@ set undodir=~/.vim/undodir
 set ruler
 set number relativenumber
 set splitbelow splitright
-"set cursorline
 set mouse=a
 set clipboard=unnamed,unnamedplus
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " -----------------------------------------------------------------------------
 " Key mappings
@@ -227,7 +213,7 @@ vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
 vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
 
 " some replacings
-nnoremap <Leader><Space> :let @/=''<CR>
+nnoremap <leader><CR> :let @/=''<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>T :%s/\t/    /g<CR>
 
@@ -246,7 +232,7 @@ nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
 " terminal
 nnoremap <silent> <F3> :lcd %:p:h<CR>:belowright terminal<CR>
-"nnoremap <silent> <F4> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
+"nnoremap <silent> <F3> :let $VIM_DIR=expand('%:p:h')<CR>:terminal<CR>cd $VIM_DIR<CR>
 
 " search and replace
 nnoremap <F4> :%s///gc<left><left><left><left>
@@ -254,22 +240,29 @@ nnoremap cn *``cgn
 nnoremap cN *``cgN
 
 " ALE
+nmap <silent> <leader>a <Plug>(ale_next_wrap)
 nmap <F10> :ALEFix<CR>
 
+" tabs
+map <leader>tn :tabnew<CR>
+map <leader>tm :tabmove
+map <leader>tc :tabclose<CR>
+map <leader>to :tabonly<CR>
+
 " fzf
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>F :Rg<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-"nnoremap <silent> <Leader>/ :BLines<CR>
-"nnoremap <silent> <Leader>' :Marks<CR>
-"nnoremap <silent> <Leader>gc :Commits<CR>
-"nnoremap <silent> <Leader>H :Helptags<CR>
-"nnoremap <silent> <Leader>hh :History<CR>
-"nnoremap <silent> <Leader>h: :History:<CR>
-"nnoremap <silent> <Leader>h/ :History/<CR>
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>F :Rg<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+"nnoremap <silent> <leader>/ :BLines<CR>
+"nnoremap <silent> <leader>' :Marks<CR>
+"nnoremap <silent> <leader>gc :Commits<CR>
+"nnoremap <silent> <leader>H :Helptags<CR>
+"nnoremap <silent> <leader>hh :History<CR>
+"nnoremap <silent> <leader>h: :History:<CR>
+"nnoremap <silent> <leader>h/ :History/<CR>
 
 " Close all buffers but current
- nnoremap <leader>B :BufCurOnly<CR>
+nnoremap <leader>B :BufCurOnly<CR>
 
 " gitgutter
 nmap ]h <Plug>(GitGutterNextHunk) "same as default
@@ -285,15 +278,12 @@ nmap <leader>gf :diffget //2<CR>
 " undotree
 nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 
-
-"nnoremap <space> za
+" fold
+nnoremap <space> za
 
 " -----------------------------------------------------------------------------
 " Autocmd
 " -----------------------------------------------------------------------------
-
-" autochdir
-"autocmd BufEnter * silent! lcd %:p:h
 
 " cursorline
 augroup CursorLine
@@ -324,5 +314,5 @@ augroup END
 " txt
 augroup filetype_txt
     autocmd!
-    autocmd FileType text setlocal ts=4 sw=4 sts=0 noexpandtab
+    autocmd FileType text setlocal ts=4 sts=4 sw=4 noexpandtab
 augroup END
