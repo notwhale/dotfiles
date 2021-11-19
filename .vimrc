@@ -39,6 +39,8 @@ Plug 'junegunn/fzf.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'yggdroot/indentline'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'skanehira/docker-compose.vim'
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -213,7 +215,7 @@ vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
 vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
 
 " some replacings
-nnoremap <leader><CR> :let @/=''<CR>
+nnoremap <silent> <leader><CR> :let @/=''<CR>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>T :%s/\t/    /g<CR>
 

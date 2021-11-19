@@ -1,3 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +20,7 @@ export ZSH="/Users/notwhale/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -33,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -70,16 +82,21 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(\
-         colorize \
-         fzf \
-         brew \
-         git \
-         github \
-         ssh-agent \
-         docker \
-         docker-compose \
-         )
+plugins=(
+    macos
+    brew
+    colorize
+    colored-man-pages
+    fzf
+    tmux
+    vscode
+    git
+    github
+    ssh-agent
+    docker
+    docker-compose
+    kubectl
+)
 
 source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -128,12 +145,14 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-
-autoload -U +X bashcompinit && bashcompinit
-#autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-complete -o nospace -C $(which terraform) terraform
-complete -o nospace -C $(which aws_completer) aws
-#complete -o nospace -C '/opt/homebrew/bin/terraform' terraform
-#complete -o nospace -C '/usr/local/bin/aws_completer' aws
 export PATH="/opt/homebrew/bin:$PATH"
+
+source <(minikube completion zsh)
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+#autoload bashcompinit && bashcompinit
+#autoload -Uz bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -o nospace -C $(which aws_completer) aws
+complete -o nospace -C $(which terraform) terraform
