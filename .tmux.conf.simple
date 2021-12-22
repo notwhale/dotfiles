@@ -1,0 +1,25 @@
+set -g default-terminal "screen-256color"
+
+set-option -g prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
+
+set -g base-index 1
+setw -g pane-base-index 1
+
+set -g history-limit 10000
+set-option -sg escape-time 0 
+
+setw -g automatic-rename off
+set -g renumber-windows off
+set -g set-titles on
+
+setw -g mouse on
+
+set -g status-keys vi
+set -g mode-keys vi
+# Press prefix and type: list-keys -T copy-mode-vi
+
+set -s exit-empty off
+
+bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
