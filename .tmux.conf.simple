@@ -48,6 +48,9 @@ bind -n M-j select-pane -D
 bind -n M-k select-pane -U
 bind -n M-l select-pane -R
 
+bind = setw synchronize-panes
+bind Tab last-window
+
 # copy mode
 bind Enter copy-mode
 bind b list-buffers
