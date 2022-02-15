@@ -121,13 +121,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias clip=clip.exe
+source ~/.zsh_alias
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
 source <(oc completion zsh)
 autoload -Uz compinit
 compinit
+
+alias clip=clip.exe
+alias k=kubectl
+compdef __start_kubectl k
+
+[ -e ~/.dircolors  ] && eval $(dircolors -b ~/.dircolors) || 
+        eval $(dircolors -b)
+eval "$(ssh-agent -s)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
