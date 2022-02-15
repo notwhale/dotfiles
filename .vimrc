@@ -18,6 +18,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " -----------------------------------------------------------------------------
 
 call plug#begin('~/.vim/plugged')
+Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -53,6 +54,8 @@ let mapleader=" "
 let maplocalleader=" "
 
 let g:indentLine_char = '⦙'
+"let g:indentLine_char_list = ['|', '¦', '┆', '┊', '⦙']
+let g:indentLine_color_term = 239
 
 let g:SimpylFold_docstring_preview=1
 
@@ -120,6 +123,7 @@ filetype indent on
 
 colorscheme gruvbox
 set background=dark
+"colorscheme nord
 set t_Co=256
 set backspace=indent,eol,start
 set encoding=utf-8
@@ -196,8 +200,10 @@ vnoremap <leader>d "_d
 " move strings
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
-inoremap ∆ <esc>:m .+1<CR>==gi
-inoremap ˚ <esc>:m .-2<CR>==gi
+"inoremap ∆ <esc>:m .+1<CR>==gi
+"inoremap ˚ <esc>:m .-2<CR>==gi
+inoremap <M-k> <esc>:m .+1<CR>==gi
+inoremap <M-j> <esc>:m .-2<CR>==gi
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
@@ -310,7 +316,9 @@ augroup END
 " yaml
 augroup filetype_yaml
     autocmd!
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
+    autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
+
 augroup END
 
 " txt
@@ -318,3 +326,11 @@ augroup filetype_txt
     autocmd!
     autocmd FileType text setlocal ts=4 sts=4 sw=4 noexpandtab
 augroup END
+
+if system('uname -r') =~ "Microsoft"
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+endif
+
