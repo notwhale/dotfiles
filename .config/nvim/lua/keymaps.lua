@@ -1,111 +1,44 @@
--- General keymaps that are not pluggin dependant
--- the file "lua/lsp/utils.lua" contains lsp-specific commands.
 
-local Utils = require('utils')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- local exprnnoremap = Utils.exprnnoremap
-local nnoremap = Utils.nnoremap
-local vnoremap = Utils.vnoremap
--- local xnoremap = Utils.xnoremap
-local inoremap = Utils.inoremap
--- local tnoremap = Utils.tnoremap
--- local nmap = Utils.nmap
--- local xmap = Utils.xmap
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-
--- kj to normal mode
-inoremap("kj", "<Esc>")
-
--- Run omnifunc, mostly used for autocomplete
-inoremap("<C-SPACE>", "<C-x><C-o>")
-
--- Save with Ctrl + S
-nnoremap("<C-s>", ":w<CR>")
-
--- Close buffer
-nnoremap("<C-c>", ":q<CR>")
-
--- Move around windows (shifted to the right)
-nnoremap("<C-h>", "<C-w>h")
-nnoremap("<C-j>", "<C-w>j")
-nnoremap("<C-k>", "<C-w>k")
-nnoremap("<C-l>", "<C-w>l")
-
--- Switch buffers (needs nvim-bufferline)
-nnoremap("<TAB>", ":BufferLineCycleNext<CR>")
-nnoremap("<S-TAB>", ":BufferLineCyclePrev<CR>")
-
--- Splits
-nnoremap("<leader>ws", ":split<CR>")
-nnoremap("<leader>vs", ":vsplit<CR>")
-
--- Populate substitution
-nnoremap("<leader>s", ":s//g<Left><Left>")
-nnoremap("<leader>S", ":%s//g<Left><Left>")
-nnoremap("<leader><C-s>", ":%s//gc<Left><Left><Left>")
-
-vnoremap("<leader>s", ":s//g<Left><Left>")
-vnoremap("<leader><A-s>", ":%s//g<Left><Left>")
-vnoremap("<leader>S", ":%s//gc<Left><Left><Left>")
-
--- Delete buffer
-nnoremap("<A-w>", ":bd<CR>")
-
--- Yank to end of line
-nnoremap("Y", "y$")
-
--- Copy to system clippboard
-nnoremap("<leader>y", '"+y')
-vnoremap("<leader>y", '"+y')
-
--- Paste from system clippboard
-nnoremap("<leader><C-v>", '"+p')
-vnoremap("<leader><C-v>", '"+p')
+-- nvim-tree toggle
+vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')
 
 -- Clear highlight search
-nnoremap("<leader>nh", ":nohlsearch<CR>")
-vnoremap("<leader>nh", ":nohlsearch<CR>")
+vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+vim.keymap.set('v', '<leader>h', ':nohlsearch<CR>')
 
--- Local list
-nnoremap("<leader>lo", ":lopen<CR>")
-nnoremap("<leader>lc", ":lclose<CR>")
-nnoremap("<C-n>", ":lnext<CR>")
-nnoremap("<C-p>", ":lprev<CR>")
+-- Yank to end of line
+vim.keymap.set('n', 'Y', 'y$')
+-- vim.keymap.set('n', 'Y', 'yg_')
+vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', 'X', '"_x')
 
--- Quickfix list
-nnoremap("<leader>co", ":copen<CR>")
-nnoremap("<leader>cc", ":cclose<CR>")
-nnoremap("<C-N>", ":cnext<CR>")
-nnoremap("<C-P>", ":cprev<CR>")
+-- Copy to system clippboard
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('v', '<leader>y', '"+y')
 
--- Open file in default application
-nnoremap("<leader>xo", "<Cmd> !xdg-open %<CR><CR>")
+-- Paste from system clippboard
+vim.keymap.set('n', '<leader>p', '"+p')
+vim.keymap.set('v', '<leader>p', '"+p')
 
--- Fugitive
-nnoremap("<leader>G", ":G<CR>")
+-- Useful keymaps
+vim.keymap.set('n', '<leader>p', '"_dP')
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>Y', 'gg"+yG')
+vim.keymap.set('n', '<leader>d', '"_d')
+vim.keymap.set('v', '<leader>d', '"_d')
 
--- Show line diagnostics
-nnoremap("<leader>d", '<Cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>')
-
--- Open local diagnostics in local list
-nnoremap("<leader>D", "<Cmd>lua vim.diagnostic.setloclist()<CR>")
-
--- Open all project diagnostics in quickfix list
-nnoremap("<leader><A-d>", "<Cmd>lua vim.diagnostic.setqflist()<CR>")
+-- Move around windows
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Telescope
-nnoremap("<leader>ff", "<Cmd>Telescope find_files<CR>")
-nnoremap("<leader>fhf","<Cmd>Telescope find_files hidden=true<CR>")
-nnoremap("<leader>fb", "<Cmd>Telescope buffers<CR>")
-nnoremap("<leader>fg", "<Cmd>Telescope live_grep<CR>")
-
--- File explorer
-nnoremap("<leader>e", "<Cmd>NvimTreeToggle<CR>")  -- NvimTree
--- nnoremap("<leader>e", "<Cmd>RnvimrToggle<CR>")
-
--- EasyAlign
--- xmap("ga", "<cmd>EasyAlign")
--- nmap("ga", "<cmd>EasyAlign")
+vim.keymap.set('n', '<leader>ff', '<Cmd>Telescope find_files<CR>')
+vim.keymap.set('n', '<leader>fhf','<Cmd>Telescope find_files hidden=true<CR>')
+vim.keymap.set('n', '<leader>fb', '<Cmd>Telescope buffers<CR>')
+vim.keymap.set('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>')

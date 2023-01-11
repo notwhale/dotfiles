@@ -1,17 +1,4 @@
-vim.opt.backspace = '2'
-vim.opt.showcmd = true
-vim.opt.laststatus = 2
-vim.opt.autowrite = true
-vim.opt.cursorline = true
-vim.opt.autoread = true
-
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.shiftround = true
-vim.opt.expandtab = true
-
 vim.opt.clipboard = "unnamedplus"
-
 -- Visual
 vim.o.conceallevel       = 0                            -- Don't hide quotes in markdown
 vim.o.cmdheight          = 1
@@ -50,3 +37,22 @@ vim.o.completeopt        = "menuone,noinsert,noselect"
 vim.o.wildmode           = "longest,full"               -- Display auto-complete in Command Mode
 vim.o.updatetime         = 300                          -- Delay until write to Swap and HoldCommand event
 vim.g.do_file_type_lua   = 1
+
+-- Disable default plugins
+-- vim.g.loaded_netrwPlugin = false                     -- This had an issue but I can't remember now.
+
+-- Python providers
+local pynvim_env        = "/.local/bin/pyenv/versions/pynvim/"
+vim.g.python3_host_prog = os.getenv("HOME")..pynvim_env.."/bin/python"
+vim.g.black_virtualenv  = os.getenv("HOME")..pynvim_env
+
+-- Disable unused providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Disable inline error messages
+vim.diagnostic.config {
+  virtual_text = false,
+  underline = false,
+  signs = true,          -- Keep gutter signs
+}
