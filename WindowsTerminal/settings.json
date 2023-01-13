@@ -1,7 +1,24 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": 
     [
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "paste",
+            "keys": "alt+v"
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "alt+c"
+        },
         {
             "command": "unbound",
             "keys": "ctrl+v"
@@ -13,22 +30,6 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "alt+c"
-        },
-        {
-            "command": "paste",
-            "keys": "alt+v"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -36,6 +37,7 @@
             "keys": "alt+shift+d"
         }
     ],
+    "alwaysShowNotificationIcon": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
@@ -48,26 +50,26 @@
         {
             "antialiasingMode": "grayscale",
             "bellStyle": "none",
-            "closeOnExit": "graceful",
+            "closeOnExit": "always",
             "colorScheme": "Gruvbox Dark",
-            "cursorShape": "emptyBox",
+            "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
             "font": 
             {
-                "face": "Hack NF"
+                "face": "JetBrainsMono NFM",
+                "size": 13
             },
-            "intenseTextStyle": "none"
+            "intenseTextStyle": "all"
         },
         "list": 
         [
             {
-                "commandline": "powershell.exe",
+                "elevate": false,
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
                 "name": "Command Prompt"
@@ -158,6 +160,29 @@
             "selectionBackground": "#E6D4A3",
             "white": "#978771",
             "yellow": "#CC881A"
+        },
+        {
+            "background": "#2E3440",
+            "black": "#3B4252",
+            "blue": "#81A1C1",
+            "brightBlack": "#3B4252",
+            "brightBlue": "#5E81AC",
+            "brightCyan": "#88C0D0",
+            "brightGreen": "#A3BE8C",
+            "brightPurple": "#B48EAD",
+            "brightRed": "#D08770",
+            "brightWhite": "#A5A9A0",
+            "brightYellow": "#EBCB8B",
+            "cursorColor": "#EBCB8B",
+            "cyan": "#88C0D0",
+            "foreground": "#E5E9F0",
+            "green": "#8FBCBB",
+            "name": "Nord",
+            "purple": "#B48EAD",
+            "red": "#BF616A",
+            "selectionBackground": "#434C5E",
+            "white": "#D8DEE9",
+            "yellow": "#EBCB8B"
         },
         {
             "background": "#282C34",
@@ -319,6 +344,98 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
+        },
+        {
+            "background": "#1D2021",
+            "black": "#171A1A",
+            "blue": "#458588",
+            "brightBlack": "#32302F",
+            "brightBlue": "#7FA2AC",
+            "brightCyan": "#689D6A",
+            "brightGreen": "#8EC07C",
+            "brightPurple": "#D4879C",
+            "brightRed": "#FB4934",
+            "brightWhite": "#E7D7AD",
+            "brightYellow": "#EEBD35",
+            "cursorColor": "#504945",
+            "cyan": "#83A598",
+            "foreground": "#EBDBB2",
+            "green": "#98971A",
+            "name": "gruvbox-baby-dark",
+            "purple": "#B16286",
+            "red": "#CC241D",
+            "selectionBackground": "#E7D7AD",
+            "white": "#DEDEDE",
+            "yellow": "#FABD2F"
+        },
+        {
+            "background": "#282828",
+            "black": "#242424",
+            "blue": "#458588",
+            "brightBlack": "#32302F",
+            "brightBlue": "#7FA2AC",
+            "brightCyan": "#689D6A",
+            "brightGreen": "#8EC07C",
+            "brightPurple": "#D4879C",
+            "brightRed": "#FB4934",
+            "brightWhite": "#E7D7AD",
+            "brightYellow": "#EEBD35",
+            "cursorColor": "#504945",
+            "cyan": "#83A598",
+            "foreground": "#EBDBB2",
+            "green": "#98971A",
+            "name": "gruvbox-baby-medium",
+            "purple": "#B16286",
+            "red": "#CC241D",
+            "selectionBackground": "#E7D7AD",
+            "white": "#DEDEDE",
+            "yellow": "#FABD2F"
+        },
+        {
+            "background": "#32302F",
+            "black": "#282626",
+            "blue": "#458588",
+            "brightBlack": "#3C3A39",
+            "brightBlue": "#7FA2AC",
+            "brightCyan": "#689D6A",
+            "brightGreen": "#8EC07C",
+            "brightPurple": "#D4879C",
+            "brightRed": "#FB4934",
+            "brightWhite": "#E7D7AD",
+            "brightYellow": "#EEBD35",
+            "cursorColor": "#504945",
+            "cyan": "#83A598",
+            "foreground": "#EBDBB2",
+            "green": "#98971A",
+            "name": "gruvbox-baby-soft",
+            "purple": "#B16286",
+            "red": "#CC241D",
+            "selectionBackground": "#E7D7AD",
+            "white": "#DEDEDE",
+            "yellow": "#FABD2F"
+        },
+        {
+            "background": "#32302F",
+            "black": "#32302F",
+            "blue": "#458588",
+            "brightBlack": "#3C3A39",
+            "brightBlue": "#7FA2AC",
+            "brightCyan": "#689D6A",
+            "brightGreen": "#8EC07C",
+            "brightPurple": "#D4879C",
+            "brightRed": "#FB4934",
+            "brightWhite": "#E7D7AD",
+            "brightYellow": "#EEBD35",
+            "cursorColor": "#504945",
+            "cyan": "#83A598",
+            "foreground": "#EBDBB2",
+            "green": "#98971A",
+            "name": "gruvbox-baby-soft_flat",
+            "purple": "#B16286",
+            "red": "#CC241D",
+            "selectionBackground": "#E7D7AD",
+            "white": "#DEDEDE",
+            "yellow": "#FABD2F"
         }
     ],
     "startOnUserLogin": true,
