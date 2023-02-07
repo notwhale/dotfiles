@@ -1,4 +1,5 @@
-require('plugin_config.gruvbox')
+-- require('plugin_config.gruvbox')
+require('plugin_config.onedark')
 require('plugin_config.lualine')
 require('plugin_config.nvim-tree')
 require('plugin_config.treesitter')
