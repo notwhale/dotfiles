@@ -19,7 +19,7 @@ return {
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
-        jsonnet_ls = {},
+        -- jsonnet_ls = {},
         marksman = {},
         pyright = {},
         -- terraformls = {},
