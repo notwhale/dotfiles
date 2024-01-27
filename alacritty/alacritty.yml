@@ -12,15 +12,15 @@ window:
 # Font
 font:
   normal:
-    family: "Hack Nerd Font"
+    family: "Hack Nerd Font Mono"
     style: "Regular"
   bold:
-    family: "Hack Nerd Font"
+    family: "Hack Nerd Font Mono"
     style: "Bold"
   italic:
-    family: "Hack Nerd Font"
+    family: "Hack Nerd Font Mono"
     style: "Italic"
-  size: 12
+  size: 16
 
 draw_bold_text_with_bright_colors: true
 
@@ -54,12 +54,21 @@ colors:
     white:   '#a89984'
 
   # Bright colors
-    bright:
-      black:   '#928374'
-      red:     '#fb4934'
-      green:   '#b8bb26'
-      yellow:  '#fabd2f'
-      blue:    '#83a598'
-      magenta: '#d3869b'
-      cyan:    '#8ec07c'
-      white:   '#ebdbb2'
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+key_bindings:
+  - { key: Q,        mods: Control, chars: "\x11"                        }
+  - { key: F,        mods: Alt,     chars: "\x1bf"                       }
+  - { key: B,        mods: Alt,     chars: "\x1bb"                       }
+  - { key: J,        mods: Alt,     chars: "\x1bj"                       }
+  - { key: K,        mods: Alt,     chars: "\x1bk"                       }
+  - { key: H,        mods: Alt,     chars: "\x1bh"                       }
+  - { key: L,        mods: Alt,     chars: "\x1bl"                       }

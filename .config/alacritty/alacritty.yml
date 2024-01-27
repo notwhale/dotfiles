@@ -33,6 +33,11 @@ selection:
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
+# Key bindings
+key_bindings:
+    - { key: V, mods: Control|Shift, action: Paste }
+    - { key: C, mods: Control|Shift, action: Copy }
+
 # Colors (Gruvbox dark)
 colors:
   # Default colors
