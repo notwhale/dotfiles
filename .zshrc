@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -92,7 +92,9 @@ plugins=(
     vscode
     git
     github
-    ssh-agent
+#    ssh-agent
+    fzf-zsh-plugin
+    zsh-ssh
     docker
     docker-compose
     kubectl
@@ -130,6 +132,8 @@ KEYTIMEOUT=1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export TERM="screen-256color"
+
 source ~/.zsh_alias
 
 if type brew &>/dev/null; then
@@ -145,14 +149,17 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$(brew --prefix)/bin:$PATH"
 
-source <(minikube completion zsh)
+# source <(minikube completion zsh)
 source <(kubectl completion zsh)
 source <(helm completion zsh)
-#autoload bashcompinit && bashcompinit
-#autoload -Uz bashcompinit && bashcompinit
+# autoload bashcompinit && bashcompinit
+# autoload -Uz bashcompinit && bashcompinit
 autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-complete -o nospace -C $(which aws_completer) aws
-complete -o nospace -C $(which terraform) terraform
+# complete -o nospace -C $(which aws_completer) aws
+# complete -o nospace -C $(which terraform) terraform
+# podman completion -f “${fpath[1]}/_podman” zsh
+
+complete -o nospace -C /opt/homebrew/bin/vault vault
