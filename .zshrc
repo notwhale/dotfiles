@@ -108,6 +108,24 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 KEYTIMEOUT=1
 
+bindkey -e
+bindkey '^p' history_search_backward
+bindkey '^n' history_search_forward
+
+HISTSIZE=5000
+HIST_FILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -132,9 +150,11 @@ KEYTIMEOUT=1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export TERM="screen-256color"
-
 source ~/.zsh_alias
+
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export TERM="screen-256color"
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -144,6 +164,8 @@ if type brew &>/dev/null; then
 fi
 
 FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+eval "$(fzf --zsh)"
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
