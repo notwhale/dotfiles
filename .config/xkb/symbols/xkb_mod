@@ -1,7 +1,0 @@
-xkb_symbols "capsctrl" {
-    key <CAPS> { [ Control_L ] };
-};
-
-xkb_symbols "ctrlwin" {
-    key <LCTL> { [ Super_L ] };
-};

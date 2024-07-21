@@ -1,8 +1,0 @@
-xrdb -merge .Xresources
-#setxkbmap -layout us,ru -option 'grp:alt_shift_toggle,grp_led:scroll,caps:escape'
-#setxkbmap -layout "us+xkb_mod(capsctrl)+xkb_mod(ctrlwin),ru(winkeys)" -option "" -option "grp:alt_shift_toggle,grp_led:scroll,grp_led:scroll" -print | xkbcomp -I"$HOME/.config/xkb" - "${DISPLAY%%.*}" >/dev/null 2>&1 &
-#xcape -t 150 -e "Control_L=Escape"
-picom -b &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-#nitrogen --restore &
-~/.xkb_mod &

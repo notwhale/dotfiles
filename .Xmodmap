@@ -1,6 +1,0 @@
-clear Lock
-clear mod4
-keycode 78 = Caps_Lock
-keycode 66 = Super_L
-add lock = Caps_Lock
-add mod4 = Super_L Super_R Hyper_L
