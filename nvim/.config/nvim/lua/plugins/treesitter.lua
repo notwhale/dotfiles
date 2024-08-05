@@ -22,6 +22,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "groovy",
       },
       incremental_selection = {
         enable = true,

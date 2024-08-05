@@ -50,6 +50,7 @@ return {
         yamlls = {},
         -- terraformls = {},
         helm_ls = {},
+        groovyls = {},
       },
     },
   },
