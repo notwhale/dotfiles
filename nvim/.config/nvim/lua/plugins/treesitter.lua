@@ -17,7 +17,7 @@ return {
         "python",
         "query",
         "regex",
-        "terraform",
+        -- "terraform",
         "toml",
         "vim",
         "vimdoc",
