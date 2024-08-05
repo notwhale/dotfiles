@@ -1,20 +1,17 @@
 {
-  "ansible.executionEnvironment.volumeMounts": [],
   "debug.console.fontSize": 14,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorSurroundingLines": 5,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "JetBrainsMono Nerd Font",
-  "editor.fontLigatures": true,
+  "editor.fontLigatures": false,
   "editor.fontSize": 14,
   "editor.formatOnSave": false,
   "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
-  "editor.rulers": [80],
+  "editor.rulers": [
+    80
+  ],
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": true,
   "editor.suggest.insertMode": "replace",
@@ -25,12 +22,11 @@
   "extensions.autoUpdate": "onlyEnabledExtensions",
   "extensions.ignoreRecommendations": true,
   "files.insertFinalNewline": true,
-  "json.schemas": [],
-  "prettier.semi": false,
-  "prettier.singleAttributePerLine": true,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "projectManager.git.baseFolders": ["$home/Documents/Projects"],
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "projectManager.git.baseFolders": [
+    "$home/Documents/Projects"
+  ],
   "projectManager.sortList": "Recent",
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
@@ -41,137 +37,11 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.fontSize": 14,
-  "terraform.experimentalFeatures.validateOnSave": true,
-  "vim.easymotion": true,
-  "vim.foldfix": true,
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
-  },
-  "vim.highlightedyank.enable": true,
-  "vim.hlsearch": true,
-  "vim.incsearch": true,
-  "vim.leader": "<space>",
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["leader", "q"],
-      "commands": [":q!"]
-    },
-    {
-      "before": ["leader", "w"],
-      "commands": [":w!"]
-    },
-    {
-      "before": ["leader", "x"],
-      "commands": [":x!"]
-    },
-    {
-      "before": ["<C-a>"],
-      "after": ["g", "g", "V", "G"]
-    },
-    {
-      "before": ["[", "d"],
-      "commands": ["editor.action.marker.prev"]
-    },
-    {
-      "before": ["]", "d"],
-      "commands": ["editor.action.marker.next"]
-    },
-    {
-      "before": ["leader", "c", "a"],
-      "commands": ["editor.action.quickFix"]
-    },
-    { "before": ["<S-h>"], "commands": [":bprevious"] },
-    { "before": ["<S-l>"], "commands": [":bnext"] },
-    {
-      "before": ["<S-k>"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
-    },
-    { "before": ["leader", "v"], "commands": [":vsplit"] },
-    { "before": ["leader", "s"], "commands": [":split"] },
-    {
-      "before": ["leader", "h"],
-      "commands": ["workbench.action.focusLeftGroup"]
-    },
-    {
-      "before": ["leader", "j"],
-      "commands": ["workbench.action.focusBelowGroup"]
-    },
-    {
-      "before": ["leader", "k"],
-      "commands": ["workbench.action.focusAboveGroup"]
-    },
-    {
-      "before": ["leader", "l"],
-      "commands": ["workbench.action.focusRightGroup"]
-    },
-    {
-      "before": ["leader", "e"],
-      "commands": ["workbench.explorer.fileView.focus"]
-    }
-  ],
-  "vim.visualModeKeyBindings": [
-    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
-    { "before": [">"], "commands": ["editor.action.indentLines"] },
-    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
-    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
-    { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
-  ],
-  "vim.useCtrlKeys": true,
-  "vim.useSystemClipboard": true,
-  "vs-kubernetes": {
-    "vscode-kubernetes.helm-path.mac": "/Users/notwhale/.vs-kubernetes/tools/helm/darwin-amd64/helm",
-    "vscode-kubernetes.minikube-path.mac": "/Users/notwhale/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-  },
-  "vscode-neovim.highlightGroups.highlights": {
-    "Conceal": "vim",
-    "Directory": "vim",
-    "IncSearch": {
-      "backgroundColor": "theme.editor.findMatchBackground",
-      "borderColor": "theme.editor.findMatchBorder"
-    },
-    "Search": {
-      "backgroundColor": "theme.editor.findMatchHighlightBackground",
-      "borderColor": "theme.editor.findMatchHighlightBorder"
-    },
-    "Substitute": "vim",
-    "Visual": {
-      "backgroundColor": "theme.editor.selectionBackground"
-    }
-  },
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.scrollback": 9999,
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
-  "yaml.customTags": [
-    "!encrypted/pkcs1-oaep scalar",
-    "!vault scalar",
-    "!And",
-    "!And sequence",
-    "!If",
-    "!If sequence",
-    "!Not",
-    "!Not sequence",
-    "!Equals",
-    "!Equals sequence",
-    "!Or",
-    "!Or sequence",
-    "!FindInMap",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Join",
-    "!Join sequence",
-    "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!Sub sequence",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!ImportValue sequence",
-    "!Select",
-    "!Select sequence",
-    "!Split",
-    "!Split sequence"
-  ],
   "zenMode.hideLineNumbers": false
 }
