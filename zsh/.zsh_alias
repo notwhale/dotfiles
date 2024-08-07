@@ -1,9 +1,8 @@
 #!/usr/bin/bash
 
-alias vim="mvim -v"
-
-alias t="tmux a || tmux new"
-alias tl="tmux ls"
+alias v='nvim'
+alias t='tmux a || tmux new'
+alias tl='tmux ls'
 
 ydla () {
 	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist --output '~/Music/youtube/%(title)s.%(ext)s' "$@"
