@@ -6,11 +6,13 @@ return {
       ensure_installed = {
         "stylua",
         "shellcheck",
+        "hadolint",
         "shfmt",
         "flake8",
         "pyright",
         "yamllint",
         "djlint",
+        "ansible-lint",
       },
     },
   },

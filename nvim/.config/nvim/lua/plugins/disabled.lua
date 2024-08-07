@@ -3,6 +3,6 @@ return {
   { "echasnovski/mini.surround", enabled = false },
   { "folke/noice.nvim", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
-  -- temporarily disabled due to empty file issue
+  { "mini.animate", enabled = false },
   -- { "nvim-navic", enabled = false },
 }
