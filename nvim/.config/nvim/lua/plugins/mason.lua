@@ -10,6 +10,7 @@ return {
         "shfmt",
         "flake8",
         "pyright",
+        "black",
         "yamllint",
         "djlint",
         "ansible-lint",
