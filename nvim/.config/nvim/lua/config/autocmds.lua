@@ -1,4 +1,5 @@
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  -- group = augroup("ansible_detect"),
   pattern = {
     "*/tasks/*.yml",
     "*/tasks/*.yaml",
@@ -9,12 +10,27 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     "*/roles/*/handlers/*.yml",
     "*/roles/*/handlers/*.yaml",
   },
-  command = "setlocal filetype=yaml.ansible",
+  -- command = "setlocal filetype=yaml.ansible",
+  callback = function()
+    vim.cmd("set filetype=yaml.ansible")
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  -- group = augroup("ansible_detect"),
   pattern = {
     "*.j2",
   },
-  command = "setlocal filetype=htmldjango",
+  -- command = "setlocal filetype=htmldjango",
+  callback = function()
+    vim.cmd("set filetype=htmldjango")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  -- group = augroup("jenkinsfile_detect"),
+  pattern = { "Jenkinsfile" },
+  callback = function()
+    vim.cmd("set filetype=groovy")
+  end,
 })
