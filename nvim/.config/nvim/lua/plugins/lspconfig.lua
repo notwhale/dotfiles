@@ -8,7 +8,6 @@ return {
       ---@type lspconfig.options
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
         lua_ls = {
           Lua = {
             workspace = { checkThirdParty = false },
@@ -45,12 +44,14 @@ return {
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
-        -- jsonnet_ls = {},
         marksman = {},
         yamlls = {},
-        -- terraformls = {},
         helm_ls = {},
-        groovyls = {},
+        pyright = {},
+        gopls = {},
+        -- jsonnet_ls = {},
+        -- terraformls = {},
+        -- groovyls = {},
       },
     },
   },
