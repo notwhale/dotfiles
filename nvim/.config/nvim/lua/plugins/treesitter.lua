@@ -22,7 +22,6 @@ return {
         "python",
         "query",
         "regex",
-        -- "terraform",
         "toml",
         "vim",
         "vimdoc",
@@ -47,15 +46,6 @@ return {
           goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
           goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
         },
-      },
-      -- Disable terraform treesitter on fixture files
-      highlight = {
-        disable = function(lang)
-          local buf_name = vim.fn.expand("%")
-          if lang == "terraform" and string.find(buf_name, "fixture") then
-            return true
-          end
-        end,
       },
     },
   },

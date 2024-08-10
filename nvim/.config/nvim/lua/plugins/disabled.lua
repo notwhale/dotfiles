@@ -4,5 +4,4 @@ return {
   { "folke/noice.nvim", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "mini.animate", enabled = false },
-  -- { "nvim-navic", enabled = false },
 }
