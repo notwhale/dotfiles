@@ -66,3 +66,16 @@
 vim.o.keymap = "russian-jcukenwin"
 vim.o.iminsert = 0
 vim.o.imsearch = 0
+
+-- Fold
+vim.o.spell = false
+vim.o.foldmethod = "manual"
+vim.o.foldenable = false
+
+-- Scrolling
+vim.o.number = false
+vim.o.relativenumber = false
+vim.o.scrolloff = 8
+
+-- Markdown
+vim.g.mkdp_browser = "/Applications/Firefox.app/Contents/MacOS/firefox"
