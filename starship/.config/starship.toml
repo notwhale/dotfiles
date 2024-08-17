@@ -10,9 +10,9 @@ $line_break\
 $python\
 $character"""
 
-palette = 'gruvbox_dark'
+palette = 'gruvbox'
 
-[palettes.gruvbox_dark]
+[palettes.gruvbox]
 fg0 = '#fbf1c7'
 bg1 = '#3c3836'
 bg3 = '#665c54'
@@ -30,15 +30,15 @@ style = "blue"
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](cyan)"
+vimcmd_symbol = "[❮](aqua)"
 
 [git_branch]
 format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "cyan"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)]($style) ($ahead_behind$stashed)]($style)"
+style = "bold orange"
 conflicted = "​"
 untracked = "​"
 modified = "​"
