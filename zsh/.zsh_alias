@@ -1,26 +1,23 @@
-#!/usr/bin/bash
+# ls
+alias ls='ls --color=auto'
+alias l='ls -lhF'
+alias ll='ls -alhF'
+alias la='ls -lhtr'
 
+# vim
 alias v='nvim'
+
+# tmux
 alias t='tmux a || tmux new'
 alias tl='tmux ls'
 
-ydla () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --no-playlist --output '~/Music/youtube/%(title)s.%(ext)s' "$@"
-	}
+# git
+alias gp='git pull'
+alias gs='git status'
+alias lg='lazygit'
 
-ydlap () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist --output '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$@"
-	}
-
-ydlv () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --no-playlist --output '~/Movies/youtube/%(title)s.%(ext)s' "$@"
-}
-
-ydlvp () {
-	youtube-dl --ignore-errors --continue --no-overwrites --format 'bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4]/best' --yes-playlist --output '~/Movies/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$@"
-}
-
-# MPV
-mpvdualsub () {
-	mpv "$@" --aid=2 --sid=1 --secondary-sid=2 --sub-file-paths="Eng:Rus"
-}
+# kubernetes
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kc='kubectx'
+alias kn='kubens'
