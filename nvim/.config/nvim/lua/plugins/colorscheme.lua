@@ -1,5 +1,4 @@
 return {
-  --  gruvbox
   { "ellisonleao/gruvbox.nvim" },
   {
     "LazyVim/LazyVim",
@@ -8,7 +7,6 @@ return {
     },
   },
 
-  -- gruvbox-material
   -- { "wittyjudge/gruvbox-material.nvim" },
   -- {
   --   "LazyVim/LazyVim",
@@ -17,7 +15,6 @@ return {
   --   },
   -- },
 
-  --  gruvbox-baby
   -- { "luisiacc/gruvbox-baby" },
   -- {
   --   "LazyVim/LazyVim",

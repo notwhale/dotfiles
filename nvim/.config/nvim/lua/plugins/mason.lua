@@ -14,6 +14,8 @@ return {
         "yamllint",
         "djlint",
         "ansible-lint",
+        "sql-formatter",
+        "prettier",
       },
     },
   },
