@@ -39,3 +39,6 @@ vim.keymap.set("v", "<leader>P", '"_dP', { desc = "Paste over currently selected
 
 -- Remap language mapping keystroke
 vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })
+
+-- Lsp
+vim.keymap.set("n", "<leader>S", "<cmd>LspStop<CR>", { desc = "LspStop" })
