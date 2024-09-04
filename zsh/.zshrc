@@ -22,18 +22,35 @@ export NOTES="$HOME/Documents/Notes/"
 
 # zsh
 
-bindkey -e # select emacs keymap and bind it to main
+# emacs keymap
+bindkey -e
+
+# vi keymap
+# bindkey -v
+# export KEYTIMEOUT=1
 
 # history
-
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 
-setopt HIST_IGNORE_SPACE  # Don't save when prefixed with space
-setopt HIST_IGNORE_DUPS   # Don't save duplicate lines
-setopt SHARE_HISTORY      # Share history between sessions
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_REDUCE_BLANKS
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+autoload -U select-word-style
+select-word-style bash
+
+autoload -Uz compinit && compinit
 
 # aliases
 
@@ -97,7 +114,8 @@ if type podman &>/dev/null; then
   podman completion -f "${fpath[1]}/_podman" zsh
 fi
 
-# autocompletion
+# autosuggestions and highlighting
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+set ZSH_AUTOSUGGEST_USE_ASYNC=true
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
