@@ -40,5 +40,13 @@ vim.keymap.set("v", "<leader>P", '"_dP', { desc = "Paste over currently selected
 -- Remap language mapping keystroke
 vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })
 
+-- Replace
+vim.keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', { desc = "Replace all instances of highlighted words" })
+vim.keymap.set("v", "<C-s>", ":sort<CR>", { desc = "Sort highlighted text in visual mode with Control+S" })
+
+-- Move line
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move current line down" })
+vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move current line up" })
+
 -- Lsp
 vim.keymap.set("n", "<leader>S", "<cmd>LspStop<CR>", { desc = "LspStop" })
