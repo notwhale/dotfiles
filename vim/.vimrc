@@ -1,3 +1,12 @@
+" colors
+set termguicolors
+set background=dark
+colorscheme gruvbox
+
+" leader
+let mapleader = " "
+
+" general settings
 syntax on
 filetype plugin on
 set nocompatible
@@ -8,8 +17,8 @@ set path+=**
 set wildmenu
 set title
 set tabstop=4
-set shiftwidth=4
 set softtabstop=4
+set shiftwidth=4
 set expandtab
 set smartindent
 set showcmd
@@ -32,6 +41,35 @@ set laststatus=2
 " set ruler
 " set cursorline
 
+" split navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" adjust split size
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize -3<CR>
+noremap <silent> <C-Down> :resize +3<CR>
+
+" autoclose brackets, parethesis, double quotes, and single quotes
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {; {};<left><left>
+inoremap {{ {{  }}<left><left><left>
+inoremap /* /**/<left><left>
+
+" terminal inside vim
+map <leader>tt :vnew term://bash<CR>
+
+" split windows from vertical to horizontal or vice versa
+map <leader>th <C-w>t<C-w>H
+map <leader>tk <C-w>t<C-w>K
+
 " grep
 set gp=git\ grep\ -n
 " set grepprg=git\ --no-pager\ grep\ --no-color\ -n\ $*
@@ -50,9 +88,11 @@ set foldenable
 set foldlevelstart=20
 set foldmethod=indent
 
-autocmd fileType netrw setlocal bufhidden=delete " close unmodified buffers opened by netrw while `hidden` insn't set
-autocmd fileType yaml setlocal ai et nu ts=2 sw=2 sts=2 indentkeys-=0#
+" close unmodified buffers opened by netrw while `hidden` insn't set
+autocmd fileType netrw setlocal bufhidden=delete
 
-"remove trailing whitespace on save
+" yaml settings
+autocmd fileType yaml setlocal ai et ts=2 sw=2 sts=2 indentkeys-=0#
+
+" remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
-
