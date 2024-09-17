@@ -60,7 +60,7 @@ alias ll='ls -alhF'
 alias la='ls -lhtr'
 
 alias v='nvim'
-alias vim='nvim'
+# alias vim='nvim'
 
 alias t='tmux a || tmux new'
 alias tl='tmux ls'
