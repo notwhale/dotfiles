@@ -44,6 +44,10 @@ vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })
 vim.keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', { desc = "Replace all instances of highlighted words" })
 vim.keymap.set("v", "<C-s>", ":sort<CR>", { desc = "Sort highlighted text in visual mode with Control+S" })
 
+-- Scrolling
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
 -- Move line
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move current line down" })
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move current line up" })
