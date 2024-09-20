@@ -16,7 +16,7 @@ config = {
 	default_cursor_style = "BlinkingBlock",
 	cursor_blink_rate = 500,
 	color_scheme = "Gruvbox Dark (Gogh)",
-	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold" }),
+	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", italic = false }),
 	font_size = 16,
 	window_padding = {
 		left = 2,
