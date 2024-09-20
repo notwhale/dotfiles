@@ -7,6 +7,7 @@ eval "$(starship init zsh)"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export TERM="tmux-256color"
+# export TERM="screen-256color"
 export COLORTERM="truecolor"
 export VISUAL=nvim
 export EDITOR=nvim
@@ -64,6 +65,7 @@ alias v='nvim'
 
 alias t='tmux a || tmux new'
 alias tl='tmux ls'
+alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 
 alias gp='git pull'
 alias gs='git status'
