@@ -29,8 +29,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   -- group = augroup("jenkinsfile_detect"),
-  pattern = { "Jenkinsfile" },
+  pattern = {
+    "Jenkinsfile",
+    "*.Jenkinsfile",
+    "*/*.Jenkinsfile",
+  },
   callback = function()
     vim.cmd("set filetype=groovy")
+    vim.cmd("set tabstop=4 softtabstop=4 shiftwidth=4")
   end,
 })
