@@ -89,6 +89,7 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+eval "$(/usr/local/bin/brew shellenv)"
 # ssh agent
 # SSH_AUTH_SOCK=$(launchctl asuser "${UID:-"$(id -u)"}" launchctl getenv SSH_AUTH_SOCK)
 # if test "$SSH_AUTH_SOCK" ; then
