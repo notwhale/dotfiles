@@ -80,45 +80,11 @@ alias dot='cd $DOTFILES'
 alias prj='cd $PROJECTS'
 alias note='cd $NOTES'
 
-# homebrew
-
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-
-eval "$(/usr/local/bin/brew shellenv)"
-# ssh agent
-# SSH_AUTH_SOCK=$(launchctl asuser "${UID:-"$(id -u)"}" launchctl getenv SSH_AUTH_SOCK)
-# if test "$SSH_AUTH_SOCK" ; then
-#     ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-# fi
-
-# fzf
-
-source <(fzf --zsh)
-
-# kubectl
-
-source <(kubectl completion zsh)
-kubectl completion zsh > "${fpath[1]}/_kubectl"
-
-# helm
-
-source <(helm completion zsh)
-helm completion zsh > "${fpath[1]}/_helm"
-
-# podman
-
-if type podman &>/dev/null; then
-  source <(podman completion zsh)
-  podman completion -f "${fpath[1]}/_podman" zsh
-fi
-
-# autosuggestions and highlighting
-
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-set ZSH_AUTOSUGGEST_USE_ASYNC=true
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+case "$OSTYPE" in
+	darwin*)
+		source "${ZDOTDIR:-${HOME}}/.zshrc-darwin"
+	;;
+	linux*)
+		source "${ZDOTDIR:-${HOME}}/.zshrc-linux"
+	;;
+esac
