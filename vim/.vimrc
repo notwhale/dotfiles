@@ -1,3 +1,10 @@
+" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
 " colors
 set termguicolors
 set background=dark
@@ -33,7 +40,7 @@ set nohlsearch
 set scrolloff=8
 set encoding=utf-8
 set mouse=a
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set complete+=kspell
 set completeopt=menuone,longest
 set splitbelow splitright
@@ -54,14 +61,14 @@ noremap <silent> <C-Up> :resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 
 " autoclose brackets, parethesis, double quotes, and single quotes
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {; {};<left><left>
-inoremap {{ {{  }}<left><left><left>
-inoremap /* /**/<left><left>
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap {; {};<left><left>
+" inoremap {{ {{  }}<left><left><left>
+" inoremap /* /**/<left><left>
 
 " terminal inside vim
 map <leader>tt :vnew term://bash<CR>
