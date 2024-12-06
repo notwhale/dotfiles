@@ -6,14 +6,13 @@ eval "$(starship init zsh)"
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-export TERM="tmux-256color"
-# export TERM="screen-256color"
+# export TERM="tmux-256color"
+export TERM="screen-256color"
 export COLORTERM="truecolor"
-export VISUAL=nvim
-export EDITOR=nvim
-export KUBE_EDITOR=nvim
+export VISUAL=vim
+export EDITOR=vim
+export KUBE_EDITOR=vim
 export KUBECONFIG=~/.kube/config
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # directories
 

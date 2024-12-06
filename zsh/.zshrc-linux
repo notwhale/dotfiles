@@ -1,3 +1,10 @@
+# aliases
+
+alias copy='xclip -selection clipboard'
+alias paste='xclip -selection clipboard -o'
+
+alias docker='podman'
+
 # fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -15,6 +22,13 @@ source <(helm completion zsh)
 if type podman &>/dev/null; then
   source <(podman completion zsh)
 fi
+
+# pyenv
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # autosuggestions and highlighting
 

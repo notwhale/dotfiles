@@ -1,3 +1,7 @@
+# envs
+
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 # homebrew
 
 if type brew &>/dev/null; then
