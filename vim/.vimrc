@@ -40,7 +40,7 @@ set nohlsearch
 set scrolloff=8
 set encoding=utf-8
 set mouse=a
-set clipboard+=unnamedplus
+set clipboard^=unnamed,unnamedplus
 set complete+=kspell
 set completeopt=menuone,longest
 set splitbelow splitright
