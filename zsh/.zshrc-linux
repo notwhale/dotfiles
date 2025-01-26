@@ -6,36 +6,29 @@ export PATH=$PATH:/usr/local/go/bin
 
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
-
 alias docker='podman'
 
-# fzf
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# kubectl
-
-source <(kubectl completion zsh)
-
-# helm
-
-source <(helm completion zsh)
-
-# podman
-
-if type podman &>/dev/null; then
-  source <(podman completion zsh)
-fi
-
-# pyenv
-
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-# autosuggestions and highlighting
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# kubectl
+source <(kubectl completion zsh)
+
+# helm
+source <(helm completion zsh)
+
+# podman
+if type podman &>/dev/null; then
+  source <(podman completion zsh)
+fi
+
+# autosuggestions and highlighting
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 set ZSH_AUTOSUGGEST_USE_ASYNC=true
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

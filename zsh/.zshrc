@@ -87,3 +87,4 @@ case "$OSTYPE" in
 		source "${ZDOTDIR:-${HOME}}/.zshrc-linux"
 	;;
 esac
+
