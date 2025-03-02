@@ -51,9 +51,9 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux
 
-# LazyVim
-**/lazy-lock.json
-**/lazyvim.json
-
 # netrwhist
 *.netrwhist
+
+# LazyVim
+lazy-lock.json
+lazyvim.json
