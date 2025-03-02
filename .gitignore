@@ -53,6 +53,7 @@ Temporary Items
 
 # LazyVim
 **/lazy-lock.json
+**/lazyvim.json
 
 # netrwhist
 *.netrwhist
