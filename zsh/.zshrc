@@ -11,8 +11,11 @@ export TERM="screen-256color"
 export COLORTERM="truecolor"
 export VISUAL=vim
 export EDITOR=vim
+
+# kubernetes
 export KUBE_EDITOR=vim
-export KUBECONFIG=~/.kube/config
+# export KUBECONFIG=~/.kube/config
+export KUBECONFIG=$(find $HOME/.kube/configs -maxdepth 1 -type f | tr '\n' ':')
 
 # directories
 
