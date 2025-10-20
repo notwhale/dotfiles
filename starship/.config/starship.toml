@@ -2,6 +2,7 @@ format = """
 $username\
 $hostname\
 $directory\
+$python\
 $git_branch\
 $git_state\
 $git_status\
@@ -10,7 +11,6 @@ $line_break\
 $character"""
 
 right_format = """
-$python\
 $time\
 $cmd_duration\
 """
