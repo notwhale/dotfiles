@@ -60,16 +60,6 @@ noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 
-" autoclose brackets, parethesis, double quotes, and single quotes
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {; {};<left><left>
-" inoremap {{ {{  }}<left><left><left>
-" inoremap /* /**/<left><left>
-
 " terminal inside vim
 map <leader>tt :vnew term://bash<CR>
 
