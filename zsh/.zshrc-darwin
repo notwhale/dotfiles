@@ -27,6 +27,9 @@ fi
 #     ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
 # fi
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 # fzf
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"

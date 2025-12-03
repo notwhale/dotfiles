@@ -15,7 +15,7 @@ export EDITOR=vim
 # kubernetes
 export KUBE_EDITOR=vim
 # export KUBECONFIG=~/.kube/config
-export KUBECONFIG=$(find $HOME/.kube/configs -maxdepth 1 -type f | tr '\n' ':')
+export KUBECONFIG=$([ -d $HOME/.kube/configs ] && find $HOME/.kube/configs -maxdepth 1 -type f | tr '\n' ':')
 
 # directories
 
