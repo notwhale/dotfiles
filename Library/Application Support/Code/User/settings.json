@@ -1,0 +1,171 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "files.autoSave": "off",
+  "editor.linkedEditing": true,
+  "terminal.integrated.commandsToSkipShell": [
+    "workbench.action.closePanel"
+  ],
+  "editor.accessibilitySupport": "off",
+  "git.openRepositoryInParentFolders": "always",
+  "extensions.ignoreRecommendations": true,
+  "settingsSync.keybindingsPerPlatform": false,
+  "telemetry.telemetryLevel": "off",
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.enabled": false,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autoStash": true,
+  "git.autofetch": true,
+  "workbench.layoutControl.enabled": false,
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "window.commandCenter": false,
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "terminal.external.osxExec": "WezTerm.app",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.scrollback": 5000,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "breadcrumbs.symbolPath": "off",
+  "breadcrumbs.icons": false,
+  "window.systemColorTheme": "dark",
+  // "window.title": " ",
+  "workbench.activityBar.location": "default",
+  "workbench.tips.enabled": false,
+  // "editor.scrollbar.verticalScrollbarSize": 12,
+  "editor.cursorBlinking": "solid",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmPasteNative": false,
+  "workbench.editor.empty.hint": "hidden",
+  "chat.agent.enabled": false,
+  "telemetry.feedback.enabled": false,
+  "inlineChat.lineNaturalLanguageHint": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSurroundingLines": 5,
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.lineNumbers": "on",
+  "editor.minimap.enabled": false,
+  "editor.wordWrapColumn": 79,
+  "editor.rulers": [
+    80
+  ],
+  "editor.renderWhitespace": "all",
+  "editor.smoothScrolling": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.insertMode": "replace",
+  "editor.wrappingIndent": "indent",
+  "editor.formatOnSave": false,
+  "debug.console.fontSize": 16,
+  "window.zoomLevel": 1.0,
+  // "window.density.editorTabHeight": "compact",
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "files.insertFinalNewline": true,
+  "projectManager.git.baseFolders": [
+    "$home/Documents/Projects"
+  ],
+  "projectManager.sortList": "Recent",
+  "redhat.telemetry.enabled": false,
+  "zenMode.hideStatusBar": false,
+  "zenMode.showTabs": "none",
+  "workbench.editor.showTabs": "multiple",
+  "vim.leader": "<space>",
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "vim.foldfix": true,
+  "vim.highlightedyank.enable": true,
+  "vim.smartRelativeLine": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.easymotion": true,
+  "vim.surround": true,
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.defaultGravatarsStyle": "retro",
+  "gitlens.plusFeatures.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "vim.handleKeys": {
+    "<C-a>": false,
+    // "<C-d>": true,
+    "<C-f>": false,
+    // "<C-p>": false,
+    // "<C-s>": false,
+    // "<C-z>": false,
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<Esc>"
+      ],
+      "when": [
+        "editorFocus"
+      ],
+      "commands": [
+        ":nohl"
+      ],
+      "silent": true
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "p"
+      ],
+      "after": [
+        "P"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "J"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
+      ]
+    },
+  ],
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.settings.editor": "json",
+  "chat.commandCenter.enabled": false,
+  "ansible.lightspeed.suggestions.enabled": false,
+  "ansible.lightspeed.enabled": false,
+  "gitlens.telemetry.enabled": false,
+  "excalidraw.theme": "light",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
+}
