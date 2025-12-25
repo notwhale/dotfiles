@@ -81,9 +81,9 @@ let g:netrw_liststyle=3
 " execute 'set wildignore+='.substitute(g:netrw_list_hide.',**/.git/*','/,','/*,','g')
 
 " folding
-set foldenable
-set foldlevelstart=20
-set foldmethod=indent
+"set foldenable
+"set foldlevelstart=20
+"set foldmethod=indent
 
 " close unmodified buffers opened by netrw while `hidden` insn't set
 autocmd fileType netrw setlocal bufhidden=delete
