@@ -12,6 +12,9 @@ export COLORTERM="truecolor"
 export VISUAL=vim
 export EDITOR=vim
 
+# docker/podman
+export REGISTRY_AUTH_FILE=$HOME/.config/containers/auth.json
+
 # kubernetes
 export KUBE_EDITOR=vim
 # export KUBECONFIG=~/.kube/config
@@ -54,6 +57,13 @@ autoload -U select-word-style
 select-word-style bash
 
 autoload -Uz compinit && compinit
+
+# edit command line
+
+autoload edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+# bindkey -M vicmd v edit-command-line
 
 # aliases
 
