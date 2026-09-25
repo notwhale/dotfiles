@@ -1,9 +1,11 @@
 # PATH
 
-export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.local/share/nvim/site/pack/core/opt/"
 
 # aliases
 
+alias nvim='/opt/nvim/nvim-linux-x86_64.appimage'
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
 alias docker='podman'
