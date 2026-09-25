@@ -1,19 +1,22 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $username\
 $hostname\
 $directory\
-$python\
 $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
-$line_break\
-$character"""
-
-right_format = """
+$python\
+$docker_context\
 $time\
-$cmd_duration\
-"""
+$line_break$character"""
+
+# right_format = """
+# $time\
+# $cmd_duration\
+# """
 
 palette = 'gruvbox'
 
@@ -32,10 +35,17 @@ yellow = '#d79921'
 [directory]
 style = "blue"
 
+[line_break]
+disabled = false
+
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](aqua)"
+disabled = false
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold green)'
+vimcmd_replace_one_symbol = '[❮](bold purple)'
+vimcmd_replace_symbol = '[❮](bold purple)'
+vimcmd_visual_symbol = '[❮](bold yellow)'
 
 [git_branch]
 format = "[$branch]($style)"
