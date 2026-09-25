@@ -17,7 +17,7 @@ config = {
 	cursor_blink_rate = 500,
 	color_scheme = "Gruvbox Dark (Gogh)",
 	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", italic = false }),
-	font_size = 12,
+	font_size = 10,
 	window_padding = {
 		left = 2,
 		right = 2,
@@ -25,7 +25,10 @@ config = {
 		bottom = 0,
 	},
 	native_macos_fullscreen_mode = true,
-    audible_bell = 'Disabled',
+	audible_bell = 'Disabled',
+	default_prog = {
+		'zsh', '-i', '-c', 'tmux attach || tmux new'
+	},
 }
 
 config.keys = {
