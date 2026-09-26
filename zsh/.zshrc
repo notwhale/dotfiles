@@ -22,6 +22,13 @@ kubeconfig_refresh() {
 kubeconfig_refresh
 
 
+# .local/bin
+export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+source "$HOME/.local/bin/env"
+
 # emacs keymap
 bindkey -e
 
@@ -87,26 +94,8 @@ alias kgp='kubectl get pods'
 alias kc='kubectx'
 alias kn='kubens'
 
-alias oc='podman run \
-						--tty \
-						--interactive \
-						--rm \
-						--name opencode \
-						--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
-						--volume ~/.config/opencode:/root/.config/opencode \
-						--volume ~/.cache/opencode:/root/.cache/opencode \
-						--volume ~/.local/share/opencode:/root/.local/share/opencode \
-						--volume ~/.local/state/opencode:/root/.local/state/opencode \
-						--volume ~/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
-						--volume $(pwd):/workspace \
-						--workdir /workspace \
-						ghcr.io/anomalyco/opencode'
-
 # os-specific
 case "$OSTYPE" in
 	darwin*) source "${ZDOTDIR:-${HOME}}/.zshrc-darwin" ;;
 	linux*) source "${ZDOTDIR:-${HOME}}/.zshrc-linux" ;;
 esac
-
-# opencode
-export PATH=/home/NKapishev/.opencode/bin:$PATH

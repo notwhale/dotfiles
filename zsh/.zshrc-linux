@@ -10,6 +10,21 @@ alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
 alias docker='podman'
 
+alias oc='podman run \
+	--tty \
+	--interactive \
+	--rm \
+	--name opencode \
+	--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
+	--volume ~/.config/opencode:/root/.config/opencode \
+	--volume ~/.cache/opencode:/root/.cache/opencode \
+	--volume ~/.local/share/opencode:/root/.local/share/opencode \
+	--volume ~/.local/state/opencode:/root/.local/state/opencode \
+	--volume ~/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
+	--volume $(pwd):/workspace \
+	--workdir /workspace \
+	ghcr.io/anomalyco/opencode'
+
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

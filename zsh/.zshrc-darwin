@@ -6,9 +6,9 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 alias docker='podman'
 
 # Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - zsh)"
 
 # Switch to ARM homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -28,7 +28,7 @@ fi
 # fi
 
 # zoxide
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 # fzf
 source <(fzf --zsh)
