@@ -1,17 +1,17 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
-$git_state\
 $git_status\
-$git_metrics\
-$python\
-$docker_context\
-$time\
 $line_break$character"""
+
+# $username\
+# $hostname\
+# $git_state\
+# $git_metrics\
+# $python\
+# $docker_context\
 
 # right_format = """
 # $time\
