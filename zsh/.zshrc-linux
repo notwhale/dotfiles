@@ -1,15 +1,27 @@
-# PATH
+# ZSH
+typeset -g ZSH_SHARE_DIR=/usr/share
+[[ -d /usr/share/zsh/site-functions ]] &&
+  fpath=(/usr/share/zsh/site-functions $fpath)
 
+# FZF
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
+export FZF_TMUX_OPTS=" -p90%,70% "
+
+# GO
 export PATH="$PATH:/usr/local/go/bin"
+
+# Neovim
 export PATH="$PATH:$HOME/.local/share/nvim/site/pack/core/opt/"
 
-# aliases
-
+# Aliases
 alias nvim='/opt/nvim/nvim-linux-x86_64.appimage'
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
 alias docker='podman'
-
 alias oc='podman run \
 	--tty \
 	--interactive \
@@ -24,33 +36,3 @@ alias oc='podman run \
 	--volume $(pwd):/workspace \
 	--workdir /workspace \
 	ghcr.io/anomalyco/opencode'
-
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
-export FZF_TMUX_OPTS=" -p90%,70% "
-
-# kubectl
-source <(kubectl completion zsh)
-
-# helm
-source <(helm completion zsh)
-
-# podman
-if type podman &>/dev/null; then
-  source <(podman completion zsh)
-fi
-
-# autosuggestions and highlighting
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-set ZSH_AUTOSUGGEST_USE_ASYNC=true
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

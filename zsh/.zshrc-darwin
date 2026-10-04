@@ -1,36 +1,12 @@
-# homebrew
-# envs
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
-
-# aliases
-alias docker='podman'
-
-# Pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init - zsh)"
-
-# Switch to ARM homebrew
+# Homebrew. Absolute path: this file also runs in non-login shells, where brew
+# is not on PATH yet. typeset -U makes a repeated shellenv call idempotent.
 eval "$(/opt/homebrew/bin/brew shellenv)"
-# Switch to x86_64 homebrew
-# eval "$(/usr/local/bin/brew shellenv)"
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+typeset -gU path PATH
 
-  autoload -Uz compinit
-  compinit
-fi
+# ZSH
+typeset -g ZSH_SHARE_DIR=/opt/homebrew/share
 
-# ssh agent
-# SSH_AUTH_SOCK=$(launchctl asuser "${UID:-"$(id -u)"}" launchctl getenv SSH_AUTH_SOCK)
-# if test "$SSH_AUTH_SOCK" ; then
-#     ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-# fi
-
-# zoxide
-# eval "$(zoxide init zsh)"
-
-# fzf
+# FZF
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -38,21 +14,6 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
 export FZF_TMUX_OPTS=" -p90%,70% "
 
-# kubectl
-source <(kubectl completion zsh)
-# kubectl completion zsh > "${fpath[1]}/_kubectl"
-
-# helm
-source <(helm completion zsh)
-# helm completion zsh > "${fpath[1]}/_helm"
-
-# podman
-if type podman &>/dev/null; then
-  source <(podman completion zsh)
-#  podman completion -f "${fpath[1]}/_podman" zsh
-fi
-
-# autosuggestions and highlighting
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-set ZSH_AUTOSUGGEST_USE_ASYNC=true
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Containers
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+alias docker='podman'
