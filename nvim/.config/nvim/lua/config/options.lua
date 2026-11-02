@@ -54,14 +54,12 @@ vim.o.confirm = true
 vim.o.list = true
 vim.opt.listchars = { tab = '>> ', trail = '.', nbsp = ' ' }
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+  vim.opt.clipboard:append "unnamedplus"
 end)
 
--- vim.cmd("set completeopt+=noselect")
-vim.o.completeopt = "menu,menuone,noselect"
--- vim.o.completeopt = "menuone,popup,noinsert"
+vim.o.completeopt = "menuone,popup,noselect"
 vim.o.wildmode = "longest,full"
--- vim.o.wildoptions = "pum,fuzzy,tagfile"
+vim.o.wildoptions = "pum,fuzzy,tagfile"
 
 vim.o.updatetime = 100
 vim.o.timeoutlen = 1000
