@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>G", ":Git<CR>", { desc = "Fugitive: Git Status (Control Panel)" })
+vim.keymap.set("n", "<leader>Gc", ":Git commit<CR>", { desc = "Fugitive: Commit" })
+vim.keymap.set("n", "<leader>Gp", ":Git push<CR>", { desc = "Fugitive: Push" })
+vim.keymap.set("n", "<leader>Gb", ":Git blame<CR>", { desc = "Fugitive: Blame" })
+vim.keymap.set("n", "<leader>Gd", ":Gdiffsplit<CR>", { desc = "Fugitive: Diff current file" })

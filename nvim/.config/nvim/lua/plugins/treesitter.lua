@@ -1,52 +1,51 @@
-return {
-  -- add more treesitter parsers
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "git_config",
-        "gitcommit",
-        "git_rebase",
-        "gitignore",
-        "gitattributes",
-        "bash",
-        "diff",
-        "go",
-        "html",
-        "json",
-        "lua",
-        "luadoc",
-        "luap",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "toml",
-        "vim",
-        "vimdoc",
-        "yaml",
-        "dockerfile",
-        "groovy",
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-      textobjects = {
-        move = {
-          enable = true,
-          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-        },
-      },
-    },
-  },
+local languages = {
+	"bash",
+	"c",
+	"cmake",
+	"cpp",
+	"diff",
+	"dockerfile",
+	"git_config",
+	"git_rebase",
+	"gitattributes",
+	"gitcommit",
+	"gitignore",
+	"go",
+	"groovy",
+	"html",
+	"json",
+	"lua",
+	"luadoc",
+	"luap",
+	"make",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"query",
+	"regex",
+	"rust",
+	"sql",
+	"tmux",
+	"toml",
+	"vim",
+	"vimdoc",
+	"yaml",
 }
+
+local install = require('nvim-treesitter.install')
+install.parser_install_dir = vim.fn.stdpath('data') .. '/site/parser'
+install.prefer_git = true
+install.compilers = { 'gcc', 'clang' }
+
+require('nvim-treesitter.configs').setup {
+  install_dir = vim.fn.stdpath('data') .. '/site',
+  auto_install = true,
+  ensure_installed = languages
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
+
