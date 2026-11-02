@@ -1,11 +1,8 @@
-" You might have to force true color when using regular vim inside tmux as the
-" colorscheme can appear to be grayscale with "termguicolors" option enabled.
+" colors
 if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-
-" colors
 set termguicolors
 set background=dark
 colorscheme gruvbox
@@ -45,8 +42,15 @@ set complete+=kspell
 set completeopt=menuone,longest
 set splitbelow splitright
 set laststatus=2
-" set ruler
-" set cursorline
+set ruler
+set cursorline
+
+" keymap
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+inoremap <C-l> <C-^>
 
 " split navigation
 nnoremap <C-h> <C-w>h
@@ -60,25 +64,17 @@ noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 
-" terminal inside vim
-map <leader>tt :vnew term://bash<CR>
-
 " split windows from vertical to horizontal or vice versa
 map <leader>th <C-w>t<C-w>H
 map <leader>tk <C-w>t<C-w>K
-
-" grep
-set gp=git\ grep\ -n
-" set grepprg=git\ --no-pager\ grep\ --no-color\ -n\ $*
-" set grepformat=%f:%l:%m,%m\ %f\ match%ts,%f
 
 " netrw
 let g:netrw_banner=0
 let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_liststyle=3
-" let g:netrw_list_hide=netrw_gitignore#Hide()
-" execute 'set wildignore+='.substitute(g:netrw_list_hide.',**/.git/*','/,','/*,','g')
+nnoremap <leader>d :Lexplore %:p:h<CR>
+nnoremap <leader>e :Lexplore<CR>
 
 " folding
 "set foldenable
