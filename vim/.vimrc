@@ -1,8 +1,11 @@
-" colors
+" You might have to force true color when using regular vim inside tmux as the
+" colorscheme can appear to be grayscale with "termguicolors" option enabled.
 if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
+" colors
 set termguicolors
 set background=dark
 colorscheme gruvbox
@@ -30,10 +33,10 @@ set showmode
 set number
 set relativenumber
 set wrap
+set nohlsearch
+set incsearch
 set ignorecase
 set smartcase
-set incsearch
-set nohlsearch
 set scrolloff=8
 set encoding=utf-8
 set mouse=a
@@ -46,17 +49,25 @@ set ruler
 set cursorline
 
 " keymap
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-highlight lCursor guifg=NONE guibg=Cyan
-inoremap <C-l> <C-^>
+" set keymap=russian-jcukenwin
+" set iminsert=0
+" set imsearch=0
+" highlight lCursor guifg=NONE guibg=Cyan
+" inoremap <C-l> <C-^>
 
-" split navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" netrw
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_liststyle=3
+let g:netrw_altv=1
+let g:netrw_keepdir = 0
+let g:netrw_winsize = 30
+let g:netrw_localcopydircmd = 'cp -r'
+let g:netrw_localrmdir = 'rm -r'
+let g:netrw_list_hide2 = '\(^\|\s\s\)\zs\.\S\+'
+hi! link netrwMarkFile Search
+nnoremap <leader>e :Lexplore<CR>
+nnoremap <leader>f :Lexplore %:p:h<CR>
 
 " adjust split size
 noremap <silent> <C-Left> :vertical resize +3<CR>
@@ -65,16 +76,18 @@ noremap <silent> <C-Up> :resize -3<CR>
 noremap <silent> <C-Down> :resize +3<CR>
 
 " split windows from vertical to horizontal or vice versa
-map <leader>th <C-w>t<C-w>H
-map <leader>tk <C-w>t<C-w>K
+nnoremap <leader>th <C-w>t<C-w>H
+nnoremap <leader>tk <C-w>t<C-w>K
 
-" netrw
-let g:netrw_banner=0
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_liststyle=3
-nnoremap <leader>d :Lexplore %:p:h<CR>
-nnoremap <leader>e :Lexplore<CR>
+" grep
+" set gp=git\ grep\ -n
+" set grepprg=git\ grep\ --no-pager\ --no-color\ -n\ $*
+" set grepformat=%f:%l:%m,%m\ %f\ match%ts,%f
+
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>p :cprev<CR>
+
+nnoremap <leader>r :%s/<C-r><C-w>/
 
 " folding
 "set foldenable
