@@ -14,25 +14,47 @@ export FZF_TMUX_OPTS=" -p90%,70% "
 # GO
 export PATH="$PATH:/usr/local/go/bin"
 
-# Neovim
-export PATH="$PATH:$HOME/.local/share/nvim/site/pack/core/opt/"
-
 # Aliases
-alias nvim='/opt/nvim/nvim-linux-x86_64.appimage'
+alias nv='NVIM_APPNAME=nvim_native nvim'
+# alias nvim='/opt/nvim/nvim-linux-x86_64.appimage'
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
 alias docker='podman'
-alias oc='podman run \
-	--tty \
-	--interactive \
-	--rm \
-	--name opencode \
-	--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
-	--volume ~/.config/opencode:/root/.config/opencode \
-	--volume ~/.cache/opencode:/root/.cache/opencode \
-	--volume ~/.local/share/opencode:/root/.local/share/opencode \
-	--volume ~/.local/state/opencode:/root/.local/state/opencode \
-	--volume ~/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
-	--volume $(pwd):/workspace \
-	--workdir /workspace \
-	ghcr.io/anomalyco/opencode'
+
+# alias oc='podman run \
+# 	--tty \
+# 	--interactive \
+# 	--rm \
+# 	--name opencode \
+# 	--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
+# 	--volume ~/.config/opencode:/root/.config/opencode \
+# 	--volume ~/.cache/opencode:/root/.cache/opencode \
+# 	--volume ~/.local/share/opencode:/root/.local/share/opencode \
+# 	--volume ~/.local/state/opencode:/root/.local/state/opencode \
+# 	--volume ~/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
+# 	--volume $(pwd):/workspace \
+# 	--workdir /workspace \
+# 	ghcr.io/anomalyco/opencode:latest'
+
+# alias oc='podman run \
+# 	--tty \
+# 	--interactive \
+# 	--rm \
+# 	--name opencode \
+# 	--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
+# 	--volume $HOME/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
+# 	localhost/opencode-tools:latest'
+
+# alias ocv='podman run \
+# 	--tty \
+# 	--interactive \
+# 	--rm \
+# 	--name opencode \
+# 	--env NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-bundle.pem \
+# 	--volume $HOME/Documents/projects/opencode/oc_data:/root\
+# 	--volume $HOME/.ca-certificates-bundle.pem:/etc/ssl/certs/ca-bundle.pem:ro \
+# 	--volume $(pwd):/workspace \
+# 	--workdir /workspace \
+# 	localhost/opencode-tools:latest'
+
+alias yazi="flatpak run io.github.sxyazi.yazi"

@@ -13,7 +13,7 @@ esac
 # ENV
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-# export TERM="screen-256color"
+export TERM="screen-256color"
 export COLORTERM="truecolor"
 export VISUAL=nvim
 export EDITOR=nvim
@@ -24,22 +24,22 @@ export REGISTRY_AUTH_FILE=$HOME/.config/containers/auth.json
 
 # completion: generate once into fpath, per each tool's own docs
 # Regenerated only when the binary is newer. $commands is zsh's hash table, no fork.
-() {
-  local dir=$HOME/.local/share/zsh/completions tool
-  [[ -d $dir ]] || mkdir -p "$dir"
-  for tool in kubectl helm podman; do
-    (( $+commands[$tool] )) || continue
-    [[ -f $dir/_$tool && $dir/_$tool -nt $commands[$tool] ]] && continue
-    case $tool in
-      kubectl) command kubectl completion zsh     >"$dir/_$tool" ;;
-      helm)    command helm    completion zsh     >"$dir/_$tool" ;;
-      podman)  command podman  completion zsh -f "$dir/_$tool" ;;
-    esac
-  done
-} 2>/dev/null
+# () {
+#   local dir=$HOME/.local/share/zsh/completions tool
+#   [[ -d $dir ]] || mkdir -p "$dir"
+#   for tool in kubectl helm podman; do
+#     (( $+commands[$tool] )) || continue
+#     [[ -f $dir/_$tool && $dir/_$tool -nt $commands[$tool] ]] && continue
+#     case $tool in
+#       kubectl) command kubectl completion zsh     >"$dir/_$tool" ;;
+#       helm)    command helm    completion zsh     >"$dir/_$tool" ;;
+#       podman)  command podman  completion zsh -f "$dir/_$tool" ;;
+#     esac
+#   done
+# } 2>/dev/null
 
-fpath=("$HOME/.local/share/zsh/completions" $fpath)  # must before compinit
-typeset -U fpath  # .zshrc-linux prepends /usr/share/zsh/site-functions, already in default fpath
+# fpath=("$HOME/.local/share/zsh/completions" $fpath)  # must before compinit
+# typeset -U fpath  # .zshrc-linux prepends /usr/share/zsh/site-functions, already in default fpath
 
 bindkey -e
 # fzf is sourced at the top and takes ^I; give Tab back to zsh. Removing this
@@ -94,6 +94,19 @@ typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
 source $ZSH_SHARE_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # must be last
 ZSH_HIGHLIGHT_STYLES[comment]='fg=102'
 
+# Aliases
+alias ls='ls --color=auto'
+alias l='ls -lhF'
+alias ll='ls -alhF'
+alias la='ls -lhtr'
+
+#alias v='nvim'
+alias vim='nvim'
+
+alias t='tmux a || tmux new'
+alias tl='tmux ls'
+alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
+
 # --- kubernetes ------------------------------------------------------------
 # KUBECONFIG is joined on kubectl call, not at shell start: glob, no forks, and
 # new context files are picked up without a restart. No dir -> leave unset so
@@ -107,22 +120,3 @@ kubectl() {
   fi
   command kubectl "$@"
 }
-
-# Aliases
-alias ls='ls --color=auto'
-alias l='ls -lhF'
-alias ll='ls -alhF'
-alias la='ls -lhtr'
-
-alias v='nvim'
-alias vim='nvim'
-
-alias t='tmux a || tmux new'
-alias tl='tmux ls'
-alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
-
-alias gp='git pull'
-alias gs='git status'
-alias lg='lazygit'
-
-alias k='kubectl'
