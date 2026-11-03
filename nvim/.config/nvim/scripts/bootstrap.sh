@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# Install nvim config dependencies (Ubuntu 22.04, no sudo, into $HOME).
+# Idempotent.
+set -euo pipefail
+
+BIN="$HOME/.local/bin"
+OPT="$HOME/.local/opt"
+mkdir -p "$BIN" "$OPT"
+
+log() { printf '\033[1;32m==>\033[0m %s\n' "$*"; }
+
+# tree-sitter-cli: v0.27.1 prebuilt. Fresh releases need GLIBC 2.39 (Ubuntu
+# 22.04 has 2.35), but its weak GLIBC_2.39 refs are harmless — parsers build
+# byte-identical.
+if ! command -v tree-sitter >/dev/null; then
+	log "tree-sitter-cli 0.27.1 -> $BIN"
+	curl -sL https://github.com/tree-sitter/tree-sitter/releases/download/v0.27.1/tree-sitter-linux-x64.gz \
+		| gunzip > "$BIN/tree-sitter"
+	chmod +x "$BIN/tree-sitter"
+fi
+
+# lua-language-server
+if ! command -v lua-language-server >/dev/null; then
+	log "lua-language-server -> $OPT"
+	ver="3.19.2"
+	mkdir -p "$OPT/lua-language-server"
+	curl -sL "https://github.com/LuaLS/lua-language-server/releases/download/$ver/lua-language-server-$ver-linux-x64.tar.gz" \
+		| tar -xz -C "$OPT/lua-language-server"
+	ln -sfn "$OPT/lua-language-server/bin/lua-language-server" "$BIN/lua-language-server"
+fi
+
+# helm_ls
+if ! command -v helm_ls >/dev/null; then
+	log "helm-ls -> $BIN"
+	curl -sL -o "$BIN/helm_ls" \
+		"https://github.com/mrjosh/helm-ls/releases/download/v0.5.4/helm_ls_linux_amd64"
+	chmod +x "$BIN/helm_ls"
+fi
+
+# gopls (built from source with go)
+if ! command -v gopls >/dev/null; then
+	log "gopls -> $BIN (go install)"
+	GOBIN="$BIN" go install golang.org/x/tools/gopls@latest
+fi
+
+# python: basedpyright (types) + ruff (linter/formatter)
+if ! command -v basedpyright-langserver >/dev/null || ! command -v ruff >/dev/null; then
+	log "basedpyright + ruff (pip install --user)"
+	python3 -m pip install --user --upgrade basedpyright ruff
+fi
+
+# node via nvm — for bashls / ansiblels / yamlls. Restart the shell afterwards.
+if [ ! -d "$HOME/.nvm" ]; then
+	log "nvm -> ~/.nvm"
+	export NVM_DIR="$HOME/.nvm"
+	mkdir -p "$NVM_DIR"
+	git clone -q --depth 1 https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+	# the nvm PATH setup lives in ~/.zshrc (see dotfiles/zsh)
+fi
+
+export NVM_DIR="$HOME/.nvm"
+# shellcheck source=/dev/null
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+if ! command -v node >/dev/null; then
+	log "node 22 LTS (nvm)"
+	nvm install 22
+fi
+
+log "npm servers: bash-language-server, yaml-language-server, ansible-language-server"
+npm install -g bash-language-server yaml-language-server @ansible/ansible-language-server
+
+log "Done. Check: nvim +'checkhealth vim.lsp vim.treesitter'"
