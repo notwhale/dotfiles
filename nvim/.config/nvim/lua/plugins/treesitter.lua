@@ -1,8 +1,27 @@
+-- nvim-treesitter (main branch): install parsers only; highlighting and
+-- folding are native (:h treesitter-highlight). Needs tree-sitter-cli and a
+-- C compiler (scripts/bootstrap.sh).
+
 local languages = {
+	-- nvim itself
 	"bash",
+	"lua",
+	"luadoc",
+	"luap",
+	"query",
+	"vim",
+	"vimdoc",
+	"markdown",
+	"markdown_inline",
+	-- languages
+	"go",
+	"groovy",
+	"python",
+	"rust",
 	"c",
-	"cmake",
 	"cpp",
+	-- config and data
+	"cmake",
 	"diff",
 	"dockerfile",
 	"git_config",
@@ -10,42 +29,24 @@ local languages = {
 	"gitattributes",
 	"gitcommit",
 	"gitignore",
-	"go",
-	"groovy",
 	"html",
 	"json",
-	"lua",
-	"luadoc",
-	"luap",
 	"make",
-	"markdown",
-	"markdown_inline",
-	"python",
-	"query",
 	"regex",
-	"rust",
 	"sql",
-	"tmux",
 	"toml",
-	"vim",
-	"vimdoc",
 	"yaml",
+	-- k8s / helm
+	"helm",
 }
 
-local install = require('nvim-treesitter.install')
-install.parser_install_dir = vim.fn.stdpath('data') .. '/site/parser'
-install.prefer_git = true
-install.compilers = { 'gcc', 'clang' }
+-- install missing parsers (no-op when up to date)
+require("nvim-treesitter").install(languages)
 
-require('nvim-treesitter.configs').setup {
-  install_dir = vim.fn.stdpath('data') .. '/site',
-  auto_install = true,
-  ensure_installed = languages
-}
-
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
+-- start native highlight where a parser exists
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("user_treesitter", { clear = true }),
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
-
