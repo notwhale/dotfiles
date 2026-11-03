@@ -3,14 +3,6 @@ typeset -g ZSH_SHARE_DIR=/usr/share
 [[ -d /usr/share/zsh/site-functions ]] &&
   fpath=(/usr/share/zsh/site-functions $fpath)
 
-# FZF
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
-export FZF_TMUX_OPTS=" -p90%,70% "
-
 # GO
 export PATH="$PATH:/usr/local/go/bin"
 
@@ -19,7 +11,7 @@ alias nv='NVIM_APPNAME=nvim_native nvim'
 # alias nvim='/opt/nvim/nvim-linux-x86_64.appimage'
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
-alias docker='podman'
+alias yazi="flatpak run io.github.sxyazi.yazi"
 
 # alias oc='podman run \
 # 	--tty \
@@ -56,5 +48,3 @@ alias docker='podman'
 # 	--volume $(pwd):/workspace \
 # 	--workdir /workspace \
 # 	localhost/opencode-tools:latest'
-
-alias yazi="flatpak run io.github.sxyazi.yazi"
