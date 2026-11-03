@@ -16,11 +16,6 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_altv = 1
 vim.g.netrw_altfile = 1
 
--- Colors
--- vim.cmd.colorscheme("retrobox")
--- vim.o.background = "dark"
--- vim.o.termguicolors = true
-
 -- options
 vim.o.number = true
 vim.o.relativenumber = true
@@ -30,7 +25,6 @@ vim.o.shiftwidth = 2
 vim.o.showtabline = 2
 vim.o.breakindent = true
 vim.o.autoindent = true
-vim.o.smartindent = true
 vim.o.expandtab = true
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -39,7 +33,7 @@ vim.o.ignorecase = true
 vim.o.inccommand = "nosplit"
 vim.o.cursorline = true
 vim.o.signcolumn = "yes:1"
-vim.o.textwidth = 80
+-- no global textwidth: with the default formatoptions it hard-wraps while typing
 vim.o.wrap = false
 vim.o.swapfile = false
 vim.o.undofile = true
@@ -62,9 +56,8 @@ vim.o.wildmode = "longest,full"
 vim.o.wildoptions = "pum,fuzzy,tagfile"
 
 vim.o.updatetime = 100
-vim.o.timeoutlen = 1000
 
-vim.o.grepprg = "rg --vimgrep --smart-case --hidden"
+vim.o.grepprg = "rg --vimgrep --smart-case --hidden -g '!.git'"
 vim.o.grepformat = "%f:%l:%c:%m"
 
 -- russian keymap
