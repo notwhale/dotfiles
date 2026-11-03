@@ -1,7 +1,6 @@
 -- Nvim 0.12 vim.pack; update with :vim.pack.update()
 vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/tpope/vim-fugitive" },
