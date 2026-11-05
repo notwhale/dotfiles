@@ -53,7 +53,7 @@ end)
 
 vim.o.completeopt = "menuone,popup,noselect"
 vim.o.wildmode = "longest,full"
-vim.o.wildoptions = "pum,fuzzy,tagfile"
+-- vim.o.wildoptions = "pum,fuzzy,tagfile"
 
 vim.o.updatetime = 100
 vim.o.timeoutlen = 800
