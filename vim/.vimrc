@@ -12,41 +12,43 @@ colorscheme gruvbox
 
 " leader
 let mapleader = " "
+let maplocalleader = " "
 
 " general settings
 syntax on
 filetype plugin on
 set nocompatible
-set autoindent
 set noswapfile
 set hidden
 set path+=**
 set wildmenu
 set title
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
 set showcmd
 set showmode
 set number
 set relativenumber
-set wrap
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+" set smartindent
+set nowrap
 set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
-set scrolloff=8
-set encoding=utf-8
-set mouse=a
-set clipboard^=unnamed,unnamedplus
 set complete+=kspell
 set completeopt=menuone,longest
-set splitbelow splitright
+set splitbelow
+set splitright
+set encoding=utf-8
 set laststatus=2
+set scrolloff=8
 set ruler
 set cursorline
+set mouse=a
+set clipboard^=unnamed,unnamedplus
 
 " keymap
 " set keymap=russian-jcukenwin
