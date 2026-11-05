@@ -17,7 +17,11 @@ export EDITOR=nvim
 export KUBE_EDITOR=nvim
 export REGISTRY_AUTH_FILE=$HOME/.config/containers/auth.json
 
+export SCRATCHPAD_DIR="${SCRATCHPAD_DIR:-$HOME/scratchpad}"
+export SCRATCHPAD_SESSION="${SCRATCHPAD_SESSION:-scratchpad}"
+
 typeset -U PATH path  # dedupe: tmux re-sources this with an inherited PATH
+[[ -d $HOME/.local/scripts ]] && export PATH="$HOME/.local/scripts:$PATH"
 [[ -d $HOME/.opencode/bin ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
 # FZF: fzf >= 0.48 provides `fzf --zsh` (replaces the legacy ~/.fzf.zsh)
