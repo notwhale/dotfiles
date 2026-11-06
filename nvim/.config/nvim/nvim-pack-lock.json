@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "ansible-vault.nvim": {
+      "rev": "9e2dab7b0ac8f6e7e6feabec05987b718403fc8b",
+      "src": "https://github.com/eyebrowkang/ansible-vault.nvim"
+    },
+    "ansible-vim": {
+      "rev": "6c42a448e30bc48ae98792bce38970148b0e3c9d",
+      "src": "https://github.com/pearofducks/ansible-vim"
+    },
     "fzf-lua": {
       "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
       "src": "https://github.com/ibhagwan/fzf-lua"
