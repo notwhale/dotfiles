@@ -24,8 +24,7 @@ typeset -U PATH path  # dedupe: tmux re-sources this with an inherited PATH
 [[ -d $HOME/.local/scripts ]] && export PATH="$HOME/.local/scripts:$PATH"
 [[ -d $HOME/.opencode/bin ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
-# FZF: fzf >= 0.48 provides `fzf --zsh` (replaces the legacy ~/.fzf.zsh)
-command -v fzf >/dev/null && source <(fzf --zsh)
+# ZSH
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -170,3 +169,5 @@ if [[ -s $NVM_DIR/nvm.sh ]]; then
     nvm "$@"
   }
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

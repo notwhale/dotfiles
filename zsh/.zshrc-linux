@@ -3,6 +3,8 @@ typeset -g ZSH_SHARE_DIR=/usr/share
 [[ -d /usr/share/zsh/site-functions ]] &&
   fpath=(/usr/share/zsh/site-functions $fpath)
 
+[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
+
 # GO
 export PATH="$PATH:/usr/local/go/bin"
 

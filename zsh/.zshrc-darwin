@@ -5,6 +5,7 @@ typeset -gU path PATH
 
 # ZSH
 typeset -g ZSH_SHARE_DIR=/opt/homebrew/share
+command -v fzf >/dev/null && source <(fzf --zsh)
 
 # Containers
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
