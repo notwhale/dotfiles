@@ -67,6 +67,12 @@ vim.lsp.config("gopls", {
   },
 })
 
+-- jsonls: lspconfig's default cmd ("vscode-json-language-server") does not
+-- match the bin name of the npm package ("vscode-json-languageserver")
+vim.lsp.config("jsonls", {
+  cmd = { "vscode-json-languageserver", "--stdio" },
+})
+
 -- a server starts when the filetype matches and a root is found
 vim.lsp.enable({
   "lua_ls",
@@ -77,6 +83,19 @@ vim.lsp.enable({
   "yamlls",
   "ansiblels",
   "helm_ls", -- ft "helm" from config/filetypes.lua
+  "jsonls",
+})
+
+-- native auto-completion (no plugin): snippets expand via vim.snippet,
+-- select with CTRL-Y. completeopt is already "menuone,popup,noselect".
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
 })
 
 -- virtual_text is off by default in 0.12

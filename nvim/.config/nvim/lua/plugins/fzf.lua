@@ -30,6 +30,8 @@ vim.keymap.set("n", "<leader>gb", "<cmd>FzfLua git_branches<CR>", { desc = "Fzf:
 -- lsp and diagnostics
 vim.keymap.set("n", "<leader>ld", "<cmd>FzfLua lsp_definitions<CR>", { desc = "Definitions" })
 vim.keymap.set("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set("x", "<leader>lf", vim.lsp.buf.format, { desc = "Format selection" })
 vim.keymap.set("n", "<leader>fd", "<cmd>FzfLua diagnostics_document<CR>", { desc = "Fzf: Document Diagnostics" })
 vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>", { desc = "Fzf: Document Symbols" })
 

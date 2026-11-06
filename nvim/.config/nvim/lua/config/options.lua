@@ -51,7 +51,7 @@ vim.schedule(function()
   vim.opt.clipboard:append "unnamedplus"
 end)
 
-vim.o.completeopt = "menuone,popup,noselect"
+vim.o.completeopt = "menuone,popup,noselect,noinsert"
 vim.o.wildmode = "longest,full"
 -- vim.o.wildoptions = "pum,fuzzy,tagfile"
 
