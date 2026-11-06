@@ -46,7 +46,7 @@ vim.o.scrolloff = 8
 vim.o.showmode = false
 vim.o.confirm = true
 vim.o.list = true
-vim.opt.listchars = { tab = '>> ', trail = '.', nbsp = ' ' }
+vim.opt.listchars = { tab = '>-', trail = '.', nbsp = ' ' }
 vim.schedule(function()
   vim.opt.clipboard:append "unnamedplus"
 end)
