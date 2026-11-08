@@ -13,6 +13,7 @@ vim.pack.add({
   -- -- markdown preview (in-buffer): disabled in favor of render-markdown.nvim
   -- { src = "https://github.com/OXY2DEV/markview.nvim" },
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+  { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/pearofducks/ansible-vim" },
   { src = "https://github.com/eyebrowkang/ansible-vault.nvim" },
 })
@@ -20,6 +21,7 @@ vim.pack.add({
 require("plugins.gruvbox")
 require("plugins.treesitter")
 require("plugins.render-markdown")
+require("plugins.typst-preview")
 -- disabled in favor of render-markdown.nvim:
 -- require("plugins.markview")
 require("plugins.lsp")
