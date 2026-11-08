@@ -22,11 +22,28 @@ typeset -U PATH path  # dedupe: tmux re-sources this with an inherited PATH
 [[ -d $HOME/.opencode/bin ]] && export PATH="$HOME/.opencode/bin:$PATH"
 
 # ZSH
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
+# FZF: fd backends only when fd exists (legacy machines may lack it too),
+# otherwise fzf falls back to its built-in find-based commands.
+if command -v fd >/dev/null; then
+  export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude node_modules --exclude vendor --exclude dist --exclude target --exclude .terraform"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+fi
+
+# gruvbox palette, keeps shell fzf in sync with tmux/nvim
+export FZF_GRUVBOX="--color=bg+:#3c3836,bg:#282828,spinner:#a89984,hl:#fabd2f,fg:#ebdbb2,header:#8ec07c,info:#928374,pointer:#fabd2f,marker:#fabd2f,fg+:#ebdbb2,prompt:#928374,hl+:#fabd2f"
+
+# In tmux fzf runs inside the FZF_TMUX popup (-p90%,70%); the popup sizes itself,
+# so no --height here. Outside tmux use a plain bottom line at 50%.
+if [[ -n $TMUX ]]; then
+  export FZF_DEFAULT_OPTS="--border --info=inline $FZF_GRUVBOX"
+else
+  export FZF_DEFAULT_OPTS="--height 50% --border --info=inline $FZF_GRUVBOX"
+fi
 export FZF_TMUX_OPTS=" -p90%,70% "
+# preview without bat (may be missing): head for files, ls for directories
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then ls -la --color=always {}; else head -300 {}; fi'"
+export FZF_ALT_C_OPTS="--preview 'ls -la --color=always {}'"
 
 # completion: generate once into fpath, per each tool's own docs
 # Regenerated only when the binary is newer. $commands is zsh's hash table, no fork.
@@ -48,8 +65,8 @@ fpath=("$HOME/.local/share/zsh/completions" $fpath)  # must before compinit
 typeset -U fpath  # .zshrc-linux prepends /usr/share/zsh/site-functions, already in default fpath
 
 bindkey -e
-# fzf is sourced at the top and takes ^I; give Tab back to zsh. Removing this
-# line silently hands Tab to fzf-completion.
+# `fzf --zsh` (new integration) does not bind Tab; this line is a guard for
+# legacy ~/.fzf.zsh (old fzf completion used to take ^I) on old systems.
 bindkey '^I' expand-or-complete
 
 # No -C: compinit rebuilds the dump when completion files change, and self-heals
@@ -167,4 +184,5 @@ if [[ -s $NVM_DIR/nvm.sh ]]; then
   }
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# legacy fzf integration is sourced per-OS:
+#   macOS: .zshrc-darwin (`fzf --zsh`), Linux/Ubuntu 22.04: .zshrc-linux (~/.fzf.zsh)
