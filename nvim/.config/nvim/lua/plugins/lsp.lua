@@ -73,6 +73,11 @@ vim.lsp.config("jsonls", {
   cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
+-- tinymist: typst LSP (diagnostics, goto-def, symbols, formatting via typstyle).
+-- Binaries tinymist/typst are on PATH (homebrew). Export-to-PDF on save needs
+-- no extra keys; per-doc commands: :TinymistExportPdf? see lspconfig/tinymist.
+vim.lsp.config("tinymist", {})
+
 -- a server starts when the filetype matches and a root is found
 vim.lsp.enable({
   "lua_ls",
@@ -84,6 +89,7 @@ vim.lsp.enable({
   "ansiblels",
   "helm_ls", -- ft "helm" from config/filetypes.lua
   "jsonls",
+  "tinymist",
 })
 
 -- native auto-completion (no plugin): snippets expand via vim.snippet,

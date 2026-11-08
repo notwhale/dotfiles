@@ -10,14 +10,18 @@ vim.pack.add({
   { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/kdheepak/lazygit.nvim" },
   { src = "https://github.com/tpope/vim-unimpaired" },
-  { src = "https://github.com/OXY2DEV/markview.nvim" },
+  -- -- markdown preview (in-buffer): disabled in favor of render-markdown.nvim
+  -- { src = "https://github.com/OXY2DEV/markview.nvim" },
+  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
   { src = "https://github.com/pearofducks/ansible-vim" },
   { src = "https://github.com/eyebrowkang/ansible-vault.nvim" },
 })
 
 require("plugins.gruvbox")
 require("plugins.treesitter")
-require("plugins.markview")
+require("plugins.render-markdown")
+-- disabled in favor of render-markdown.nvim:
+-- require("plugins.markview")
 require("plugins.lsp")
 require("plugins.fzf")
 require("plugins.lualine")
