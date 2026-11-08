@@ -36,5 +36,15 @@ vim.keymap.set("v", "<C-s>", ":sort<CR>", { desc = "Sort highlighted text" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- quickfix navigation
+-- NOTE: [q/]q are already built into Neovim core defaults (vim-unimpaired style,
+-- including [Q/]Q and count prefix) — no need to map them here.
+-- Additional unimpaired-family keys useful to remember:
+--   ]b/[b      next/prev buffer      (core default)
+--   ]x/[x      next/prev conflict    (diffview, in its windows)
+--   ]h/[h      next/prev hunk        (gitsigns, on_attach)
+--   [X/]X      XML encode/decode     (unimpaired)
+
+
 -- toggle ru/en keyboard layout in insert mode
 vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })
