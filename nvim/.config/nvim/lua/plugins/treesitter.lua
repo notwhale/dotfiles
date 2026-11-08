@@ -32,6 +32,7 @@ local languages = {
   "regex",
   "sql",
   "toml",
+  "typst",
   "yaml",
   "jinja",
   "helm",
