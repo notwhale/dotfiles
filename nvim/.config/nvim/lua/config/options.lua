@@ -39,11 +39,11 @@ vim.o.swapfile = false
 vim.o.undofile = true
 vim.o.autoread = true
 vim.o.laststatus = 3
-vim.o.cmdheight = 0
 vim.o.winborder = "rounded"
 vim.o.mouse = 'a'
 vim.o.scrolloff = 8
-vim.o.showmode = false
+-- vim.o.showmode = false
+vim.o.cmdheight = 0
 vim.o.confirm = true
 vim.o.list = true
 vim.opt.listchars = { tab = '>-', trail = '.', nbsp = ' ' }
