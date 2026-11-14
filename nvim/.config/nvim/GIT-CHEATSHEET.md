@@ -80,6 +80,36 @@ ih                   select hunk (в v/o — операция над hunk'ом �
 
 История: в fzf `gc` — поиск репо-wide; чтобы открыть коммит — Enter (открывается diff); либо через `<leader>gl` (diffview).
 
+### История файла: подробности по инструментам
+
+**diffview** (`<leader>gf` = `:DiffviewFileHistory %`):
+
+```
+:DiffviewFileHistory %                — история текущего файла (без % — весь репо)
+:DiffviewFileHistory --author=xxx %   — принимает любые опции git log, диапазоны тоже
+```
+
+- Enter — открыть дифф коммита; `<tab>` — развернуть файлы коммита
+- `]q` / `[q` — следующий/предыдущий коммит
+- `gf` — открыть версию файла на этот момент
+- `:DiffviewClose` — закрыть всё
+
+**fugitive** (когда diffview не нужен / нужен quickfix):
+
+```
+:Gclog --follow -p -- %       — история текущего файла в quickfix (--follow учитывает переименования)
+:0Glog                        — то же без diff'ов
+```
+
+- Enter в quickfix — открыть файл на тот момент
+- `:Gedit main:%` — версия файла из ветки/ревизии
+
+**lazygit** (`<leader>gg`):
+
+- `2` (Commits) → `<c-f>` (find file's commits) → выбрать файл → история только этого файла
+- внутри: Enter — полный дифф коммита, `q` — выход
+
+
 ## 4. Merge конфликты
 
 ### Основной путь — diffview
