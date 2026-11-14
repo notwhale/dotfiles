@@ -4,8 +4,8 @@
 -- tree opens/closes, so code does not shift.
 require("nvim-tree").setup({
   view = {
-    side = "right",
-    width = 32,
+    -- side = "right",
+    width = 40,
     preserve_window_proportions = true,
   },
   renderer = {
