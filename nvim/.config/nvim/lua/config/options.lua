@@ -53,7 +53,13 @@ vim.schedule(function()
   vim.opt.clipboard:append "unnamedplus"
 end)
 vim.o.completeopt = "menuone,popup,noselect,noinsert"
-vim.o.wildmode = "longest,full"
+-- native autocompletion (:h ins-autocompletion), menu comes from 'complete'
+-- (default ".,w,b,u,t"); no "o" there: LSP is triggered manually with <C-Space>
+vim.o.autocomplete = true
+-- command-line autocompletion (:h cmdline-autocompletion)
+-- vim.o.wildmode = "longest,full"
+vim.o.wildmode = "noselect:lastused,full"
+vim.o.wildoptions = "pum"
 -- vim.o.wildoptions = "pum,fuzzy,tagfile"
 
 vim.o.updatetime = 250

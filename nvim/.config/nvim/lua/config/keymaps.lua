@@ -49,3 +49,16 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- toggle ru/en keyboard layout in insert mode
 vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })
+
+-- completion: move through the popup when visible, otherwise keep Tab/S-Tab
+vim.keymap.set("i", "<Tab>", function()
+  return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
+end, { expr = true, desc = "Completion: next item / Tab" })
+vim.keymap.set("i", "<S-Tab>", function()
+  return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
+end, { expr = true, desc = "Completion: previous item / S-Tab" })
+
+-- manual LSP completion (autotrigger is off), accept with <C-y>
+vim.keymap.set("i", "<C-Space>", function()
+  vim.lsp.completion.get()
+end, { desc = "LSP: trigger completion" })
