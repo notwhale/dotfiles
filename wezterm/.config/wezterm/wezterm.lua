@@ -17,7 +17,7 @@ config = {
   default_prog = { 'zsh', '-i', '-c', 'tmux attach || tmux new' },
   enable_tab_bar = false,
   font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Bold", italic = false }),
-  font_size = 10,
+  font_size = 12,
   native_macos_fullscreen_mode = true,
   send_composed_key_when_left_alt_is_pressed=false,
   send_composed_key_when_right_alt_is_pressed=false,
