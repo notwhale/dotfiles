@@ -57,7 +57,7 @@ vim.o.wildmode = "longest,full"
 -- vim.o.wildoptions = "pum,fuzzy,tagfile"
 
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 vim.o.grepprg = "rg --vimgrep --smart-case --hidden -g '!.git'"
 vim.o.grepformat = "%f:%l:%c:%m"
