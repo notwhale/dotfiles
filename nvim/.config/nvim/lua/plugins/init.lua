@@ -12,7 +12,12 @@ vim.pack.add({
   { src = "https://github.com/tpope/vim-unimpaired" },
   -- -- markdown preview (in-buffer): disabled in favor of render-markdown.nvim
   -- { src = "https://github.com/OXY2DEV/markview.nvim" },
-  { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+  -- render-markdown.nvim removed: in-buffer rendering caused text "jumping"
+  -- between normal/insert modes; previews are now on-request only
+  -- (live-preview.nvim -> browser, glow.nvim -> popup)
+  { src = "https://github.com/brianhuster/live-preview.nvim" },
+  { src = "https://github.com/ellisonleao/glow.nvim" },
+  { src = "https://github.com/epwalsh/obsidian.nvim" },
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   { src = "https://github.com/nvim-tree/nvim-tree.lua" },
@@ -23,7 +28,9 @@ vim.pack.add({
 
 require("plugins.gruvbox")
 require("plugins.treesitter")
-require("plugins.render-markdown")
+require("plugins.live-preview")
+require("plugins.glow")
+require("plugins.obsidian")
 require("plugins.conform")
 require("plugins.typst-preview")
 require("plugins.nvim-tree")
