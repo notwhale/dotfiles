@@ -1,3 +1,4 @@
+-- clean hlsearch
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- wrapped-line motion

@@ -46,17 +46,18 @@ vim.o.scrolloff = 8
 vim.o.cmdheight = 0
 vim.o.confirm = true
 vim.o.list = true
-vim.opt.listchars = { tab = '>-', trail = '.', nbsp = ' ' }
+-- vim.opt.listchars = { tab = '» ', precedes = '«', extends ='»', trail = '•', nbsp = '␣', eol = '↲' }
+vim.opt.listchars = { tab = '>-', trail = '-', nbsp = '%', precedes = '>', extends ='<' }
+vim.o.showbreak = '\\'
 vim.schedule(function()
   vim.opt.clipboard:append "unnamedplus"
 end)
-
 vim.o.completeopt = "menuone,popup,noselect,noinsert"
 vim.o.wildmode = "longest,full"
 -- vim.o.wildoptions = "pum,fuzzy,tagfile"
 
-vim.o.updatetime = 100
-vim.o.timeoutlen = 800
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
 
 vim.o.grepprg = "rg --vimgrep --smart-case --hidden -g '!.git'"
 vim.o.grepformat = "%f:%l:%c:%m"
