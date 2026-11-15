@@ -34,6 +34,20 @@ fzf.setup({
       ["alt-h"] = { actions.toggle_hidden },
     },
   },
+  file_ignore_patterns = {
+    ".DS_Store",
+    ".git/",
+    ".obsidian/",
+    ".stfolder/",
+    ".stignore",
+    ".trash/",
+    "build/",
+    "dist/",
+    "node_modules/",
+    "package-lock.json",
+    "target/",
+    "yarn.lock",
+  },
   keymap = {
     fzf = {
       -- quickfix: select-all + accept
