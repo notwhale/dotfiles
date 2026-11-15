@@ -90,10 +90,9 @@ vim.keymap.set("n", "<leader>gb", "<cmd>FzfLua git_branches<CR>", { desc = "Fzf:
 vim.keymap.set("n", "<leader>gS", "<cmd>FzfLua git_stash<CR>", { desc = "Fzf: Git Stash" })
 
 -- lsp and diagnostics
+-- (note: <leader>lf format moved to plugins/conform.lua)
 vim.keymap.set("n", "<leader>ld", "<cmd>FzfLua lsp_definitions<CR>", { desc = "Definitions" })
 vim.keymap.set("n", "<leader>lr", "<cmd>FzfLua lsp_references<CR>", { desc = "References" })
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
-vim.keymap.set("x", "<leader>lf", vim.lsp.buf.format, { desc = "Format selection" })
 vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>", { desc = "Fzf: Document Symbols" })
 
 vim.keymap.set("n", "<leader>?", "<cmd>FzfLua builtin<CR>", { desc = "Fzf: Help" })

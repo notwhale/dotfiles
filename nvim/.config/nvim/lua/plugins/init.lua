@@ -16,6 +16,7 @@ vim.pack.add({
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
   { src = "https://github.com/nvim-tree/nvim-tree.lua" },
+  { src = "https://github.com/stevearc/conform.nvim" },
   { src = "https://github.com/pearofducks/ansible-vim" },
   { src = "https://github.com/eyebrowkang/ansible-vault.nvim" },
 })
@@ -23,6 +24,7 @@ vim.pack.add({
 require("plugins.gruvbox")
 require("plugins.treesitter")
 require("plugins.render-markdown")
+require("plugins.conform")
 require("plugins.typst-preview")
 require("plugins.nvim-tree")
 -- disabled in favor of render-markdown.nvim:
