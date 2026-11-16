@@ -37,6 +37,15 @@ if ! command -v helm_ls >/dev/null; then
   chmod +x "$BIN/helm_ls"
 fi
 
+# tinymist: typst LSP (diagnostics/completion/preview; typst-preview.nvim
+# reuses it). Raw single-binary release asset.
+if ! command -v tinymist >/dev/null; then
+  log "tinymist v0.15.12 -> $BIN"
+  curl -sL -o "$BIN/tinymist" \
+    "https://github.com/Myriad-Dreamin/tinymist/releases/download/v0.15.12/tinymist-linux-x64"
+  chmod +x "$BIN/tinymist"
+fi
+
 # gopls (built from source with go)
 if ! command -v gopls >/dev/null; then
   log "gopls -> $BIN (go install)"
@@ -76,7 +85,17 @@ if ! command -v node >/dev/null; then
   nvm install 22
 fi
 
-log "npm servers: bash-language-server, yaml-language-server, ansible-language-server, vscode-json-languageserver"
-npm install -g bash-language-server yaml-language-server @ansible/ansible-language-server vscode-json-languageserver
+# npm LSP servers. Version spec per package: "latest" tracks the newest
+# release, a pin like "26.6.0" is reproducible (npm accepts both).
+bashls_ver="latest"
+yamlls_ver="latest"
+ansiblels_ver="26.6.0"
+jsonls_ver="latest"
+log "npm servers: bashls@$bashls_ver, yamlls@$yamlls_ver, ansiblels@$ansiblels_ver, jsonls@$jsonls_ver"
+npm install -g \
+  "bash-language-server@$bashls_ver" \
+  "yaml-language-server@$yamlls_ver" \
+  "@ansible/ansible-language-server@$ansiblels_ver" \
+  "vscode-json-languageserver@$jsonls_ver"
 
 log "Done. Check: nvim +'checkhealth vim.lsp vim.treesitter'"

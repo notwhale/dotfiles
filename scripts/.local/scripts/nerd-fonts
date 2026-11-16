@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# Install/update Nerd Fonts into $HOME (no sudo). Always the latest
+# upstream release: no pinned versions, no silent fallback to a hardcoded
+# one. Re-running is a no-op while the same release + font set is installed
+# (FORCE=1 overrides).
+
+set -euo pipefail
+
+declare -a fonts=(
+  # BitstreamVeraSansMono
+  # CascadiaCode
+  # CodeNewRoman
+  # DroidSansMono
+  # FiraCode
+  # FiraMono
+  # Go-Mono
+  # Hack
+  # Hermit
+  JetBrainsMono
+  # Meslo
+  # Noto
+  # Overpass
+  # ProggyClean
+  # RobotoMono
+  # SourceCodePro
+  # SpaceMono
+  # Ubuntu
+  # UbuntuMono
+)
+
+fonts_dir="$HOME/.local/share/fonts"
+marker="$fonts_dir/.nerd-fonts-release"
+
+log() { printf '\033[1;32m==>\033[0m %s\n' "$*"; }
+
+# Latest release tag via the /releases/latest redirect: by GitHub API, no
+# jq, no rate limits. Any network problem aborts the script loudly.
+version=$(
+  curl -fsSLI -o /dev/null -w '%{url_effective}' \
+    'https://github.com/ryanoasis/nerd-fonts/releases/latest' |
+    sed 's|.*/tag/||'
+)
+case $version in
+v[0-9]*) ;;
+*)
+  echo "could not resolve the latest nerd-fonts release: '$version'" >&2
+  exit 1
+  ;;
+esac
+
+# Marker keeps release + active font list, so uncommenting a family in the
+# array above triggers a reinstall of the new set.
+state="$version ${fonts[*]}"
+if [[ -z ${FORCE:-} && -r $marker && "$(<"$marker")" == "$state" ]]; then
+  log "nerd-fonts $version is already installed (FORCE=1 to reinstall)"
+  exit 0
+fi
+log "nerd-fonts $version -> $fonts_dir"
+
+mkdir -p "$fonts_dir"
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+for font in "${fonts[@]}"; do
+  log "  $font"
+  curl -fSL -o "$tmp/$font.tar.xz" \
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$font.tar.xz"
+  mkdir -p "$tmp/$font"
+  tar -xJf "$tmp/$font.tar.xz" -C "$tmp/$font"
+  # Drop the previous release of this family so stale files never mix.
+  # "NerdFont" boundary matters: "Ubuntu" must not match "UbuntuMono".
+  rm -f "$fonts_dir/${font}"NerdFont*
+  # 'Windows Compatible' subfolder is skipped on purpose (Windows-only).
+  find "$tmp/$font" -type f \( -name '*.ttf' -o -name '*.otf' \) \
+    ! -path '*/Windows Compatible/*' \
+    -exec mv -t "$fonts_dir" {} +
+done
+
+# Leftovers from the older zip-based installs of this script.
+rm -f "$fonts_dir/README.md" "$fonts_dir/OFL.txt"
+rm -rf "$fonts_dir/Windows Compatible"
+
+printf '%s\n' "$state" >"$marker"
+fc-cache -f "$fonts_dir"
+log "done. Restart GUI apps (wezterm & co) to pick up the new fonts"
