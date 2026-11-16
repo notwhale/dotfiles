@@ -5,7 +5,7 @@ vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and 
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- seamless tmux split navigation (pairs with is_vim in .tmux.conf)
+-- move between nvim splits; tmux panes use prefix h/j/k/l
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
@@ -36,16 +36,6 @@ vim.keymap.set("v", "<C-s>", ":sort<CR>", { desc = "Sort highlighted text" })
 -- centered scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
--- quickfix navigation
--- NOTE: [q/]q are already built into Neovim core defaults (vim-unimpaired style,
--- including [Q/]Q and count prefix) — no need to map them here.
--- Additional unimpaired-family keys useful to remember:
---   ]b/[b      next/prev buffer      (core default)
---   ]x/[x      next/prev conflict    (diffview, in its windows)
---   ]h/[h      next/prev hunk        (gitsigns, on_attach)
---   [X/]X      XML encode/decode     (unimpaired)
-
 
 -- toggle ru/en keyboard layout in insert mode
 vim.keymap.set("i", "<c-l>", "<c-^>", { silent = false })

@@ -9,7 +9,6 @@ vim.pack.add({
   { src = "https://github.com/sindrets/diffview.nvim" },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
   { src = "https://github.com/kdheepak/lazygit.nvim" },
-  { src = "https://github.com/tpope/vim-unimpaired" },
   { src = "https://github.com/brianhuster/live-preview.nvim" },
   { src = "https://github.com/epwalsh/obsidian.nvim" },
   { src = "https://github.com/chomosuke/typst-preview.nvim" },
