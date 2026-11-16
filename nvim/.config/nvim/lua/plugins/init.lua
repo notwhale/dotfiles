@@ -19,6 +19,22 @@ vim.pack.add({
   { src = "https://github.com/eyebrowkang/ansible-vault.nvim" },
 })
 
+-- Remove plugins that are no longer listed above: vim.pack keeps removed
+-- plugins on disk and in the lockfile until vim.pack.del() is called.
+-- Constraint: keep every vim.pack.add() call ABOVE this block -- anything
+-- added later (e.g. from an autocmd) would be seen as unused and deleted.
+do
+  local unused = {}
+  for _, p in ipairs(vim.pack.get(nil, { info = false })) do
+    if not p.active then
+      unused[#unused + 1] = p.spec.name
+    end
+  end
+  if #unused > 0 then
+    vim.pack.del(unused)
+  end
+end
+
 require("plugins.gruvbox")
 require("plugins.treesitter")
 require("plugins.live-preview")

@@ -174,7 +174,6 @@ Enter                открыть 4-панель: OURS / THEIRS / BASE / RESUL
 ]q / [q              quickfix next/prev (встроенные unimpaired-дефолты)
 ]b / [b              буфер next/prev (встроенные)
 ]t / [t              tag next/prev (встроенные)
-]e / [e              переместить строку ниже/выше (unimpaired)
 ```
 
 ## 7. Частые сценарии — по шагам
