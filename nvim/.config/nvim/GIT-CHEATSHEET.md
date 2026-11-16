@@ -1,210 +1,113 @@
 # Git in Neovim — шпаргалка
 
-Конфиг: fugitive + gitsigns + diffview + fzf-lua + lazygit.nvim + unimpaired-дефолты.
-
----
-
-## Общая схема: кто за что отвечает
+Конфиг: diffview + gitsigns + fugitive + fzf-lua + lazygit.
 
 | Задача | Инструмент | Вход |
 |---|---|---|
-| Обзор всех изменений / merge | **diffview** | `<leader>gd` |
-| Знаки, hunks, inline-blame в буфере | **gitsigns** | `<leader>gh*`, `]h` |
-| Коммит, push, merge-фолбэк | **fugitive** | `<leader>G*` |
-| Поиск по коммитам/веткам/статусу | **fzf-lua** | `<leader>gs/gc/gb/gS` |
+| Обзор изменений / merge | **diffview** | `<leader>gd` |
+| Hunks, знаки, blame | **gitsigns** | `<leader>gh*`, `]h` |
+| Коммит, push, фолбэки | **fugitive** | `<leader>G*` |
+| Поиск: коммиты/ветки/… | **fzf-lua** | `<leader>gs/gc/gb/gS` |
 | Полный TUI (rebase и т.п.) | **lazygit** | `<leader>gg` |
-
----
 
 ## 1. Diff-ревью перед коммитом
 
 ```
-<leader>gd          DiffviewOpen — файловая панель + side-by-side diff
-<leader>gx          закрыть diff-панель
-]h / [h             след./пред. hunk (gitsigns, в diff-окнах также ]c/[c)
-<leader>ghp          показать diff hunk'а прямо в коде (inline)
-<leader>ghd / ghD    diff текущего файла vs HEAD / vs ~HEAD
-<leader>ghs / ghu    stage hunk / отменить stage (см. §2)
-<leader>ghS / ghR    stage всё / reset весь буфер
+<leader>gd                DiffviewOpen — панель файлов + side-by-side
+<leader>gx                закрыть
+]h / [h                   hunk след./пред. (в diff-окнах сами работают как ]c/[c)
+]H / [H                   последний / первый hunk
+<leader>ghp               показать hunk инлайн
+<leader>ghs / ghu / ghr   stage / unstage / reset hunk
+<leader>ghS / ghR         stage весь буфер / reset буфер
+<leader>ghd / ghD         diff файла vs index / vs ~HEAD
+ih                        hunk как text-object (v/o/x)
 ```
 
-**Внутри diffview-панели (дефолты плагина):**
-
-| Клавиша | Действие |
-|---|---|
-| `tab` / `L` | stage / unstage файла (или hunk) |
-| `ctrl-r` | reload |
-| `Enter` | развернуть diff файла |
-| `q` | закрыть |
+Панель diffview: `tab`/`L` — stage/unstage, `Enter` — дифф файла, `<c-r>` — reload, `q` — закрыть.
 
 ## 2. Stage и коммит
 
 ```
-<leader>ghs          stage hunk (n или v — выделенный)
-<leader>ghu          убрать hunk из stages
-<leader>ghS          stage весь буфер
-<leader>ghr          reset hunk к HEAD
-<leader>ghR          reset весь буфер
-ih                   select hunk (в v/o — операция над hunk'ом целиком)
+<leader>G                :Git — статус: s/u — stage/unstage, Enter — diff, - — stage hunk
+<leader>Gc / Gp / Gb     commit / push / blame
 ```
 
-```
-<leader>G            :Git — fugitive-статус (control panel)
-  s / u              stage / unstage файл в статусе
-  Enter              diff файла в статусе
-  -                  stage/unstage в статусе (та же клавиша в diff-окне)
-<leader>Gc           :Git commit — коммит (буфер, пишешь сообщение, :wq)
-<leader>Gp           :Git push
-<leader>gb           :Git blame — blame текущего файла
-```
-
-## 3. История и поиск
+## 3. История
 
 ```
-<leader>gf           история текущего файла (diffview)
-<leader>gl           история всего репо (diffview)
-<leader>ghb           blame строки под курсором (popup)
-<leader>ghB           blame всего буфера
-]H / [H              первый/последний hunk
+<leader>gf / gl          история файла / репо (diffview)
+<leader>ghb / ghB        blame строки / буфера
+<leader>gc / gs / gS / gb  fzf: коммиты / status / stash / ветки
 ```
 
-**fzf-пикеры:**
+- `:DiffviewFileHistory %` принимает опции git log (`--author=…`, диапазоны); Enter — дифф коммита, `]q`/`[q` — след./пред., `gf` — файл на тот момент.
+- fugitive: `:Gclog --follow -p -- %` — история файла в quickfix; `:Gedit main:%` — версия файла из ветки/rev.
+- lazygit: `2` (Commits) → `<c-f>` — коммиты этого файла; Enter — дифф.
+
+## 4. Сравнение веток / rev
+
+Сначала fetch (`:Git fetch` / lazygit). `@{u}` — апстрим текущей ветки.
 
 ```
-<leader>gs           git status (поиск по изменённым файлам)
-<leader>gc           поиск по коммитам
-<leader>gb           переключение/создание веток
-<leader>gS           stash
-<leader>gG           LazyGit (полный TUI: log, rebase, cherry-pick)
+:DiffviewOpen @{u}                worktree vs апстрим (вкл. незакоммиченное)
+:DiffviewOpen @{u}...HEAD         что уедет в push
+:DiffviewOpen main..feature       прямой diff веток
+:DiffviewOpen main...feature      от merge-base
+:DiffviewOpen <sha>^!             один коммит (как git show)
+:DiffviewFileHistory @{u}..HEAD   непушенные коммиты
 ```
 
-История: в fzf `gc` — поиск репо-wide; чтобы открыть коммит — Enter (открывается diff); либо через `<leader>gl` (diffview).
+Семантика: `DiffviewOpen` = `git diff` (`..` прямой, `...` merge-base); `DiffviewFileHistory` = `git log`.
 
-### История файла: подробности по инструментам
-
-**diffview** (`<leader>gf` = `:DiffviewFileHistory %`):
+**Без diffview** (фолбэк, если упал):
 
 ```
-:DiffviewFileHistory %                — история текущего файла (без % — весь репо)
-:DiffviewFileHistory --author=xxx %   — принимает любые опции git log, диапазоны тоже
+:Git diff master            весь дифф пейджером: фолды по файлам, - на hunk — stage/unstage
+:Gdiffsplit master          один файл vs rev (fugitive; <leader>Gd — vs index)
+:Gitsigns diffthis master   один файл vs rev
+:Gedit master:%             версия файла в буфер
 ```
 
-- Enter — открыть дифф коммита; `<tab>` — развернуть файлы коммита
-- `]q` / `[q` — следующий/предыдущий коммит
-- `gf` — открыть версию файла на этот момент
-- `:DiffviewClose` — закрыть всё
+lazygit: список веток → `M` — divergence, Enter — дифф.
 
-**fugitive** (когда diffview не нужен / нужен quickfix):
+**Нативный diff-режим** (движок у всех выше один):
 
 ```
-:Gclog --follow -p -- %       — история текущего файла в quickfix (--follow учитывает переименования)
-:0Glog                        — то же без diff'ов
+:windo diffthis / :diffoff / :diffupdate   вкл / выкл / пересчитать
+]c / [c                    блок след./пред.
+do / dp                    забрать hunk из другого окна / отдать свой
+:1,10diffget               применить к диапазону строк
 ```
-
-- Enter в quickfix — открыть файл на тот момент
-- `:Gedit main:%` — версия файла из ветки/ревизии
-
-**lazygit** (`<leader>gg`):
-
-- `2` (Commits) → `<c-f>` (find file's commits) → выбрать файл → история только этого файла
-- внутри: Enter — полный дифф коммита, `q` — выход
-
-
-## 4. Сравнение с remote и между ветками
-
-Сначала fetch: `:Git fetch` (или из lazygit). Дальше — любой git-rev как аргумент
-diffview (`origin/main`, `@{u}`, sha, диапазоны). `@{u}` — апстрим текущей ветки.
-
-```
-:DiffviewOpen @{u}                working tree vs апстрим (вкл. незакоммиченное)
-:DiffviewOpen @{u}...HEAD         мои коммиты vs апстрим — что уедет в push
-:DiffviewFileHistory @{u}..HEAD   список непушенных коммитов
-:DiffviewOpen main..feature       прямой diff двух веток
-:DiffviewOpen main...feature      что добавила feature с момента расхождения
-:DiffviewOpen <sha>^!             изменения одного коммита (как git show)
-:Gdiffsplit origin/main           один файл vs rev (fugitive)
-:Gitsigns diffthis origin/main    один файл vs rev (gitsigns)
-```
-
-Точки: у `DiffviewOpen` — семантика `git diff` (`..` = прямой diff, `...` = от
-merge-base); у `DiffviewFileHistory` — семантика `git log` (`A..B` = коммиты B
-без A). lazygit: в списке веток `M` — divergence против выбранной ветки.
 
 ## 5. Merge конфликты
 
-### Основной путь — diffview
+Основной путь — diffview: `<leader>gd` → панель Conflicts → `Enter` — 4-панель OURS/BASE/THEIRS/RESULT.
 
 ```
-git merge branch → конфликт
-<leader>gd           в merge-режиме сам показывает панель Conflicts
-Enter                открыть 4-панель: OURS / THEIRS / BASE / RESULT
+]x / [x                  конфликт след./пред.
+<leader>co / ct / cb     взять OURS / THEIRS / BASE
+<leader>ca / cx          взять всё OURS / всё THEIRS
 ```
 
-**Клавиши в merge-панели (дефолты diffview):**
+`q` → `<leader>Gc`.
 
-| Клавиша | Действие |
-|---|---|
-| `]x` / `[x` | след./пред. конфликт |
-| `<leader>co` | взять OURS в результат |
-| `<leader>ct` | взять THEIRS |
-| `<leader>cb` | взять BASE (полностью) |
-| `<leader>ca` | взять всё OURS |
-| `<leader>cx` | взять всё THEIRS |
+Фолбэк — fugitive: `:Gdiffsplit!` — three-way с OURS/THEIRS; забор сторон `:diffget //2` (ours) / `:diffget //3` (theirs), навигация `]c`/`[c`. Затем `:Gwrite` (resolved) → `:Git commit`. Совсем вручную: править маркеры → `:Gwrite`.
 
-Затем: `q` закрыть diffview → `<leader>Gc` → коммит.
-
-### Фолбэк — fugitive (без diffview)
+## 6. Вокруг
 
 ```
-]h / [h              прыжки по конфликтным блокам (gitsigns)
-<leader>Gd           :Gdiffsplit — diff (side-by-side) с нашей версией
-:Git merge <branch>  запустить merge вручную (fugitive-команда)
-:Gwrite              пометить файл resolved (из буфера файла)
-:Git commit          зафиксировать merge
+<leader><leader>         недавние файлы
+<leader>ff / fb / fg     файлы / буферы / git-файлы
+]q/[q  ]b/[b  ]t/[t      quickfix / буфер / tag (встроенные)
 ```
 
-Схема вручную в конфликтом файле: правишь маркеры `<<<<<<< ======= >>>>>>>` →
-сохраняешь → `:Gwrite` → следующий файл → `<leader>Gc`.
+## 7. Сценарии
 
-## 6. Полезное «вокруг»
-
-```
-<leader><leader>     недавние файлы
-<leader>ff/fb/fg     файлы / буферы / git-файлы
-]q / [q              quickfix next/prev (встроенные unimpaired-дефолты)
-]b / [b              буфер next/prev (встроенные)
-]t / [t              tag next/prev (встроенные)
-```
-
-## 7. Частые сценарии — по шагам
-
-### «Посмотрел diff, выбрал что оставить, закоммитил»
-
-1. `<leader>gd` — полный diff всех файлов;
-2. `tab` — stage нужных файлов целиком;
-3. в файлах по месту: `]h` → `<leader>ghs` — stage полезных hunk'ов;
-4. `q` закрыть diffview;
-5. `<leader>Gc` — коммит, `<leader>Gp` — push.
-
-### «Разрешить merge»
-
-1. `<leader>gd` — в панели Conflicts;
-2. Enter по файлу → в панели RESULT: `]x` ищем конфликт, `<leader>co`/`ct` — выбор;
-3. мелкие правки сделать руками, `q` — закрыть;
-4. `<leader>Gc`.
-
-### «Кто сломал строку?»
-
-1. `<leader>ghb` — blame под курсором;
-2. `<leader>gf` — история файла в diffview → Enter по коммиту — diff;
-3. `<leader>gc` — поиск по всем коммитам (fzf);
-4. `<leader>gg` — LazyGit для интерактивного rebase/cherry-pick.
+- **Ревью → коммит**: `<leader>gd` → `tab` файлы, `]h`+`<leader>ghs` hunk'и → `q` → `<leader>Gc` → `Gp`.
+- **Merge**: `<leader>gd` → `Enter` → `]x` + `<leader>co/ct` → `q` → `<leader>Gc`.
+- **Кто сломал строку**: `<leader>ghb` → `<leader>gf` / `<leader>gc` → `<leader>gg`.
 
 ---
 
-## Быстрые ссылки
-
-- diffview справка: `:h diffview` / `:DiffviewOpen --help`
-- gitsigns: `:h gitsigns`
-- fugitive: `:h fugitive`
-- unimpaired-дефолты Nvim core: `:h default-mappings`
+`:h diffview` · `:h gitsigns` · `:h fugitive` · `:h default-mappings`
