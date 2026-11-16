@@ -110,7 +110,27 @@ ih                   select hunk (в v/o — операция над hunk'ом �
 - внутри: Enter — полный дифф коммита, `q` — выход
 
 
-## 4. Merge конфликты
+## 4. Сравнение с remote и между ветками
+
+Сначала fetch: `:Git fetch` (или из lazygit). Дальше — любой git-rev как аргумент
+diffview (`origin/main`, `@{u}`, sha, диапазоны). `@{u}` — апстрим текущей ветки.
+
+```
+:DiffviewOpen @{u}                working tree vs апстрим (вкл. незакоммиченное)
+:DiffviewOpen @{u}...HEAD         мои коммиты vs апстрим — что уедет в push
+:DiffviewFileHistory @{u}..HEAD   список непушенных коммитов
+:DiffviewOpen main..feature       прямой diff двух веток
+:DiffviewOpen main...feature      что добавила feature с момента расхождения
+:DiffviewOpen <sha>^!             изменения одного коммита (как git show)
+:Gdiffsplit origin/main           один файл vs rev (fugitive)
+:Gitsigns diffthis origin/main    один файл vs rev (gitsigns)
+```
+
+Точки: у `DiffviewOpen` — семантика `git diff` (`..` = прямой diff, `...` = от
+merge-base); у `DiffviewFileHistory` — семантика `git log` (`A..B` = коммиты B
+без A). lazygit: в списке веток `M` — divergence против выбранной ветки.
+
+## 5. Merge конфликты
 
 ### Основной путь — diffview
 
@@ -146,7 +166,7 @@ Enter                открыть 4-панель: OURS / THEIRS / BASE / RESUL
 Схема вручную в конфликтом файле: правишь маркеры `<<<<<<< ======= >>>>>>>` →
 сохраняешь → `:Gwrite` → следующий файл → `<leader>Gc`.
 
-## 5. Полезное «вокруг»
+## 6. Полезное «вокруг»
 
 ```
 <leader><leader>     недавние файлы
@@ -157,7 +177,7 @@ Enter                открыть 4-панель: OURS / THEIRS / BASE / RESUL
 ]e / [e              переместить строку ниже/выше (unimpaired)
 ```
 
-## 6. Частые сценарии — по шагам
+## 7. Частые сценарии — по шагам
 
 ### «Посмотрел diff, выбрал что оставить, закоммитил»
 

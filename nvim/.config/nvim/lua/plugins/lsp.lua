@@ -40,21 +40,34 @@ vim.lsp.config("yamlls", {
 -- ftdetect, "yaml.ansible" from config/filetypes.lua -- accept both.
 vim.lsp.config("ansiblels", {
   filetypes = { "yaml.ansible", "ansible" },
+  -- diffview:// / fugitive:// and other non-file buffers: the server derives
+  -- the exec cwd from the pseudo-URI (a path that does not exist on disk) and
+  -- its child_process.exec fails with "spawn /bin/sh ENOENT". Skip LSP there.
+  root_dir = function(bufnr, on_dir)
+    if vim.api.nvim_buf_get_name(bufnr):match("^%w+://") then
+      return
+    end
+    -- same markers and resolution as the native default (lsp/ansiblels.lua)
+    on_dir(vim.fs.root(bufnr, { "ansible.cfg", ".ansible-lint" }))
+  end,
   -- Uncomment the knobs below when the defaults stop fitting; the
-  -- settings tree mirrors the VSCode extension.
+  -- settings tree mirrors the VSCode extension (26.x, see lsp/ansiblels.lua).
   -- settings = {
-  --  ansible = {
-  --    python = { interpreterPath = ".venv/bin/python" },
-  --    ansibleLint = {
-  --      enabled = true,
-  --      path = "ansible-lint",
-  --      arguments = "-c .ansible-lint.yaml", -- custom lint config
-  --    },
-  --    completion = {
-  --      provideRedirectModules = true,
-  --      provideModuleOptions = true,
-  --    },
-  --  },
+  --   ansible = {
+  --     python = { interpreterPath = ".venv/bin/python" },
+  --     validation = {
+  --       enabled = true,
+  --       lint = {
+  --         enabled = true, -- false: drop ansible-lint diagnostics entirely
+  --         path = "ansible-lint",
+  --         arguments = "-c .ansible-lint.yaml", -- custom lint config
+  --       },
+  --     },
+  --     completion = {
+  --       provideRedirectModules = true,
+  --       provideModuleOptions = true,
+  --     },
+  --   },
   -- },
 })
 
@@ -77,6 +90,19 @@ vim.lsp.config("jsonls", {
 -- Binaries tinymist/typst are on PATH (homebrew). Export-to-PDF on save needs
 -- no extra keys; per-doc commands: :TinymistExportPdf? see lspconfig/tinymist.
 vim.lsp.config("tinymist", {})
+
+-- helm_ls: DidOpen on a pseudo-URI (diffview://, fugitive://) panics the
+-- server ("only file URIs are supported", go.lsp.dev/uri) and kills the
+-- client for the whole session. Gate non-file buffers out.
+vim.lsp.config("helm_ls", {
+  root_dir = function(bufnr, on_dir)
+    if vim.api.nvim_buf_get_name(bufnr):match("^%w+://") then
+      return
+    end
+    -- same markers as the native default (lsp/helm_ls.lua)
+    on_dir(vim.fs.root(bufnr, { "Chart.yaml" }))
+  end,
+})
 
 -- a server starts when the filetype matches and a root is found
 vim.lsp.enable({
@@ -107,3 +133,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- virtual_text is off by default in 0.12
 vim.diagnostic.config({ virtual_text = true })
+
+-- Diagnostics rendering/suppression. Uncomment to tune. Mind: the severity
+-- filter is global -- it hides warnings from ALL servers, not just ansible-lint.
+-- vim.diagnostic.config({
+--   severity = { min = vim.diagnostic.severity.ERROR }, -- hide W/I/H everywhere
+--   virtual_text = { prefix = "●", source = "if_many" }, -- "ansible-lint" label when several servers
+-- })
